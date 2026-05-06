@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="theme-color" content="#0D7C3E">
+  <meta name="description" content="Aplikasi resmi Masjid Al Muhtadin - Jadwal shalat, kajian, donasi">
+  <title>Masjid Al Muhtadin</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'sans': ['Inter', 'Poppins', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            'islamic-green': '#0D7C3E',
+            'islamic-gold': '#D4AF37',
+            'islamic-dark': '#064E3B',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 font-sans">
+
+<!-- ======================== HALAMAN HOME ======================== -->
+<div id="page-home" class="page-content">
+  <!-- HEADER -->
+  <div class="relative bg-gradient-to-b from-islamic-dark via-islamic-green to-green-700 text-white pb-8 rounded-b-3xl shadow-xl">
+    <div class="absolute inset-0 bg-black/20 rounded-b-3xl"></div>
+    <div class="relative px-5 pt-5">
+      <div class="flex justify-between items-start">
+        <div>
+          <h1 class="text-xl font-bold">Masjid Al Muhtadin</h1>
+          <p class="text-sm opacity-90">Ciomas, Bogor</p>
+        </div>
+        <div class="relative bg-white/20 p-2 rounded-full">
+          <i class="fas fa-bell text-white text-lg"></i>
+          <span class="absolute -top-1 -right-1 bg-islamic-gold text-black text-[10px] font-bold px-1.5 py-0.5 rounded-full">3</span>
+        </div>
+      </div>
+      
+      <div class="mt-6">
+        <h2 class="text-2xl font-bold leading-tight">Assalamu'alaikum,<br>Jamaah</h2>
+      </div>
+
+      <!-- COUNTDOWN -->
+      <div class="mt-5 bg-islamic-dark/70 backdrop-blur-sm rounded-2xl p-4 border border-islamic-gold/30 shadow-lg">
+        <p class="text-sm opacity-80 flex items-center gap-2"><i class="fas fa-mosque"></i> Adzan Maghrib</p>
+        <div class="flex items-baseline justify-between mt-1">
+          <div class="text-4xl font-bold tracking-wider font-mono" id="countdown-timer">--:--:--</div>
+          <div class="text-xs bg-islamic-gold/20 px-2 py-1 rounded-full">akan tiba</div>
+        </div>
+        <div class="w-full bg-white/20 rounded-full h-1 mt-3 overflow-hidden">
+          <div class="bg-islamic-gold h-full rounded-full transition-all duration-1000" id="countdown-progress" style="width: 0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="px-4 -mt-5 relative z-10">
+    <!-- JADWAL SHALAT -->
+    <div class="bg-white rounded-2xl p-4 shadow-md mb-5">
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-bold text-gray-800"><i class="fas fa-clock text-islamic-green mr-2"></i> Jadwal Shalat Hari Ini</h3>
+        <span class="text-xs text-gray-500">Rabu, 15 Mei 2024</span>
+      </div>
+      <div class="grid grid-cols-5 gap-2 text-center">
+        <div class="prayer-item bg-white text-gray-700 p-2 rounded-xl transition-all" data-prayer="subuh">
+          <p class="text-xs">Subuh</p>
+          <p class="font-bold text-sm">04:25</p>
+        </div>
+        <div class="prayer-item bg-white text-gray-700 p-2 rounded-xl transition-all" data-prayer="dzuhur">
+          <p class="text-xs">Dzuhur</p>
+          <p class="font-bold text-sm">11:57</p>
+        </div>
+        <div class="prayer-item bg-white text-gray-700 p-2 rounded-xl transition-all" data-prayer="ashar">
+          <p class="text-xs">Ashar</p>
+          <p class="font-bold text-sm">15:20</p>
+        </div>
+        <div class="prayer-item bg-white text-gray-700 p-2 rounded-xl transition-all" data-prayer="maghrib">
+          <p class="text-xs">Maghrib</p>
+          <p class="font-bold text-sm">17:48</p>
+        </div>
+        <div class="prayer-item bg-white text-gray-700 p-2 rounded-xl transition-all" data-prayer="isya">
+          <p class="text-xs">Isya</p>
+          <p class="font-bold text-sm">19:02</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENU CEPAT -->
+    <div class="grid grid-cols-4 gap-3 mb-6">
+      <div class="bg-white p-3 rounded-xl text-center shadow-sm tap-effect cursor-pointer" onclick="toastNotif('Donasi')">
+        <div class="bg-islamic-green/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2"><i class="fas fa-hand-holding-heart text-islamic-green text-xl"></i></div>
+        <span class="text-sm font-medium">Donasi</span>
+      </div>
+      <div class="bg-white p-3 rounded-xl text-center shadow-sm tap-effect cursor-pointer" onclick="toastNotif('Kajian Hari Ini')">
+        <div class="bg-islamic-green/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2"><i class="fas fa-book-open text-islamic-green text-xl"></i></div>
+        <span class="text-sm font-medium">Kajian</span>
+      </div>
+      <div class="bg-white p-3 rounded-xl text-center shadow-sm tap-effect cursor-pointer" onclick="openMaps()">
+        <div class="bg-islamic-green/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2"><i class="fas fa-location-dot text-islamic-green text-xl"></i></div>
+        <span class="text-sm font-medium">Arah</span>
+      </div>
+      <div class="bg-white p-3 rounded-xl text-center shadow-sm tap-effect cursor-pointer" onclick="toastNotif('Pengumuman')">
+        <div class="bg-islamic-green/10 w-10 h-10 rounded-full flex items-center justify-center mx-auto mb-2"><i class="fas fa-bullhorn text-islamic-green text-xl"></i></div>
+        <span class="text-sm font-medium">Info</span>
+      </div>
+    </div>
+
+    <!-- REMINDER CAROUSEL -->
+    <div class="mb-6">
+      <h3 class="font-bold text-gray-800 mb-2 flex items-center gap-2"><i class="fas fa-bell text-islamic-green"></i> Pengingat Kebaikan</h3>
+      <div class="overflow-x-auto hide-scrollbar flex gap-3 pb-2">
+        <div class="min-w-[250px] bg-gradient-to-r from-islamic-green to-green-600 text-white p-3 rounded-xl shadow">
+          <div class="flex items-center gap-2"><i class="fas fa-mosque"></i><span class="font-semibold">Sunnah Jum'at</span></div>
+          <p class="text-sm mt-1">Perbanyak doa & shalawat</p>
+        </div>
+        <div class="min-w-[250px] bg-white p-3 rounded-xl shadow border-l-4 border-islamic-gold">
+          <div class="flex items-center gap-2"><i class="fas fa-pray text-islamic-green"></i><span class="font-semibold">Dzikir Harian</span></div>
+          <p class="text-sm text-gray-600 mt-1">"Subhanallah wabihamdihi"</p>
+        </div>
+        <div class="min-w-[250px] bg-white p-3 rounded-xl shadow border-l-4 border-islamic-gold">
+          <div class="flex items-center gap-2"><i class="fas fa-hadith text-islamic-green"></i><span class="font-semibold">Hadits Hari Ini</span></div>
+          <p class="text-xs text-gray-500 mt-1">"Barang siapa berjalan menuju masjid..." (HR. Muslim)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROGRAM DONASI -->
+    <div class="bg-white rounded-xl p-4 shadow-md mb-5">
+      <h3 class="font-bold text-gray-800 mb-3"><i class="fas fa-chart-line text-islamic-green"></i> Program Unggulan</h3>
+      <div class="mb-4">
+        <div class="flex justify-between text-sm"><span>Operasional Masjid</span><span class="font-semibold">65%</span></div>
+        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1"><div class="bg-islamic-green h-2.5 rounded-full progress-animate" style="width:0%"></div></div>
+        <div class="flex justify-between text-xs text-gray-500 mt-1"><span>Rp 325.000.000</span><span>Target Rp 500.000.000</span></div>
+      </div>
+      <div class="mb-4">
+        <div class="flex justify-between text-sm"><span>Santunan Anak Yatim</span><span class="font-semibold">72%</span></div>
+        <div class="w-full bg-gray-200 rounded-full h-2.5 mt-1"><div class="bg-islamic-green h-2.5 rounded-full progress-animate" style="width:0%"></div></div>
+        <div class="flex justify-between text-xs text-gray-500 mt-1"><span>Rp 72.000.000</span><span>Target Rp 100.000.000</span></div>
+      </div>
+      <button onclick="toastNotif('Donasi Sekarang')" class="mt-2 w-full bg-islamic-gold text-black font-semibold py-2 rounded-xl tap-effect shadow">💰 Donasi Sekarang</button>
+    </div>
+
+    <!-- KAJIAN TERDEKAT -->
+    <div class="bg-white rounded-xl p-4 shadow-md mb-5">
+      <h3 class="font-bold text-gray-800 mb-2"><i class="fas fa-calendar-alt text-islamic-green"></i> Kajian Terdekat</h3>
+      <div class="flex gap-4 items-center">
+        <div class="bg-islamic-green text-white text-center px-3 py-2 rounded-xl">
+          <div class="text-xs">JUM'AT</div>
+          <div class="text-2xl font-bold">17</div>
+          <div class="text-xs">MEI</div>
+        </div>
+        <div>
+          <p class="font-bold">Kajian Malam Jum'at</p>
+          <p class="text-sm text-gray-500">Ust. Ahmad Zainuddin, Lc. | 20.00 WIB</p>
+          <p class="text-xs text-gray-400">Aula Masjid Al Muhtadin</p>
+        </div>
+      </div>
+      <button onclick="toastNotif('Ditambahkan ke pengingat')" class="mt-3 bg-white border border-islamic-green text-islamic-green font-semibold py-2 rounded-xl w-full tap-effect">🔔 Ingatkan Saya</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== HALAMAN PROFIL ======================== -->
+<div id="page-profil" class="page-content hidden px-4 pt-5">
+  <div class="bg-white rounded-2xl shadow-sm overflow-hidden mb-5">
+    <div class="bg-gradient-to-r from-islamic-green to-green-700 p-5 text-white text-center relative">
+      <div class="w-20 h-20 bg-white rounded-full mx-auto flex items-center justify-center border-4 border-islamic-gold absolute -bottom-10 left-1/2 transform -translate-x-1/2 shadow-lg">
+        <i class="fas fa-mosque text-3xl text-islamic-green"></i>
+      </div>
+      <h2 class="text-xl font-bold mt-10">Masjid Al Muhtadin</h2>
+      <p class="text-sm opacity-90">Pusat Ibadah, Ilmu, dan Ukhuwah</p>
+    </div>
+    <div class="p-5 mt-4">
+      <h3 class="font-bold text-lg">📖 Tentang Masjid</h3>
+      <p class="text-gray-600 text-sm mt-1 leading-relaxed">Masjid Al Muhtadin adalah pusat ibadah, dakwah, dan pembinaan umat yang berkomitmen menghadirkan lingkungan islami yang nyaman, menyejukkan hati, dan penuh keberkahan.</p>
+      <div class="grid grid-cols-2 gap-3 mt-4 text-center">
+        <div class="bg-gray-50 p-2 rounded"><span class="text-xs">Didirikan</span><p class="font-bold">2010</p></div>
+        <div class="bg-gray-50 p-2 rounded"><span class="text-xs">Luas Tanah</span><p class="font-bold">1.200 m²</p></div>
+        <div class="bg-gray-50 p-2 rounded"><span class="text-xs">Luas Bangunan</span><p class="font-bold">800 m²</p></div>
+        <div class="bg-gray-50 p-2 rounded"><span class="text-xs">Kapasitas</span><p class="font-bold">1.000 orang</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl p-5 shadow-sm mb-5">
+    <h3 class="font-bold text-lg mb-3">👥 Struktur Pengurus</h3>
+    <div class="space-y-3">
+      <div class="flex gap-3 items-center"><div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center"><i class="fas fa-user text-gray-500"></i></div><div><p class="font-semibold">Ust. Ahmad Zainuddin, Lc.</p><p class="text-xs text-gray-500">Ketua DKM</p></div></div>
+      <div class="flex gap-3 items-center"><div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center"><i class="fas fa-user text-gray-500"></i></div><div><p class="font-semibold">Ust. Fajar Nugroho, S.H.</p><p class="text-xs text-gray-500">Sekretaris</p></div></div>
+      <div class="flex gap-3 items-center"><div class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center"><i class="fas fa-user text-gray-500"></i></div><div><p class="font-semibold">H. Muhammad Ridwan</p><p class="text-xs text-gray-500">Bendahara</p></div></div>
+    </div>
+  </div>
+
+  <div class="bg-white rounded-2xl p-5 shadow-sm mb-5">
+    <h3 class="font-bold text-lg">📍 Lokasi Masjid</h3>
+    <div class="bg-gray-200 h-36 rounded-xl mt-2 flex items-center justify-center text-gray-400"><i class="fas fa-map-marker-alt text-2xl"></i> <span class="ml-2">Google Maps</span></div>
+    <p class="text-sm mt-2">Jl. Raya Ciamas No.1, Bogor, Jawa Barat 16620</p>
+    <button onclick="openMaps()" class="mt-3 bg-islamic-green text-white py-2 rounded-xl w-full tap-effect">🗺️ Buka di Maps</button>
+  </div>
+
+  <div class="bg-white rounded-2xl p-5 shadow-sm mb-5">
+    <h3 class="font-bold text-lg">📞 Kontak & Informasi</h3>
+    <div class="mt-3 space-y-3">
+      <div class="flex items-center gap-3 p-2 tap-effect cursor-pointer" onclick="toastNotif('WhatsApp: +62 812-3456-7890')"><i class="fab fa-whatsapp text-green-600 text-xl"></i><span>+62 812-3456-7890</span></div>
+      <div class="flex items-center gap-3 p-2 tap-effect cursor-pointer" onclick="toastNotif('Instagram: @masjid_almuhtadin')"><i class="fab fa-instagram text-pink-600 text-xl"></i><span>@masjid_almuhtadin</span></div>
+      <div class="flex items-center gap-3 p-2 tap-effect cursor-pointer" onclick="toastNotif('Email: info@masjidalmuhtadin.or.id')"><i class="fas fa-envelope text-gray-600 text-xl"></i><span>info@masjidalmuhtadin.or.id</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== HALAMAN GALERI ======================== -->
+<div id="page-galeri" class="page-content hidden px-4 pt-5">
+  <h3 class="font-bold text-xl mb-3">📸 Galeri Kegiatan</h3>
+  <div class="grid grid-cols-3 gap-2">
+    <div class="aspect-square bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 tap-effect cursor-pointer" onclick="toastNotif('Foto 1')"><i class="fas fa-image text-2xl"></i></div>
+    <div class="aspect-square bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 tap-effect cursor-pointer" onclick="toastNotif('Foto 2')"><i class="fas fa-image text-2xl"></i></div>
+    <div class="aspect-square bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 tap-effect cursor-pointer" onclick="toastNotif('Foto 3')"><i class="fas fa-image text-2xl"></i></div>
+    <div class="aspect-square bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 tap-effect cursor-pointer" onclick="toastNotif('Foto 4')"><i class="fas fa-image text-2xl"></i></div>
+    <div class="aspect-square bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 tap-effect cursor-pointer" onclick="toastNotif('Foto 5')"><i class="fas fa-image text-2xl"></i></div>
+    <div class="aspect-square bg-gray-200 rounded-xl flex items-center justify-center text-gray-400 tap-effect cursor-pointer" onclick="toastNotif('Foto 6')"><i class="fas fa-image text-2xl"></i></div>
+  </div>
+  <div class="mt-5 text-center mb-5">
+    <button class="bg-islamic-green text-white px-5 py-2 rounded-full text-sm tap-effect shadow" onclick="toastNotif('Lihat lebih banyak')"><i class="fab fa-google"></i> Lihat di Google Photos</button>
+  </div>
+</div>
+
+<!-- ======================== HALAMAN DONASI ======================== -->
+<div id="page-donasi" class="page-content hidden px-4 pt-5">
+  <div class="bg-white rounded-2xl p-6 shadow-md text-center mb-5">
+    <i class="fas fa-hand-holding-heart text-5xl text-islamic-green mb-3"></i>
+    <h2 class="text-2xl font-bold">Donasi Sekarang</h2>
+    <p class="text-gray-500 text-sm mt-1">Salurkan donasi terbaik Anda untuk kemakmuran masjid</p>
+    <div class="mt-6 bg-gray-50 p-4 rounded-xl">
+      <p class="font-semibold">Bank Syariah Indonesia</p>
+      <p class="text-lg font-mono">7088 1234 5678</p>
+      <p class="text-xs text-gray-500">a.n. DKM Al Muhtadin</p>
+    </div>
+    <button onclick="copyRekening()" class="mt-5 bg-islamic-gold text-black font-bold py-3 rounded-xl w-full tap-effect">📋 Salin No. Rekening</button>
+  </div>
+</div>
+
+<!-- ======================== BOTTOM NAVIGATION ======================== -->
+<div class="bottom-nav">
+  <div class="nav-item active" data-page="home">
+    <i class="fas fa-home"></i>
+    <p>Beranda</p>
+  </div>
+  <div class="nav-item" data-page="profil">
+    <i class="fas fa-mosque"></i>
+    <p>Profil</p>
+  </div>
+  <div class="nav-item" data-page="galeri">
+    <i class="fas fa-images"></i>
+    <p>Galeri</p>
+  </div>
+  <div class="nav-item" data-page="donasi">
+    <i class="fas fa-hand-holding-heart"></i>
+    <p>Donasi</p>
+  </div>
+  <div class="nav-item" data-page="lainnya">
+    <i class="fas fa-ellipsis-h"></i>
+    <p>Lainnya</p>
+  </div>
+</div>
+
+<!-- Custom JS -->
+<script src="script.js"></script>
+
+<script>
+  // Fungsi tambahan untuk copy rekening
+  function copyRekening() {
+    const rekening = "7088 1234 5678";
+    navigator.clipboard.writeText(rekening).then(() => {
+      toastNotif("✅ Nomor rekening disalin!");
+    }).catch(() => {
+      toastNotif("Gagal menyalin, silakan salin manual");
+    });
+  }
+  
+  // Override showPage untuk halaman "lainnya"
+  const originalShowPage = showPage;
+  window.showPage = function(pageId) {
+    if (pageId === 'lainnya') {
+      toastNotif("🚧 Halaman lainnya sedang dalam pengembangan");
+      return;
+    }
+    originalShowPage(pageId);
+  };
+  
+  // Update showPage global
+  showPage = window.showPage;
+</script>
+</body>
+</html>
