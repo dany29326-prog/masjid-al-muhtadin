@@ -1,13 +1,6 @@
 /* style.css - Masjid Al Muhtadin */
 @import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700&display=swap');
 
-:root {
-  --green-primary: #0D7C3E;
-  --green-dark: #064E3B;
-  --gold: #D4AF37;
-  --gray-bg: #F0FDF4;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -16,27 +9,27 @@
 
 body {
   font-family: 'Inter', 'Poppins', system-ui, sans-serif;
-  background: var(--gray-bg);
+  background: #F0FDF4;
   padding-bottom: 80px;
 }
 
-/* Custom Classes */
-.page-content {
-  animation: fadeIn 0.3s ease-out;
-}
-
+/* ==================== UTILITY CLASSES ==================== */
 .hidden {
   display: none;
 }
 
-/* Bottom Navigation */
+.page-content {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ==================== BOTTOM NAVIGATION ==================== */
 .bottom-nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   background: white;
-  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
   border-radius: 24px 24px 0 0;
   padding: 8px 12px;
   display: flex;
@@ -55,7 +48,7 @@ body {
 }
 
 .nav-item.active {
-  background: var(--green-primary);
+  background: #0D7C3E;
   color: white;
 }
 
@@ -68,35 +61,36 @@ body {
   margin-top: 4px;
 }
 
-/* Tap Effect */
+/* ==================== TAP EFFECT ==================== */
 .tap-effect {
   transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
 }
 
 .tap-effect:active {
   transform: scale(0.97);
 }
 
-/* Progress Bar Animation */
+/* ==================== PROGRESS BAR ANIMATION ==================== */
 .progress-animate {
   transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Prayer Highlight */
+/* ==================== PRAYER HIGHLIGHT ==================== */
 .prayer-active {
-  background: var(--green-primary) !important;
+  background: #0D7C3E !important;
   color: white !important;
   border-radius: 16px;
   transform: scale(1.02);
 }
 
-/* Toast Notification */
+/* ==================== TOAST NOTIFICATION ==================== */
 .toast {
   position: fixed;
   bottom: 100px;
   left: 16px;
   right: 16px;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   color: white;
   text-align: center;
   padding: 12px;
@@ -106,6 +100,17 @@ body {
   animation: fadeIn 0.2s ease;
 }
 
+/* ==================== CAROUSEL / HORIZONTAL SCROLL ==================== */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==================== ANIMATIONS ==================== */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -117,11 +122,17 @@ body {
   }
 }
 
-/* Scrollbar hidden for carousel */
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+@media (max-width: 480px) {
+  .nav-item i {
+    font-size: 1rem;
+  }
+  
+  .nav-item p {
+    font-size: 9px;
+  }
+  
+  .bottom-nav {
+    padding: 6px 8px;
+  }
 }
