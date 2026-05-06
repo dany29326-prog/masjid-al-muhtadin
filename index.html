@@ -1,11 +1,17 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <title>Masjid Al Muhtadin - Islamic App</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome 6 (Line Icons) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <style>
@@ -17,38 +23,54 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: #F0F2F5;
+      background: #F5F7FB;
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      padding: 16px;
     }
 
     .mobile-app {
-      width: 390px;
-      max-width: 100%;
+      width: 380px;
       background: #FFFFFF;
-      border-radius: 32px;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
       position: relative;
+      border-radius: 32px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      padding-bottom: 10px;
+      /* atau biarkan saja, sudah diatur margin bottom nav */
     }
 
-    /* ========== HERO SECTION dengan Gambar Asli ========== */
+    /* ========== HERO SECTION ========== */
     .hero {
       position: relative;
       height: 380px;
-      background: linear-gradient(180deg, 
-        rgba(0, 52, 36, 0.92) 0%,
-        rgba(0, 52, 36, 0.7) 45%,
-        rgba(0, 52, 36, 0.3) 70%,
-        rgba(255, 255, 255, 0) 100%
-      ), url('images/masjid.webp');
+      width: 100%;
+      background-image: url('images/masjid.webp');
       background-size: cover;
       background-position: center 30%;
       padding: 22px 20px;
       color: white;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(180deg,
+          rgba(0, 52, 36, 0.88) 0%,
+          rgba(0, 52, 36, 0.65) 35%,
+          rgba(0, 52, 36, 0.2) 65%,
+          rgba(255, 255, 255, 0) 100%);
+      pointer-events: none;
+    }
+
+    .hero>* {
+      position: relative;
+      z-index: 2;
     }
 
     .topbar {
@@ -59,16 +81,16 @@
 
     .brand {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       align-items: center;
     }
 
     .logo {
-      width: 52px;
-      height: 52px;
+      width: 44px;
+      height: 44px;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(8px);
-      border-radius: 16px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -83,7 +105,7 @@
     }
 
     .brand h2 {
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 700;
       line-height: 1.3;
     }
@@ -97,8 +119,8 @@
     }
 
     .notif {
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       background: rgba(255, 255, 255, 0.15);
       backdrop-filter: blur(8px);
       border-radius: 50%;
@@ -106,7 +128,6 @@
       align-items: center;
       justify-content: center;
       position: relative;
-      font-size: 18px;
       cursor: pointer;
     }
 
@@ -116,107 +137,148 @@
       right: -2px;
       background: #D4AF37;
       color: #064E3B;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
-      padding: 2px 6px;
+      padding: 2px 5px;
       border-radius: 20px;
     }
 
     .welcome {
-      margin-top: 45px;
+      margin-top: 40px;
     }
 
     .welcome h1 {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       line-height: 1.3;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .welcome p {
-      font-size: 12px;
+      font-size: 11px;
       opacity: 0.9;
     }
 
-    /* ========== FLOATING COUNTDOWN CARD ========== */
+    /* ========== FLOATING COUNTDOWN CARD (KECIL) ========== */
     .floating-card {
       position: absolute;
-      left: 20px;
-      right: 20px;
-      bottom: -65px;
+      left: 0;
+      right: 0;
+      bottom: -50px;
       z-index: 10;
+      display: flex;
+      justify-content: center;
     }
 
     .countdown-card {
       background: #064E3B;
-      border-radius: 28px;
-      padding: 20px;
+      border-radius: 20px;
+      padding: 12px 16px;
+      width: 310px;
+      max-width: 85%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .countdown-left h4 {
-      font-size: 14px;
+      font-size: 10px;
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 4px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-bottom: 2px;
     }
 
     .countdown-left .sub {
-      font-size: 11px;
+      font-size: 9px;
       color: #D4AF37;
     }
 
-    .timer {
+    .timer-wrapper {
+      margin-top: 8px;
+    }
+
+    .timer-digits {
       display: flex;
-      gap: 15px;
-      margin-top: 12px;
+      gap: 6px;
+      align-items: baseline;
     }
 
-    .time-box {
-      text-align: center;
+    .time-number {
+      font-size: 22px;
+      font-weight: 700;
+      font-family: 'Poppins', monospace;
+      color: white;
     }
 
-    .time-box strong {
-      display: block;
-      font-size: 28px;
+    .time-colon {
+      font-size: 22px;
       font-weight: 700;
       color: white;
-      font-family: monospace;
+      margin: 0 -4px;
     }
 
-    .time-box span {
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.6);
+    .time-labels {
+      display: flex;
+      gap: 22px;
+      margin-top: 2px;
+      margin-left: 2px;
+    }
+
+    .time-labels span {
+      font-size: 7px;
+      color: rgba(255, 255, 255, 0.5);
       text-transform: uppercase;
     }
 
-    .progress-circle {
-      width: 80px;
-      height: 80px;
-      background: conic-gradient(#D4AF37 0deg, rgba(255, 255, 255, 0.15) 0deg);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .progress-ring {
+      position: relative;
+      width: 55px;
+      height: 55px;
     }
 
-    .progress-inner {
-      width: 62px;
-      height: 62px;
+    .ring-bg {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .ring-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(#D4AF37 0deg, transparent 0deg);
+      mask: radial-gradient(transparent 65%, black 66%);
+      -webkit-mask: radial-gradient(transparent 65%, black 66%);
+    }
+
+    .ring-inner-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
       background: #0A5C3E;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 28px;
     }
 
+    .ring-inner-icon i {
+      font-size: 16px;
+      color: #D4AF37;
+    }
+
+    /* ========== CONTENT ========== */
     .content {
-      padding: 85px 18px 30px;
+      padding: 85px 16px 20px;
       background: #FFFFFF;
     }
 
@@ -227,7 +289,7 @@
     .section-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: baseline;
       margin-bottom: 14px;
     }
 
@@ -237,13 +299,12 @@
       color: #1F2937;
     }
 
-    .section-header a {
-      font-size: 11px;
-      color: #D4AF37;
-      text-decoration: none;
-      font-weight: 500;
+    .section-header span {
+      font-size: 10px;
+      color: #9CA3AF;
     }
 
+    /* ========== JADWAL SHALAT (DIPERBAIKI) ========== */
     .prayer-grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
@@ -252,31 +313,32 @@
 
     .prayer-item {
       background: #F8FAFC;
-      border-radius: 20px;
+      border-radius: 16px;
       padding: 12px 6px;
       text-align: center;
       transition: all 0.2s;
     }
 
-    .prayer-item h5 {
+    .prayer-item span {
       font-size: 11px;
-      font-weight: 500;
       color: #6B7280;
-      margin-bottom: 6px;
+      display: block;
     }
 
     .prayer-item strong {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       color: #1F2937;
+      margin-top: 4px;
+      display: block;
     }
 
     .prayer-active {
       background: #064E3B;
-      box-shadow: 0 6px 14px rgba(6, 78, 59, 0.3);
+      box-shadow: 0 4px 12px rgba(6, 78, 59, 0.25);
     }
 
-    .prayer-active h5 {
+    .prayer-active span {
       color: rgba(255, 255, 255, 0.8);
     }
 
@@ -284,6 +346,7 @@
       color: #D4AF37;
     }
 
+    /* ========== MENU CEPAT (DIPERBAIKI) ========== */
     .quick-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -291,12 +354,13 @@
     }
 
     .quick-item {
-      background: #F8FAFC;
-      border-radius: 22px;
-      padding: 14px 8px;
+      background: white;
+      padding: 12px 8px;
+      border-radius: 20px;
       text-align: center;
       cursor: pointer;
-      transition: transform 0.1s;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .quick-item:active {
@@ -304,15 +368,16 @@
     }
 
     .quick-icon {
-      width: 50px;
-      height: 50px;
+      width: 48px;
+      height: 48px;
       background: #ECFDF5;
-      border-radius: 20px;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 10px;
-      font-size: 24px;
+      margin: 0 auto 8px;
+      color: #064E3B;
+      font-size: 22px;
     }
 
     .quick-item span {
@@ -321,6 +386,7 @@
       color: #374151;
     }
 
+    /* ========== REMINDER SCROLL ========== */
     .reminder-scroll {
       display: flex;
       gap: 12px;
@@ -334,64 +400,68 @@
     }
 
     .reminder-card {
-      min-width: 210px;
+      min-width: 200px;
       background: #064E3B;
       color: white;
-      border-radius: 24px;
-      padding: 16px;
-      border-left: 4px solid #D4AF37;
-    }
-
-    .reminder-card .emoji {
-      font-size: 28px;
+      border-radius: 20px;
+      padding: 14px;
     }
 
     .reminder-card h4 {
-      font-size: 14px;
-      margin: 8px 0 6px;
+      font-size: 13px;
+      margin: 8px 0 4px;
       font-weight: 600;
     }
 
     .reminder-card p {
-      font-size: 11px;
+      font-size: 10px;
       opacity: 0.85;
-      line-height: 1.4;
     }
 
+    /* ========== PROGRAM UNGGULAN (DENGAN FOTO) ========== */
     .program-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 14px;
+      gap: 12px;
     }
 
     .program-card {
-      background: #F8FAFC;
-      border-radius: 22px;
+      background: white;
+      border-radius: 20px;
       overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
     .program-img {
+      width: 100%;
       height: 100px;
-      background: linear-gradient(135deg, #064E3B, #0A5C3E);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 40px;
+      background-size: cover;
+      background-position: center;
+      background-color: #064E3B;
+    }
+
+    /* Placeholder sementara, nanti ganti dengan foto asli */
+    .img-operasional {
+      background-image: url('https://images.unsplash.com/photo-1590076215667-873d6f46f24c?q=80&w=400&auto=format&fit=crop');
+    }
+
+    .img-santunan {
+      background-image: url('https://images.unsplash.com/photo-1542816417-0983c9c9ad53?q=80&w=400&auto=format&fit=crop');
     }
 
     .program-body {
-      padding: 12px;
+      padding: 10px;
     }
 
     .program-body h4 {
       font-size: 12px;
       font-weight: 600;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .progress-bar {
       width: 100%;
-      height: 6px;
+      height: 4px;
       background: #E5E7EB;
       border-radius: 10px;
       overflow: hidden;
@@ -402,44 +472,48 @@
       height: 100%;
       background: #064E3B;
       border-radius: 10px;
-      width: 0%;
     }
 
     .program-body small {
-      font-size: 10px;
+      font-size: 9px;
       color: #6B7280;
     }
 
+    /* ========== KAJIAN TERDEKAT (DIPERBAIKI) ========== */
     .kajian-card {
       background: #F8FAFC;
-      border-radius: 24px;
-      padding: 18px;
+      border-radius: 20px;
+      padding: 16px;
+    }
+
+    .kajian-row {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
     }
 
-    .date-box {
-      min-width: 70px;
+    .kajian-date {
       background: #064E3B;
       color: white;
-      border-radius: 20px;
-      padding: 12px;
       text-align: center;
+      padding: 8px 14px;
+      border-radius: 16px;
+      min-width: 65px;
     }
 
-    .date-box .day {
+    .kajian-date .day {
       font-size: 10px;
       font-weight: 500;
     }
 
-    .date-box strong {
+    .kajian-date strong {
       display: block;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 700;
+      line-height: 1;
     }
 
-    .date-box .month {
+    .kajian-date .month {
       font-size: 9px;
     }
 
@@ -449,33 +523,61 @@
       margin-bottom: 6px;
     }
 
-    .kajian-info p {
-      font-size: 11px;
-      color: #6B7280;
+    .kajian-info .info-detail {
+      display: flex;
+      gap: 12px;
+      margin-top: 6px;
     }
 
-    .kajian-btn {
-      display: inline-block;
-      margin-top: 10px;
-      background: #064E3B;
-      color: white;
-      padding: 6px 16px;
-      border-radius: 20px;
+    .info-detail span {
       font-size: 10px;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
+      color: #6B7280;
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
+    .info-detail i {
+      font-size: 10px;
+      color: #D4AF37;
+    }
+
+    .btn-ingatkan {
+      margin-top: 14px;
+      background: white;
+      border: 1px solid #064E3B;
+      color: #064E3B;
+      padding: 8px;
+      border-radius: 30px;
+      font-size: 11px;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+
+    .btn-ingatkan:active {
+      background: #ECFDF5;
+      transform: scale(0.98);
+    }
+
+    /* ========== BOTTOM NAVIGATION (4 SISI LENGKUNG) ========== */
     .bottom-nav {
       position: sticky;
-      bottom: 0;
+      bottom: 16px;
+      margin: 0 16px 16px;
       background: #064E3B;
-      border-radius: 28px 28px 0 0;
-      padding: 12px 16px;
+      border-radius: 28px;
+      padding: 10px 16px 14px;
       display: flex;
       justify-content: space-around;
-      margin-top: 10px;
+      z-index: 100;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Pastikan konten tidak terlalu mepet */
+    .content {
+      padding: 85px 16px 20px;
     }
 
     .nav-item {
@@ -483,23 +585,25 @@
       color: #9CA3AF;
       cursor: pointer;
       transition: all 0.2s;
-      padding: 4px 0;
+      padding: 6px 0;
     }
 
     .nav-item.active {
       color: #D4AF37;
     }
 
-    .nav-icon {
-      font-size: 20px;
-      margin-bottom: 4px;
+    .nav-item i {
+      font-size: 22px;
     }
 
     .nav-item span {
       font-size: 10px;
       font-weight: 500;
+      display: block;
+      margin-top: 4px;
     }
 
+    /* Page Navigation */
     .page {
       display: block;
     }
@@ -524,350 +628,487 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
+
 <body>
 
-<div class="mobile-app">
+  <div class="mobile-app">
 
-  <!-- ========== HALAMAN HOME ========== -->
-  <div id="page-home" class="page">
+    <!-- ========== HALAMAN HOME ========== -->
+    <div id="page-home" class="page">
 
-    <section class="hero">
-      <div class="topbar">
-        <div class="brand">
-          <div class="logo">
-            <img src="images/logo.webp" alt="Logo Masjid Al Muhtadin" onerror="this.src='https://placehold.co/52x52?text=MA'">
-          </div>
-          <div>
-            <h2>Masjid<br>Al Muhtadin</h2>
-            <span><i class="fas fa-map-marker-alt"></i> Grogol, Sukoharjo</span>
-          </div>
-        </div>
-        <div class="notif" onclick="toastNotif('Notifikasi')">
-          <i class="fas fa-bell"></i>
-          <div class="notif-badge">3</div>
-        </div>
-      </div>
-
-      <div class="welcome">
-        <h1>Assalamu'alaikum,<br>Jamaah Al Muhtadin</h1>
-        <p>🌿 Semoga hari ini penuh keberkahan</p>
-      </div>
-
-      <div class="floating-card">
-        <div class="countdown-card">
-          <div class="countdown-left">
-            <h4>Adzan Maghrib</h4>
-            <div class="sub">Akan tiba dalam</div>
-            <div class="timer">
-              <div class="time-box"><strong id="jam">01</strong><span>Jam</span></div>
-              <div class="time-box"><strong id="menit">24</strong><span>Menit</span></div>
-              <div class="time-box"><strong id="detik">56</strong><span>Detik</span></div>
+      <div class="hero">
+        <div class="topbar">
+          <div class="brand">
+            <div class="logo">
+              <img src="images/logo.webp" alt="Logo Masjid" onerror="this.innerHTML='MA'">
+            </div>
+            <div>
+              <h2>Masjid<br>Al Muhtadin</h2>
+              <span><i class="fas fa-map-marker-alt"></i> Grogol, Sukoharjo</span>
             </div>
           </div>
-          <div class="progress-circle" id="progressCircle">
-            <div class="progress-inner">🕌</div>
+          <div class="notif" onclick="toastNotif('Notifikasi')">
+            <i class="fas fa-bell"></i>
+            <div class="notif-badge">3</div>
+          </div>
+        </div>
+
+        <div class="welcome">
+          <h1>Assalamu'alaikum,<br>Jamaah Al Muhtadin</h1>
+          <p>🌿 Semoga hari ini penuh keberkahan</p>
+        </div>
+
+        <div class="floating-card">
+          <div class="countdown-card">
+            <div class="countdown-left">
+              <h4>Adzan Maghrib</h4>
+              <div class="sub">Akan tiba dalam</div>
+              <div class="timer-wrapper">
+                <div class="timer-digits">
+                  <div class="time-block"><span class="time-number" id="jam">01</span></div>
+                  <span class="time-colon">:</span>
+                  <div class="time-block"><span class="time-number" id="menit">24</span></div>
+                  <span class="time-colon">:</span>
+                  <div class="time-block"><span class="time-number" id="detik">56</span></div>
+                </div>
+                <div class="time-labels">
+                  <span>Jam</span>
+                  <span>Menit</span>
+                  <span>Detik</span>
+                </div>
+              </div>
+            </div>
+            <div class="progress-ring">
+              <div class="ring-bg"></div>
+              <div class="ring-progress" id="ringProgress"></div>
+              <div class="ring-inner-icon">
+                <i class="fas fa-mosque"></i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <div class="content">
-
-      <section class="section">
-        <div class="section-header">
-          <h3><i class="fas fa-clock"></i> Jadwal Shalat Hari Ini</h3>
-          <a href="#" id="todayDate">Rabu, 15 Mei 2024</a>
+      <div class="content">
+        <!-- JADWAL SHALAT -->
+        <div class="section">
+          <div class="section-header">
+            <h3>Jadwal Shalat Hari Ini</h3>
+            <span id="todayDate">Rabu, 15 Mei 2024</span>
+          </div>
+          <div class="prayer-grid" id="prayerGrid">
+            <div class="prayer-item"><span>Subuh</span><strong id="subuh">--:--</strong></div>
+            <div class="prayer-item"><span>Dzuhur</span><strong id="dzuhur">--:--</strong></div>
+            <div class="prayer-item"><span>Ashar</span><strong id="ashar">--:--</strong></div>
+            <div class="prayer-item"><span>Maghrib</span><strong id="maghrib">--:--</strong></div>
+            <div class="prayer-item"><span>Isya</span><strong id="isya">--:--</strong></div>
+          </div>
         </div>
-        <div class="prayer-grid" id="prayerGrid">
-          <div class="prayer-item"><h5>Subuh</h5><strong id="subuh">--:--</strong></div>
-          <div class="prayer-item"><h5>Dzuhur</h5><strong id="dzuhur">--:--</strong></div>
-          <div class="prayer-item"><h5>Ashar</h5><strong id="ashar">--:--</strong></div>
-          <div class="prayer-item"><h5>Maghrib</h5><strong id="maghrib">--:--</strong></div>
-          <div class="prayer-item"><h5>Isya</h5><strong id="isya">--:--</strong></div>
-        </div>
-      </section>
 
-      <section class="section">
-        <div class="section-header"><h3>Menu Cepat</h3></div>
-        <div class="quick-grid">
-          <div class="quick-item" onclick="toastNotif('Donasi')"><div class="quick-icon">💰</div><span>Donasi</span></div>
-          <div class="quick-item" onclick="toastNotif('Kajian')"><div class="quick-icon">📖</div><span>Kajian</span></div>
-          <div class="quick-item" onclick="openMaps()"><div class="quick-icon">📍</div><span>Arah Masjid</span></div>
-          <div class="quick-item" onclick="toastNotif('Pengumuman')"><div class="quick-icon">📢</div><span>Pengumuman</span></div>
+        <!-- MENU CEPAT -->
+        <div class="section">
+          <div class="section-header">
+            <h3>Menu Cepat</h3>
+          </div>
+          <div class="quick-grid">
+            <div class="quick-item" onclick="toastNotif('Donasi')">
+              <div class="quick-icon"><i class="fas fa-hand-holding-heart"></i></div><span>Donasi</span>
+            </div>
+            <div class="quick-item" onclick="toastNotif('Kajian')">
+              <div class="quick-icon"><i class="fas fa-book-open"></i></div><span>Kajian</span>
+            </div>
+            <div class="quick-item" onclick="openMaps()">
+              <div class="quick-icon"><i class="fas fa-location-dot"></i></div><span>Arah Masjid</span>
+            </div>
+            <div class="quick-item" onclick="toastNotif('Pengumuman')">
+              <div class="quick-icon"><i class="fas fa-bullhorn"></i></div><span>Pengumuman</span>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="section-header"><h3>Pengingat Kebaikan</h3><a href="#">Lihat semua</a></div>
-        <div class="reminder-scroll">
-          <div class="reminder-card"><div class="emoji">🌿</div><h4>Sunnah Jum'at</h4><p>Perbanyak doa & shalawat</p></div>
-          <div class="reminder-card"><div class="emoji">🤲</div><h4>Dzikir Harian</h4><p>"Subhanallah wabihamdihi"</p></div>
-          <div class="reminder-card"><div class="emoji">📖</div><h4>Hadits Hari Ini</h4><p>"Barang siapa berjalan menuju masjid..."</p></div>
+        <!-- PENGINGAT KEBAIKAN -->
+        <div class="section">
+          <div class="section-header">
+            <h3>Pengingat Kebaikan</h3><a href="#" style="font-size:10px; color:#D4AF37;">Lihat semua</a>
+          </div>
+          <div class="reminder-scroll">
+            <div class="reminder-card"><i class="fas fa-mosque"></i>
+              <h4>Sunnah Jum'at</h4>
+              <p>Perbanyak doa & shalawat</p>
+            </div>
+            <div class="reminder-card"><i class="fas fa-praying-hands"></i>
+              <h4>Dzikir Harian</h4>
+              <p>"Subhanallah wabihamdihi"</p>
+            </div>
+            <div class="reminder-card"><i class="fas fa-book"></i>
+              <h4>Hadits Hari Ini</h4>
+              <p>"Barang siapa berjalan menuju masjid..."</p>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <section class="section">
-        <div class="section-header"><h3>Program Unggulan</h3><a href="#">Lihat semua</a></div>
-        <div class="program-grid">
-          <div class="program-card"><div class="program-img">🕌</div><div class="program-body"><h4>Operasional Masjid</h4><div class="progress-bar"><div class="progress-fill" style="width:83%"></div></div><small>Rp 10jt / Rp 12jt (83%)</small></div></div>
-          <div class="program-card"><div class="program-img">🤝</div><div class="program-body"><h4>Santunan & Sosial</h4><div class="progress-bar"><div class="progress-fill" style="width:80%"></div></div><small>Rp 4jt / Rp 5jt (80%)</small></div></div>
+        <!-- PROGRAM UNGGULAN (dengan foto) -->
+        <div class="section">
+          <div class="section-header">
+            <h3>Program Unggulan</h3><a href="#" style="font-size:10px; color:#D4AF37;">Lihat semua</a>
+          </div>
+          <div class="program-grid">
+            <div class="program-card">
+              <div class="program-img img-operasional"></div>
+              <div class="program-body">
+                <h4>Operasional Masjid</h4>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width:83%"></div>
+                </div>
+                <small>Rp 10.000.000 / Rp 12.000.000 (83%)</small>
+              </div>
+            </div>
+            <div class="program-card">
+              <div class="program-img img-santunan"></div>
+              <div class="program-body">
+                <h4>Santunan & Sosial</h4>
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width:80%"></div>
+                </div>
+                <small>Rp 4.000.000 / Rp 5.000.000 (80%)</small>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="kajian-btn" style="width:100%; text-align:center; margin-top:12px;" onclick="toastNotif('Donasi: Bank Mandiri a.n. Nurdin')">💰 Donasi Sekarang</div>
-      </section>
 
-      <section class="section">
-        <div class="section-header"><h3>Kajian Terdekat</h3></div>
-        <div class="kajian-card">
-          <div class="date-box"><div class="day" id="kajianDay">JUM'AT</div><strong id="kajianDate">17</strong><div class="month" id="kajianMonth">MEI</div></div>
-          <div class="kajian-info"><h4>Kajian Malam Jum'at</h4><p>Ust. Habib Ngadiri • 20.00 WIB<br>Masjid Al Muhtadin</p><div class="kajian-btn" onclick="toastNotif('Ditambahkan ke pengingat')">🔔 Ingatkan Saya</div></div>
+        <!-- KAJIAN TERDEKAT (diperbaiki dengan icon jam & lokasi) -->
+        <div class="section">
+          <div class="section-header">
+            <h3>Kajian Terdekat</h3>
+          </div>
+          <div class="kajian-card">
+            <div class="kajian-row">
+              <div class="kajian-date">
+                <div class="day" id="kajianDay">JUM'AT</div>
+                <strong id="kajianDate">17</strong>
+                <div class="month" id="kajianMonth">MEI</div>
+              </div>
+              <div class="kajian-info">
+                <h4>Kajian Malam Jum'at</h4>
+                <div class="info-detail">
+                  <span><i class="fas fa-user"></i> Ust. Habib Ngadiri</span>
+                </div>
+                <div class="info-detail">
+                  <span><i class="fas fa-clock"></i> 20.00 WIB</span>
+                  <span><i class="fas fa-location-dot"></i> Masjid Al Muhtadin</span>
+                </div>
+              </div>
+            </div>
+            <div class="btn-ingatkan" onclick="toastNotif('Ditambahkan ke pengingat')">
+              <i class="fas fa-bell"></i> Ingatkan Saya
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
 
+      <!-- BOTTOM NAVIGATION (STICKY) -->
+      <div class="bottom-nav">
+        <div class="nav-item active" data-page="home"><i class="fas fa-home"></i><span>Beranda</span></div>
+        <div class="nav-item" data-page="profil"><i class="fas fa-mosque"></i><span>Profil</span></div>
+        <div class="nav-item" data-page="galeri"><i class="fas fa-images"></i><span>Galeri</span></div>
+        <div class="nav-item" data-page="donasi"><i class="fas fa-hand-holding-heart"></i><span>Donasi</span></div>
+        <div class="nav-item" data-page="lainnya"><i class="fas fa-ellipsis-h"></i><span>Lainnya</span></div>
+      </div>
+    </div>
+
+    <!-- ========== HALAMAN PROFIL ========== -->
+    <div id="page-profil" class="page hidden">
+      <div style="padding: 20px;">
+        <div style="background: white; border-radius: 28px; overflow: hidden;">
+          <div style="background: #064E3B; padding: 30px; text-align: center;">
+            <div
+              style="width: 70px; height: 70px; background: white; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; overflow: hidden;">
+              <img src="images/logo.webp" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
+            <h3 style="color: white; margin-top: 16px;">Masjid Al Muhtadin</h3>
+            <p style="color: rgba(255,255,255,0.8); font-size: 11px;">Pusat Ibadah, Ilmu, dan Ukhuwah</p>
+          </div>
+          <div style="padding: 20px;">
+            <h4>📖 Tentang Masjid</h4>
+            <p style="font-size: 12px; color: #4B5563; margin-top: 8px;">Masjid Al Muhtadin adalah pusat ibadah, dakwah,
+              dan pembinaan umat yang berkomitmen menghadirkan lingkungan islami yang nyaman.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
+              <div style="background: #F3F4F6; padding: 10px; border-radius: 16px;">
+                <div style="font-size: 10px;">Didirikan</div><strong>1993</strong>
+              </div>
+              <div style="background: #F3F4F6; padding: 10px; border-radius: 16px;">
+                <div style="font-size: 10px;">Luas Tanah</div><strong>1.000 m²</strong>
+              </div>
+              <div style="background: #F3F4F6; padding: 10px; border-radius: 16px;">
+                <div style="font-size: 10px;">Luas Bangunan</div><strong>1.000 m²</strong>
+              </div>
+              <div style="background: #F3F4F6; padding: 10px; border-radius: 16px;">
+                <div style="font-size: 10px;">Kapasitas</div><strong>500 org</strong>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 20px; border-top: 1px solid #F0F0F0;">
+            <h4>👥 Struktur Pengurus</h4>
+            <div style="margin-top: 12px;">
+              <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                <div
+                  style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div><strong>Ustadz Habib Ngadiri</strong><br><span style="font-size: 10px;">Ketua DKM</span></div>
+              </div>
+              <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                <div
+                  style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div><strong>Ustadz Syukron</strong><br><span style="font-size: 10px;">Sekretaris</span></div>
+              </div>
+              <div style="display: flex; gap: 12px; margin-bottom: 16px;">
+                <div
+                  style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                  <i class="fas fa-user"></i>
+                </div>
+                <div><strong>Bapak H. Nurdin</strong><br><span style="font-size: 10px;">Bendahara</span></div>
+              </div>
+            </div>
+          </div>
+          <div style="padding: 20px;">
+            <h4>📍 Lokasi Masjid</h4>
+            <p style="font-size: 11px;">Jalan Semen Romo, Waringinrejo, Cemani, Grogol, Sukoharjo</p>
+            <div class="btn-ingatkan" style="margin-top: 12px; text-align: center;" onclick="openMaps()">🗺️ Buka di
+              Maps</div>
+          </div>
+          <div style="padding: 20px;">
+            <h4>📞 Kontak</h4>
+            <div style="margin-top: 12px;">
+              <div onclick="toastNotif('WA: 0858-7772-2878')"
+                style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;"><i class="fab fa-whatsapp"
+                  style="color: #25D366;"></i><span>0858-7772-2878</span></div>
+              <div onclick="toastNotif('Email: almuhtadin@gmail.com')"
+                style="display: flex; gap: 12px; align-items: center;"><i
+                  class="fas fa-envelope"></i><span>almuhtadin@gmail.com</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== HALAMAN GALERI ========== -->
+    <div id="page-galeri" class="page hidden">
+      <div style="padding: 20px;">
+        <h3 style="font-size: 18px; margin-bottom: 16px;">📸 Galeri Kegiatan</h3>
+        <div class="program-grid" style="grid-template-columns: repeat(3, 1fr); gap: 8px;">
+          <div
+            style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-image" style="font-size: 24px; color: #9CA3AF;"></i>
+          </div>
+          <div
+            style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-image" style="font-size: 24px; color: #9CA3AF;"></i>
+          </div>
+          <div
+            style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-image" style="font-size: 24px; color: #9CA3AF;"></i>
+          </div>
+          <div
+            style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-image" style="font-size: 24px; color: #9CA3AF;"></i>
+          </div>
+          <div
+            style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-image" style="font-size: 24px; color: #9CA3AF;"></i>
+          </div>
+          <div
+            style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+            <i class="fas fa-image" style="font-size: 24px; color: #9CA3AF;"></i>
+          </div>
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+          <div class="btn-ingatkan" onclick="toastNotif('Google Photos')"><i class="fab fa-google"></i> Lihat semua di
+            Google Photos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== HALAMAN DONASI ========== -->
+    <div id="page-donasi" class="page hidden">
+      <div style="padding: 20px;">
+        <div style="background: white; border-radius: 28px; text-align: center; padding: 30px;">
+          <i class="fas fa-hand-holding-heart" style="font-size: 50px; color: #064E3B;"></i>
+          <h3 style="margin: 16px 0 8px;">Donasi Sekarang</h3>
+          <p style="font-size: 11px; color: #6B7280;">Salurkan donasi terbaik Anda untuk kemakmuran masjid</p>
+          <div style="background: #F3F4F6; padding: 16px; border-radius: 20px; margin: 20px 0;">
+            <strong>Bank Mandiri</strong>
+            <div style="font-size: 16px; font-weight: bold; margin: 8px 0;">[Nomor Rekening]</div>
+            <span style="font-size: 10px;">a.n. H. Nurdin</span>
+          </div>
+          <div class="btn-ingatkan" style="background: #D4AF37; border: none; color: #064E3B;"
+            onclick="toastNotif('Hubungi bendahara')">📋 Salin No. Rekening</div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ========== HALAMAN PROFIL ========== -->
-  <div id="page-profil" class="page hidden">
-    <div style="padding: 20px;">
-      <div style="background: white; border-radius: 28px; overflow: hidden;">
-        <div style="background: #064E3B; padding: 30px; text-align: center;">
-          <div style="width: 70px; height: 70px; background: white; border-radius: 50%; margin: 0 auto; display: flex; align-items: center; justify-content: center; overflow: hidden;">
-            <img src="images/logo.webp" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
-          </div>
-          <h3 style="color: white; margin-top: 16px;">Masjid Al Muhtadin</h3>
-          <p style="color: rgba(255,255,255,0.8); font-size: 11px;">Pusat Ibadah, Ilmu, dan Ukhuwah</p>
-        </div>
-        <div style="padding: 20px;">
-          <h4>📖 Tentang Masjid</h4>
-          <p style="font-size: 12px; color: #4B5563; margin-top: 8px;">Masjid Al Muhtadin adalah pusat ibadah, dakwah, dan pembinaan umat yang berkomitmen menghadirkan lingkungan islami yang nyaman, menyejukkan hati, dan penuh keberkahan.</p>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
-            <div style="background: #F3F4F6; padding: 10px; border-radius: 16px;"><div style="font-size: 10px;">Didirikan</div><strong>1993</strong></div>
-            <div style="background: #F3F4F6; padding: 10px; border-radius: 16px;"><div style="font-size: 10px;">Luas Tanah</div><strong>1.000 m²</strong></div>
-            <div style="background: #F3F4F6; padding: 10px; border-radius: 16px;"><div style="font-size: 10px;">Luas Bangunan</div><strong>1.000 m²</strong></div>
-            <div style="background: #F3F4F6; padding: 10px; border-radius: 16px;"><div style="font-size: 10px;">Kapasitas</div><strong>500 org</strong></div>
-          </div>
-        </div>
-        <div style="padding: 20px; border-top: 1px solid #F0F0F0;">
-          <h4>👥 Struktur Pengurus</h4>
-          <div style="margin-top: 12px;">
-            <div style="display: flex; gap: 12px; margin-bottom: 16px;"><div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center;">👤</div><div><strong>Ustadz Habib Ngadiri</strong><br><span style="font-size: 10px;">Ketua DKM</span></div></div>
-            <div style="display: flex; gap: 12px; margin-bottom: 16px;"><div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center;">👤</div><div><strong>Ustadz Syukron</strong><br><span style="font-size: 10px;">Sekretaris</span></div></div>
-            <div style="display: flex; gap: 12px; margin-bottom: 16px;"><div style="width: 40px; height: 40px; background: #E5E7EB; border-radius: 50%; display: flex; align-items: center; justify-content: center;">👤</div><div><strong>Bapak H. Nurdin</strong><br><span style="font-size: 10px;">Bendahara</span></div></div>
-          </div>
-        </div>
-        <div style="padding: 20px;">
-          <h4>📍 Lokasi Masjid</h4>
-          <p style="font-size: 11px;">Jalan Semen Romo, Waringinrejo, Cemani, Grogol, Sukoharjo</p>
-          <div class="kajian-btn" style="margin-top: 12px; text-align: center;" onclick="openMaps()">🗺️ Buka di Maps</div>
-        </div>
-        <div style="padding: 20px;">
-          <h4>📞 Kontak</h4>
-          <div style="margin-top: 12px;">
-            <div onclick="toastNotif('WA: 0858-7772-2878')" style="display: flex; gap: 12px; align-items: center; margin-bottom: 12px;"><i class="fab fa-whatsapp" style="color: #25D366;"></i><span>0858-7772-2878</span></div>
-            <div onclick="toastNotif('Email: almuhtadin@gmail.com')" style="display: flex; gap: 12px; align-items: center;"><i class="fas fa-envelope"></i><span>almuhtadin@gmail.com</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <script>
+    let prayerTimes = { subuh: "--:--", dzuhur: "--:--", ashar: "--:--", maghrib: "--:--", isya: "--:--" };
+    let countdownInterval;
 
-  <!-- ========== HALAMAN GALERI ========== -->
-  <div id="page-galeri" class="page hidden">
-    <div style="padding: 20px;">
-      <h3 style="font-size: 18px; margin-bottom: 16px;">📸 Galeri Kegiatan</h3>
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-        <div style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px;">🕌</div>
-        <div style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px;">📖</div>
-        <div style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px;">🤝</div>
-        <div style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px;">🍽️</div>
-        <div style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px;">🎓</div>
-        <div style="aspect-ratio: 1; background: #E5E7EB; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 32px;">🌙</div>
-      </div>
-      <div style="text-align: center; margin-top: 20px;">
-        <div class="kajian-btn" onclick="toastNotif('Google Photos')"><i class="fab fa-google"></i> Lihat semua di Google Photos</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== HALAMAN DONASI ========== -->
-  <div id="page-donasi" class="page hidden">
-    <div style="padding: 20px;">
-      <div style="background: white; border-radius: 28px; text-align: center; padding: 30px;">
-        <div style="font-size: 50px;">💰</div>
-        <h3 style="margin: 16px 0 8px;">Donasi Sekarang</h3>
-        <p style="font-size: 11px; color: #6B7280;">Salurkan donasi terbaik Anda untuk kemakmuran masjid</p>
-        <div style="background: #F3F4F6; padding: 16px; border-radius: 20px; margin: 20px 0;">
-          <strong>Bank Mandiri</strong>
-          <div style="font-size: 16px; font-weight: bold; margin: 8px 0;">[Nomor Rekening]</div>
-          <span style="font-size: 10px;">a.n. H. Nurdin</span>
-        </div>
-        <div class="kajian-btn" style="background: #D4AF37; color: #064E3B;" onclick="toastNotif('Hubungi bendahara untuk info rekening')">📋 Salin No. Rekening</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== BOTTOM NAVIGATION ========== -->
-  <div class="bottom-nav">
-    <div class="nav-item active" data-page="home"><div class="nav-icon">🏠</div><span>Beranda</span></div>
-    <div class="nav-item" data-page="profil"><div class="nav-icon">🕌</div><span>Profil</span></div>
-    <div class="nav-item" data-page="galeri"><div class="nav-icon">📸</div><span>Galeri</span></div>
-    <div class="nav-item" data-page="donasi"><div class="nav-icon">💳</div><span>Donasi</span></div>
-    <div class="nav-item" data-page="lainnya"><div class="nav-icon">☰</div><span>Lainnya</span></div>
-  </div>
-</div>
-
-<script>
-  let prayerTimes = { subuh: "--:--", dzuhur: "--:--", ashar: "--:--", maghrib: "--:--", isya: "--:--" };
-  let countdownInterval;
-
-  async function fetchPrayerTimes() {
-    try {
-      const now = new Date();
-      const response = await fetch(`https://api.aladhan.com/v1/timings/${now.getDate()}-${now.getMonth()+1}-${now.getFullYear()}?latitude=-7.5561&longitude=110.8318&method=20`);
-      const data = await response.json();
-      if (data.code === 200) {
-        prayerTimes = {
-          subuh: data.data.timings.Fajr.slice(0,5),
-          dzuhur: data.data.timings.Dhuhr.slice(0,5),
-          ashar: data.data.timings.Asr.slice(0,5),
-          maghrib: data.data.timings.Maghrib.slice(0,5),
-          isya: data.data.timings.Isha.slice(0,5)
-        };
-      }
-    } catch(e) { console.log("API error"); }
-    updatePrayerUI();
-    highlightCurrentPrayer();
-    startCountdown();
-  }
-
-  function updatePrayerUI() {
-    document.getElementById('subuh').innerText = prayerTimes.subuh;
-    document.getElementById('dzuhur').innerText = prayerTimes.dzuhur;
-    document.getElementById('ashar').innerText = prayerTimes.ashar;
-    document.getElementById('maghrib').innerText = prayerTimes.maghrib;
-    document.getElementById('isya').innerText = prayerTimes.isya;
-  }
-
-  function highlightCurrentPrayer() {
-    const now = new Date();
-    let nowMin = now.getHours() * 60 + now.getMinutes();
-    const prayers = [
-      { time: prayerTimes.subuh, elem: document.querySelector('#subuh')?.parentElement },
-      { time: prayerTimes.dzuhur, elem: document.querySelector('#dzuhur')?.parentElement },
-      { time: prayerTimes.ashar, elem: document.querySelector('#ashar')?.parentElement },
-      { time: prayerTimes.maghrib, elem: document.querySelector('#maghrib')?.parentElement },
-      { time: prayerTimes.isya, elem: document.querySelector('#isya')?.parentElement }
-    ];
-    let activeIndex = -1;
-    for (let i = 0; i < prayers.length; i++) {
-      if (prayers[i].time === "--:--") continue;
-      let [h, m] = prayers[i].time.split(':');
-      let prayerMin = parseInt(h) * 60 + parseInt(m);
-      if (nowMin >= prayerMin) activeIndex = i;
+    async function fetchPrayerTimes() {
+      try {
+        const now = new Date();
+        const response = await fetch(`https://api.aladhan.com/v1/timings/${now.getDate()}-${now.getMonth() + 1}-${now.getFullYear()}?latitude=-7.5561&longitude=110.8318&method=20`);
+        const data = await response.json();
+        if (data.code === 200) {
+          prayerTimes = {
+            subuh: data.data.timings.Fajr.slice(0, 5),
+            dzuhur: data.data.timings.Dhuhr.slice(0, 5),
+            ashar: data.data.timings.Asr.slice(0, 5),
+            maghrib: data.data.timings.Maghrib.slice(0, 5),
+            isya: data.data.timings.Isha.slice(0, 5)
+          };
+        }
+      } catch (e) { console.log("API error using fallback"); }
+      updatePrayerUI();
+      highlightCurrentPrayer();
+      startCountdown();
     }
-    prayers.forEach((p, idx) => {
-      if (p.elem) {
-        if (idx === activeIndex) p.elem.classList.add('prayer-active');
-        else p.elem.classList.remove('prayer-active');
-      }
-    });
-  }
 
-  function startCountdown() {
-    if (countdownInterval) clearInterval(countdownInterval);
-    const update = () => {
+    function updatePrayerUI() {
+      document.getElementById('subuh').innerText = prayerTimes.subuh;
+      document.getElementById('dzuhur').innerText = prayerTimes.dzuhur;
+      document.getElementById('ashar').innerText = prayerTimes.ashar;
+      document.getElementById('maghrib').innerText = prayerTimes.maghrib;
+      document.getElementById('isya').innerText = prayerTimes.isya;
+    }
+
+    function highlightCurrentPrayer() {
       const now = new Date();
+      let nowMin = now.getHours() * 60 + now.getMinutes();
       const prayers = [
-        { name: "Subuh", time: prayerTimes.subuh },
-        { name: "Dzuhur", time: prayerTimes.dzuhur },
-        { name: "Ashar", time: prayerTimes.ashar },
-        { name: "Maghrib", time: prayerTimes.maghrib },
-        { name: "Isya", time: prayerTimes.isya }
+        { time: prayerTimes.subuh, elem: document.querySelector('#subuh')?.parentElement },
+        { time: prayerTimes.dzuhur, elem: document.querySelector('#dzuhur')?.parentElement },
+        { time: prayerTimes.ashar, elem: document.querySelector('#ashar')?.parentElement },
+        { time: prayerTimes.maghrib, elem: document.querySelector('#maghrib')?.parentElement },
+        { time: prayerTimes.isya, elem: document.querySelector('#isya')?.parentElement }
       ];
-      let next = null, minDiff = Infinity;
-      for (let p of prayers) {
-        if (p.time === "--:--") continue;
-        let [h, m] = p.time.split(':');
-        let prayerTime = new Date();
-        prayerTime.setHours(parseInt(h), parseInt(m), 0, 0);
-        let diff = prayerTime - now;
-        if (diff < 0) {
-          prayerTime.setDate(prayerTime.getDate() + 1);
-          diff = prayerTime - now;
-        }
-        if (diff < minDiff) {
-          minDiff = diff;
-          next = p;
-        }
+      let activeIndex = -1;
+      for (let i = 0; i < prayers.length; i++) {
+        if (prayers[i].time === "--:--") continue;
+        let [h, m] = prayers[i].time.split(':');
+        let prayerMin = parseInt(h) * 60 + parseInt(m);
+        if (nowMin >= prayerMin) activeIndex = i;
       }
-      if (next) {
-        let totalSecs = Math.floor(minDiff / 1000);
-        let hours = Math.floor(totalSecs / 3600);
-        let minutes = Math.floor((totalSecs % 3600) / 60);
-        let seconds = totalSecs % 60;
-        document.getElementById('jam').innerText = hours.toString().padStart(2, '0');
-        document.getElementById('menit').innerText = minutes.toString().padStart(2, '0');
-        document.getElementById('detik').innerText = seconds.toString().padStart(2, '0');
-        
-        let maxSecs = 12 * 3600;
-        let progressDeg = ((maxSecs - totalSecs) / maxSecs) * 360;
-        document.getElementById('progressCircle').style.background = `conic-gradient(#D4AF37 ${progressDeg}deg, rgba(255,255,255,0.15) ${progressDeg}deg)`;
-      }
-    };
-    update();
-    countdownInterval = setInterval(update, 1000);
-  }
+      prayers.forEach((p, idx) => {
+        if (p.elem) {
+          if (idx === activeIndex) p.elem.classList.add('prayer-active');
+          else p.elem.classList.remove('prayer-active');
+        }
+      });
+    }
 
-  function updateDate() {
-    const d = new Date();
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('todayDate').innerText = d.toLocaleDateString('id-ID', options);
-    document.getElementById('kajianDay').innerText = d.toLocaleDateString('id-ID', { weekday: 'short' }).toUpperCase();
-    document.getElementById('kajianDate').innerText = d.getDate();
-    document.getElementById('kajianMonth').innerText = d.toLocaleDateString('id-ID', { month: 'short' }).toUpperCase();
-  }
+    function startCountdown() {
+      if (countdownInterval) clearInterval(countdownInterval);
+      const update = () => {
+        const now = new Date();
+        const prayers = [
+          { name: "Subuh", time: prayerTimes.subuh },
+          { name: "Dzuhur", time: prayerTimes.dzuhur },
+          { name: "Ashar", time: prayerTimes.ashar },
+          { name: "Maghrib", time: prayerTimes.maghrib },
+          { name: "Isya", time: prayerTimes.isya }
+        ];
+        let next = null, minDiff = Infinity;
+        for (let p of prayers) {
+          if (p.time === "--:--") continue;
+          let [h, m] = p.time.split(':');
+          let prayerTime = new Date();
+          prayerTime.setHours(parseInt(h), parseInt(m), 0, 0);
+          let diff = prayerTime - now;
+          if (diff < 0) {
+            prayerTime.setDate(prayerTime.getDate() + 1);
+            diff = prayerTime - now;
+          }
+          if (diff < minDiff) {
+            minDiff = diff;
+            next = p;
+          }
+        }
+        if (next) {
+          let totalSecs = Math.floor(minDiff / 1000);
+          let hours = Math.floor(totalSecs / 3600);
+          let minutes = Math.floor((totalSecs % 3600) / 60);
+          let seconds = totalSecs % 60;
+          document.getElementById('jam').innerText = hours.toString().padStart(2, '0');
+          document.getElementById('menit').innerText = minutes.toString().padStart(2, '0');
+          document.getElementById('detik').innerText = seconds.toString().padStart(2, '0');
 
-  function toastNotif(msg) {
-    let toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerText = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.remove(), 1500);
-  }
+          let maxSecs = 12 * 3600;
+          let progressDeg = ((maxSecs - totalSecs) / maxSecs) * 360;
+          document.getElementById('ringProgress').style.background = `conic-gradient(#D4AF37 ${progressDeg}deg, transparent ${progressDeg}deg)`;
+        }
+      };
+      update();
+      countdownInterval = setInterval(update, 1000);
+    }
 
-  function openMaps() {
-    window.open("https://maps.google.com/?q=Jalan+Semen+Romo+Grogol+Sukoharjo", "_blank");
-  }
+    function updateDate() {
+      const d = new Date();
+      document.getElementById('todayDate').innerText = d.toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+      document.getElementById('kajianDay').innerText = d.toLocaleDateString('id-ID', { weekday: 'short' }).toUpperCase();
+      document.getElementById('kajianDate').innerText = d.getDate();
+      document.getElementById('kajianMonth').innerText = d.toLocaleDateString('id-ID', { month: 'short' }).toUpperCase();
+    }
 
-  function showPage(pageId) {
-    document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
-    document.getElementById(`page-${pageId}`).classList.remove('hidden');
+    function toastNotif(msg) {
+      let toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerText = msg;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2000);
+    }
+
+    function openMaps() {
+      window.open("https://maps.google.com/?q=Jalan+Semen+Romo+Grogol+Sukoharjo", "_blank");
+    }
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => page.classList.add('hidden'));
+      document.getElementById(`page-${pageId}`).classList.remove('hidden');
+      document.querySelectorAll('.nav-item').forEach(nav => {
+        nav.classList.remove('active');
+        if (nav.dataset.page === pageId) nav.classList.add('active');
+      });
+    }
+
     document.querySelectorAll('.nav-item').forEach(nav => {
-      nav.classList.remove('active');
-      if (nav.dataset.page === pageId) nav.classList.add('active');
+      nav.addEventListener('click', () => {
+        const page = nav.dataset.page;
+        if (page === 'lainnya') toastNotif('🚧 Halaman lainnya dalam pengembangan');
+        else showPage(page);
+      });
     });
-  }
 
-  document.querySelectorAll('.nav-item').forEach(nav => {
-    nav.addEventListener('click', () => {
-      const page = nav.dataset.page;
-      if (page === 'lainnya') toastNotif('🚧 Halaman lainnya dalam pengembangan');
-      else showPage(page);
-    });
-  });
+    fetchPrayerTimes();
+    updateDate();
+    setInterval(highlightCurrentPrayer, 60000);
+    showPage('home');
 
-  fetchPrayerTimes();
-  updateDate();
-  setInterval(highlightCurrentPrayer, 60000);
-  showPage('home');
-
-  window.toastNotif = toastNotif;
-  window.openMaps = openMaps;
-</script>
+    window.toastNotif = toastNotif;
+    window.openMaps = openMaps;
+  </script>
 </body>
+
 </html>
