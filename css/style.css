@@ -124,8 +124,8 @@ body {
 }
 .jadwal-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 4px;
 }
 .jadwal-item {
     text-align: center;
