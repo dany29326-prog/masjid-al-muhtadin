@@ -324,7 +324,7 @@ body {
 /* =========================================
    4. LAYAR 3: TARGET AMAL & FOOTER
    ========================================= */
-.screen-3 { padding: 40px 20px 20px 20px; justify-content: space-between; }
+.screen-3 { padding: 40px 20px 80px 20px; justify-content: space-between; }
 
 .target-amal-card { background-color: #ffffff; border-radius: 20px; padding: 10px 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); }
 .amal-item { display: flex; align-items: center; padding: 15px 0; cursor: pointer; position: relative; }
@@ -345,10 +345,15 @@ body {
 .footer-text { color: #8c96a3; font-size: 0.8rem; font-weight: 500; }
 
 /* =========================================
-   5. BOTTOM NAVIGATION BAR (di Screen 3)
+   5. BOTTOM NAVIGATION BAR (Mengambang)
    ========================================= */
 .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
+    max-width: 480px;
     background-color: #043927;
     display: flex;
     justify-content: space-around;
@@ -356,9 +361,9 @@ body {
     padding: 10px 0 14px 0;
     border-radius: 20px 20px 0 0;
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
-    margin-top: auto;
-    margin-bottom: 20px;
+    z-index: 100;
 }
+
 .nav-bottom-item {
     display: flex;
     flex-direction: column;
