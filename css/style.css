@@ -1,0 +1,386 @@
+/* =========================================
+   1. PENGATURAN DASAR & SNAP SCROLLING
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #1a1a1a;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    height: 100dvh;
+    background-color: #f7f9fa;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+    position: relative;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.app-container::-webkit-scrollbar { display: none; }
+
+.screen-section {
+    width: 100%;
+    height: 100dvh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* =========================================
+   2. LAYAR 1: BERANDA & JADWAL ADZAN
+   ========================================= */
+.app-header {
+    width: 100%;
+    min-height: 340px;
+    padding: 30px 24px 0 24px;
+    text-align: left;
+    position: relative;
+    border-bottom-left-radius: 45px;
+    border-bottom-right-radius: 45px;
+    background-color: #043927;
+            background-image: linear-gradient(to right, #043927 0%, #043927 20%, rgba(4, 57, 39, 0.8) 28%, rgba(4, 57, 39, 0.4) 35%, rgba(4, 57, 39, 0) 40%),
+                      url('../masjid_muhtadin.jpg');
+    background-size: 70% auto;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+}
+
+.header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; }
+.masjid-brand { display: flex; align-items: center; gap: 10px; }
+.main-logo { width: 40px; height: 40px; }
+.brand-text h2 { color: #ffffff; font-size: 1.1rem; font-weight: 600; margin: 0; }
+.brand-text p { color: #b8943a; font-size: 0.8rem; margin: 2px 0 0 0; }
+.notification-badge { position: relative; background-color: #ffffff; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.badge-number { position: absolute; top: -2px; right: -2px; background-color: #e67e22; color: #ffffff; font-size: 0.7rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #ffffff; }
+
+.greeting-section { margin-top: 60px; }
+.greeting-section h1 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+}
+.greeting-section p {
+    color: #ffffff;
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+/* Kotak Countdown Adzan */
+.jadwal-container {
+    background-color: #043927;
+    border: 1px solid #b8943a;
+    border-radius: 20px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    width: 75%;
+    position: absolute;
+    bottom: -45px;
+    left: 24px;
+    z-index: 5;
+}
+.sholat-title { color: #ffffff; font-size: 1.1rem; font-weight: 700; margin: 0; }
+.sholat-status { color: #83b299; font-size: 0.8rem; margin: 4px 0 10px 0; }
+.time-digit { color: #ffffff; font-size: 1.6rem; font-weight: 700; line-height: 1; }
+.time-label { color: #83b299; font-size: 0.65rem; margin-top: 2px; }
+.sholat-countdown { display: flex; align-items: center; gap: 6px; }
+.countdown-item { display: flex; flex-direction: column; align-items: center; }
+.time-separator { color: #ffffff; font-size: 1.3rem; font-weight: 700; padding-bottom: 10px; }
+
+.circle-progress { width: 65px; height: 65px; border-radius: 50%; background: conic-gradient(#b8943a 0% 75%, #02261a 75% 100%); display: flex; justify-content: center; align-items: center; position: relative; }
+.circle-progress::after { content: ''; position: absolute; width: 53px; height: 53px; background-color: #043927; border-radius: 50%; z-index: 1; }
+.mosque-icon { width: 24px; height: 24px; z-index: 2; }
+
+/* Jadwal Sholat Lengkap */
+.jadwal-lengkap {
+    margin-top: 50px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+}
+.jadwal-lengkap-title {
+    color: #0c1a30;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+.jadwal-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+}
+.jadwal-item {
+    text-align: center;
+    padding: 10px 4px;
+    border-radius: 14px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.jadwal-item.active {
+    background-color: #043927;
+    box-shadow: 0 4px 12px rgba(4, 57, 39, 0.2);
+}
+.jadwal-item .waktu-label {
+    color: #718096;
+    font-size: 0.6rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 4px;
+}
+.jadwal-item .waktu-nama {
+    color: #0c1a30;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 2px;
+}
+.jadwal-item .waktu-jam {
+    color: #b8943a;
+    font-size: 0.7rem;
+    font-weight: 700;
+    display: block;
+}
+.jadwal-item.active .waktu-label { color: rgba(255,255,255,0.6); }
+.jadwal-item.active .waktu-nama { color: #ffffff; }
+.jadwal-item.active .waktu-jam { color: #d4af37; }
+
+/* Menu Cepat di Bawah Jadwal */
+.menu-cepat-bawah { margin-top: 20px; padding: 0 24px; }
+.menu-cepat-bawah-title { color: #0c1a30; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; }
+.menu-cepat-bawah-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.menu-cepat-bawah-item {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 16px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.menu-cepat-bawah-item:active { transform: scale(0.97); }
+.menu-cepat-bawah-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.menu-cepat-bawah-icon.hijau { background: linear-gradient(135deg, #043927 0%, #065a3e 100%); }
+.menu-cepat-bawah-icon.emas { background: linear-gradient(135deg, #d4af37 0%, #b8943a 100%); }
+.menu-cepat-bawah-icon svg { width: 22px; height: 22px; }
+.menu-cepat-bawah-label { color: #0c1a30; font-size: 0.8rem; font-weight: 600; line-height: 1.2; }
+
+/* Hikmah Hari Ini */
+.hikmah-container { margin-top: 20px; padding: 0 24px; }
+.hikmah-title { color: #0c1a30; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; }
+.hikmah-card {
+    background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
+    border-radius: 18px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    box-shadow: 0 4px 15px rgba(4, 57, 39, 0.2);
+}
+.hikmah-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.hikmah-icon svg { width: 20px; height: 20px; }
+.hikmah-content { flex: 1; }
+.hikmah-content h4 { color: #d4af37; font-size: 0.85rem; font-weight: 700; margin: 0 0 6px 0; }
+.hikmah-content p {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.78rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0 0 10px 0;
+    font-style: italic;
+}
+.hikmah-source { color: #83b299; font-size: 0.7rem; font-weight: 600; }
+
+/* Swipe Up Guide */
+.swipe-up-guide {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    color: #8c96a3;
+    font-size: 0.8rem;
+    font-weight: 600;
+    animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-10px); } 60% { transform: translateY(-5px); } }
+
+/* =========================================
+   3. LAYAR 2: MENU & PENGINGAT
+   ========================================= */
+.screen-2 { padding: 30px 20px; justify-content: flex-start; gap: 30px; }
+.section-title { color: #0c1a30; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; padding-left: 5px; }
+
+/* Menu Cepat Screen-2 */
+.menu-cepat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 8px; }
+.menu-cepat-item { background-color: #ffffff; border-radius: 18px; padding: 15px 5px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); cursor: pointer; transition: transform 0.2s ease; }
+.menu-cepat-item:active { transform: scale(0.95); }
+.menu-circle { width: 46px; height: 46px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
+.menu-circle svg { width: 22px; height: 22px; }
+.menu-circle.hijau { background: linear-gradient(135deg, #043927 0%, #032b1e 100%); }
+.menu-circle.emas { background: linear-gradient(135deg, #d4af37 0%, #b8943a 100%); }
+.menu-label { color: #333333; font-size: 0.65rem; font-weight: 600; text-align: center; line-height: 1.2; }
+
+/* Slider Pengingat Kebaikan */
+.pengingat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 5px; }
+.lihat-semua { color: #b8943a; font-size: 0.78rem; font-weight: 600; text-decoration: none; }
+.pengingat-slider { display: flex; gap: 15px; overflow-x: auto; padding: 5px 5px 15px 5px; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.pengingat-slider::-webkit-scrollbar { display: none; }
+.pengingat-card { flex: 0 0 165px; scroll-snap-align: start; border-radius: 20px; padding: 18px 15px; display: flex; flex-direction: column; text-align: left; position: relative; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); min-height: 185px; }
+.pengingat-card.hijau-gelap { background-color: #043927; }
+.pengingat-card.krem { background-color: #fcf6e8; }
+.pengingat-card.hijau-pucat { background-color: #ebf3ee; }
+.card-icon-wrap { margin-bottom: 15px; }
+.gold-icon { width: 26px; height: 26px; }
+.card-headline { font-size: 0.95rem; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+.card-subtext { font-size: 0.72rem; font-weight: 500; line-height: 1.4; margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.font-white { color: #ffffff; } .font-green { color: #043927; } .font-soft { color: #a4cbb7; } .font-dark { color: #4a5568; }
+.arrow-circle { width: 28px; height: 28px; border-radius: 50%; display: flex; justify-content: center; align-items: center; position: absolute; bottom: 15px; right: 15px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+.arrow-sign { font-size: 0.65rem; font-weight: 700; }
+.bg-white { background-color: #ffffff; } .bg-green { background-color: #043927; } .color-green { color: #043927; }
+
+/* Laporan Keuangan Singkat */
+.keuangan-container { padding: 0 5px; }
+.keuangan-card {
+    background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
+    border-radius: 18px;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+.keuangan-card::before {
+    content: '';
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+}
+.keuangan-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40px;
+    left: -20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+}
+.keuangan-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; position: relative; z-index: 1; }
+.keuangan-header-left { display: flex; align-items: center; gap: 10px; }
+.keuangan-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(255, 255, 255, 0.12); display: flex; justify-content: center; align-items: center; }
+.keuangan-icon svg { width: 18px; height: 18px; }
+.keuangan-title { color: #ffffff; font-size: 0.85rem; font-weight: 700; }
+.keuangan-badge { background: rgba(212, 175, 55, 0.2); color: #d4af37; font-size: 0.6rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); }
+.keuangan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; position: relative; z-index: 1; }
+.keuangan-item { background: rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px; backdrop-filter: blur(4px); }
+.keuangan-item-label { color: rgba(255, 255, 255, 0.6); font-size: 0.6rem; font-weight: 500; display: block; margin-bottom: 4px; }
+.keuangan-item-nominal { color: #ffffff; font-size: 0.85rem; font-weight: 700; }
+.keuangan-item-nominal.emas { color: #d4af37; }
+.keuangan-item-nominal.hijau-muda { color: #6fcf97; }
+.keuangan-item-nominal.merah { color: #eb5757; }
+.keuangan-footer { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.1); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+.keuangan-footer-label { color: rgba(255, 255, 255, 0.6); font-size: 0.65rem; font-weight: 500; }
+.keuangan-footer-nominal { color: #ffffff; font-size: 1rem; font-weight: 700; }
+.keuangan-footer-nominal.emas { color: #d4af37; }
+
+/* =========================================
+   4. LAYAR 3: TARGET AMAL & FOOTER
+   ========================================= */
+.screen-3 { padding: 40px 20px 20px 20px; justify-content: space-between; }
+
+.target-amal-card { background-color: #ffffff; border-radius: 20px; padding: 10px 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); }
+.amal-item { display: flex; align-items: center; padding: 15px 0; cursor: pointer; position: relative; }
+.amal-item:not(:last-child) { border-bottom: 1px solid #edf2f7; }
+.amal-checkbox { position: absolute; opacity: 0; height: 0; width: 0; }
+.custom-checkbox { position: relative; height: 24px; width: 24px; background-color: #edf2f7; border: 2px solid #cbd5e0; border-radius: 50%; margin-right: 15px; flex-shrink: 0; transition: all 0.2s ease; }
+.amal-item:hover .custom-checkbox { border-color: #043927; }
+.amal-checkbox:checked ~ .custom-checkbox { background-color: #043927; border-color: #043927; }
+.custom-checkbox::after { content: ""; position: absolute; display: none; left: 7px; top: 3px; width: 5px; height: 10px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.amal-checkbox:checked ~ .custom-checkbox::after { display: block; }
+.amal-text h4 { color: #0c1a30; font-size: 0.95rem; font-weight: 700; margin: 0 0 2px 0; transition: color 0.2s ease; }
+.amal-text p { color: #718096; font-size: 0.75rem; font-weight: 500; margin: 0; }
+.amal-checkbox:checked ~ .amal-text h4 { color: #a0aec0; text-decoration: line-through; }
+.amal-checkbox:checked ~ .amal-text p { color: #cbd5e0; }
+
+.footer-area { text-align: center; margin-top: auto; padding-top: 30px; }
+.footer-logo { width: 30px; margin-bottom: 10px; opacity: 0.5; }
+.footer-text { color: #8c96a3; font-size: 0.8rem; font-weight: 500; }
+
+/* =========================================
+   5. BOTTOM NAVIGATION BAR (di Screen 3)
+   ========================================= */
+.bottom-nav {
+    width: 100%;
+    background-color: #043927;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0 14px 0;
+    border-radius: 20px 20px 0 0;
+    box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.15);
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+.nav-bottom-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.2s ease;
+    padding: 4px 8px;
+}
+.nav-bottom-item svg {
+    width: 22px;
+    height: 22px;
+}
+.nav-bottom-item span {
+    font-size: 0.6rem;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+}
+.nav-bottom-item.active {
+    color: #d4af37;
+}
+.nav-bottom-item:hover {
+    color: rgba(255, 255, 255, 0.8);
+}

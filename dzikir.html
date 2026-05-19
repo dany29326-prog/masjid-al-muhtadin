@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dzikir Pagi & Sore - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f9fa;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: #f7f9fa;
+            min-height: 100vh;
+            padding: 0 0 30px 0;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        .dzikir-header {
+            background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
+            padding: 30px 24px 50px 24px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            position: relative;
+        }
+        .dzikir-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .dzikir-back {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            color: #ffffff;
+        }
+        .dzikir-back svg { width: 20px; height: 20px; }
+        .dzikir-header-title {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .dzikir-header-sub {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        .dzikir-waktu-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(212, 175, 55, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 20px;
+            padding: 6px 14px;
+            margin-top: 12px;
+        }
+        .dzikir-waktu-badge span {
+            color: #d4af37;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .dzikir-waktu-badge .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #6fcf97;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* Tab Pagi / Sore */
+        .tab-container {
+            display: flex;
+            margin: -25px 24px 0 24px;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            position: relative;
+            z-index: 2;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #718096;
+        }
+        .tab-btn.active {
+            background: #043927;
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(4,57,39,0.2);
+        }
+
+        /* Daftar Dzikir */
+        .dzikir-list {
+            padding: 20px 24px;
+        }
+        .dzikir-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease;
+        }
+        .dzikir-card:active {
+            transform: scale(0.99);
+        }
+        .dzikir-arab {
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #043927;
+            line-height: 1.8;
+            margin-bottom: 12px;
+            text-align: right;
+            direction: rtl;
+        }
+        .dzikir-latin {
+            color: #4a5568;
+            font-size: 0.85rem;
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        .dzikir-arti {
+            color: #718096;
+            font-size: 0.78rem;
+            font-weight: 400;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .dzikir-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 12px;
+            border-top: 1px solid #edf2f7;
+        }
+        .dzikir-pengulangan {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #b8943a;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+        .dzikir-pengulangan svg { width: 14px; height: 14px; }
+        .dzikir-fadhilah {
+            color: #83b299;
+            font-size: 0.65rem;
+            font-weight: 500;
+            text-align: right;
+            flex: 1;
+            margin-left: 10px;
+        }
+
+        /* Counter */
+        .dzikir-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .counter-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #043927;
+            background: transparent;
+            color: #043927;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+        .counter-btn:active {
+            background: #043927;
+            color: #ffffff;
+        }
+        .counter-num {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #043927;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        .dzikir-footer {
+            text-align: center;
+            padding: 10px 24px 0 24px;
+            color: #8c96a3;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+
+        /* Sembunyikan konten tab */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="dzikir-header">
+            <div class="dzikir-header-top">
+                <a href="index.html" class="dzikir-back" style="text-decoration: none;">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18l-6-6 6-6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <div>
+                    <div class="dzikir-header-title">Dzikir Pagi & Sore</div>
+                    <div class="dzikir-header-sub">Rutinitas harian penuh berkah</div>
+                </div>
+                <div style="width:40px;"></div>
+            </div>
+            <div class="dzikir-waktu-badge">
+                <div class="dot"></div>
+                <span id="waktuStatus">Waktu Pagi</span>
+            </div>
+        </div>
+
+        <!-- Tab -->
+        <div class="tab-container">
+            <button class="tab-btn active" onclick="switchTab('pagi')">🌅 Pagi</button>
+            <button class="tab-btn" onclick="switchTab('sore')">🌇 Sore</button>
+        </div>
+
+        <!-- Konten Dzikir Pagi -->
+        <div id="tab-pagi" class="tab-content active">
+            <div class="dzikir-list">
+
+                <div class="dzikir-card">
+                    <div class="dzikir-arab">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
+                    <div class="dzikir-latin">A'udzu billahi minasy syaithonir rojiim</div>
+                    <div class="dzikir-arti">"Aku berlindung kepada Allah dari godaan setan yang terkutuk"</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Dibaca sebelum dzikir</span>
+                    </div>
+                </div>
+
+                <div class="dzikir-card">
+                    <div class="dzikir-arab">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
+                    <div class="dzikir-latin">Allahu laa ilaaha illaa huwal hayyul qayyuum, laa ta'khudzuhuu sinatuw walaa nauum...</div>
+                    <div class="dzikir-arti">"Allah, tidak ada Tuhan selain Dia, Yang Maha Hidup, Yang terus menerus mengurus (makhluk-Nya)..." (QS. Al-Baqarah: 255)</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Ayat Kursi - Dilindungi sepanjang hari</span>
+                    </div>
+                </div>
+
+                <div class="dzikir-card">
+                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ، اللَّهُ الصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ</div>
+                    <div class="dzikir-latin">Qul huwallahu ahad, allahush shamad, lam yalid wa lam yuulad, wa lam yakul lahu kufuwan ahad</div>
+                    <div class="dzikir-arti">"Katakanlah: Dialah Allah Yang Maha Esa, Allah tempat meminta..." (QS. Al-Ikhlas)</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>3x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Setara khatam Al-Qur'an 1/3</span>
+                    </div>
+                </div>
+
+                <div class="dzikir-card">
+                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، مِنْ شَرِّ مَا خَلَقَ...</div>
+                    <div class="dzikir-latin">Qul a'udzu birabbil falaq, min syarri ma khalaq...</div>
+                    <div class="dzikir-arti">"Katakanlah: Aku berlindung kepada Tuhan yang menguasai waktu subuh..." (QS. Al-Falaq)</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>3x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Dilindungi dari kejahatan</span>
+                    </div>
+                </div>
+
+                <div class="dzikir-card">
+                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ، مَلِكِ النَّاسِ...</div>
+                    <div class="dzikir-latin">Qul a'udzu birabbin naas, malikin naas...</div>
+                    <div class="dzikir-arti">"Katakanlah: Aku berlindung kepada Tuhan manusia, Raja manusia..." (QS. An-Nas)</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>3x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Dilindungi dari bisikan setan</span>
+                    </div>
+                </div>
+
+                <div class="dzikir-card">
+                    <div class="dzikir-arab">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ</div>
+                    <div class="dzikir-latin">Ashbahnaa wa ashbahal mulku lillah, walhamdu lillah, laa ilaaha illallah wahdahu laa syariika lah</div>
+                    <div class="dzikir-arti">"Kami telah memasuki waktu pagi dan kerajaan hanya milik Allah, segala puji bagi Allah, tidak ada Tuhan selain Allah Yang Maha Esa, tidak ada sekutu bagi-Nya"</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Doa pagi hari</span>
+                    </div>
+                </div>
+
+                <div class="dzikir-card">
+                    <div class="dzikir-arab">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ</div>
+                    <div class="dzikir-latin">Subhanallah wa bihamdih, subhanallahil 'adziim</div>
+                    <div class="dzikir-arti">"Maha Suci Allah dengan segala puji-Nya, Maha Suci Allah Yang Maha Agung"</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>100x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Dihapus dosa walau sebanyak buih di laut</span>
+                    </div>
+                </div>
+
+                <div class="dzikir-card">
+                    <div class="dzikir-arab">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
+                    <div class="dzikir-latin">Laa ilaaha illallah wahdahu laa syariika lah, lahul mulku wa lahul hamdu wa huwa 'alaa kulli syai-in qodiir</div>
+                    <div class="dzikir-arti">"Tidak ada Tuhan selain Allah Yang Maha Esa, tidak ada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Maha Kuasa atas segala sesuatu"</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>10x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Pahala seperti memerdekakan budak</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="dzikir-footer">
+            <p>Rutinkan dzikir pagi & sore, insyaAllah penuh berkah 🤲</p>
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tab) {
+            // Sembunyikan semua tab
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            // Tampilkan tab yang dipilih
+            document.getElementById('tab-' + tab).classList.add('active');
+            document.querySelector('.tab-btn[onclick*="' + tab + '"]').classList.add('active');
+            
+            // Update badge waktu
+            const statusEl = document.getElementById('waktuStatus');
+            if (tab === 'pagi') {
+                statusEl.textContent = 'Waktu Pagi';
+            } else {
+                statusEl.textContent = 'Waktu Sore';
+            }
+        }
+
+        // Deteksi waktu otomatis
+        document.addEventListener('DOMContentLoaded', function() {
+            const hour = new Date().getHours();
+            if (hour >= 6 && hour < 17) {
+                // Pagi (06:00 - 16:59)
+                switchTab('pagi');
+            } else {
+                // Sore/Malam (17:00 - 05:59)
+                switchTab('sore');
+            }
+        });
+    </script>
+
+</body>
+</html>

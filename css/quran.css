@@ -1,0 +1,178 @@
+/* =========================================
+   Halaman Al-Qur'an - Masjid Al Muhtadin
+   ========================================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f7f9fa;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+.app-container {
+    width: 100%;
+    max-width: 480px;
+    background-color: #f7f9fa;
+    min-height: 100vh;
+    padding: 0 0 30px 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* Header */
+.quran-header {
+    background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
+    padding: 30px 24px 50px 24px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
+    position: relative;
+}
+.quran-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.quran-back {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    color: #ffffff;
+}
+.quran-back svg { width: 20px; height: 20px; }
+.quran-header-title {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.quran-header-sub {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+/* Search */
+.search-container {
+    margin: -25px 24px 20px 24px;
+    position: relative;
+    z-index: 2;
+}
+.search-box {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+}
+.search-box svg { width: 18px; height: 18px; flex-shrink: 0; }
+.search-box input {
+    border: none;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #333;
+    width: 100%;
+    background: transparent;
+}
+.search-box input::placeholder { color: #a0aec0; }
+
+/* Daftar Surah */
+.surah-list { padding: 0 24px; }
+.surah-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.surah-card:active { transform: scale(0.98); }
+.surah-number {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.surah-info { flex: 1; }
+.surah-name-latin {
+    color: #0c1a30;
+    font-size: 0.9rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+.surah-name-arab {
+    color: #043927;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Amiri', serif;
+    direction: rtl;
+}
+.surah-detail {
+    color: #718096;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+.surah-arrow {
+    color: #b8943a;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+/* Loading & Error */
+.loading-state, .error-state {
+    text-align: center;
+    padding: 60px 24px;
+    color: #718096;
+}
+.loading-state .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #edf2f7;
+    border-top: 3px solid #043927;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px auto;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.error-state svg { width: 48px; height: 48px; margin-bottom: 12px; }
+.error-state h3 { color: #0c1a30; font-size: 1rem; margin-bottom: 8px; }
+.error-state p { font-size: 0.8rem; margin-bottom: 16px; }
+.retry-btn {
+    background: #043927;
+    color: #ffffff;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 12px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Footer */
+.quran-footer {
+    text-align: center;
+    padding: 20px 24px 0 24px;
+    color: #8c96a3;
+    font-size: 0.7rem;
+    font-weight: 500;
+}

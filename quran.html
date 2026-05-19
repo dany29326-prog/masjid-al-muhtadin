@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Al-Qur'an - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/quran.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="quran-header">
+            <div class="quran-header-top">
+                <a href="index.html" class="quran-back" style="text-decoration: none;">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18l-6-6 6-6" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <div>
+                    <div class="quran-header-title">Al-Qur'an</div>
+                    <div class="quran-header-sub">Pilih surah untuk membaca</div>
+                </div>
+                <div style="width:40px;"></div>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="search-container">
+            <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11" cy="11" r="7" stroke="#a0aec0" stroke-width="2"/>
+                    <path d="M16 16l4 4" stroke="#a0aec0" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <input type="text" id="searchSurah" placeholder="Cari surah..." autocomplete="off">
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="loading-state" style="display:none;">
+            <div class="spinner"></div>
+            <p>Memuat daftar surah...</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="errorState" class="error-state" style="display:none;">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="#eb5757" stroke-width="2"/>
+                <path d="M12 8v4M12 16h.01" stroke="#eb5757" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h3>Gagal memuat data</h3>
+            <p>Periksa koneksi internet Anda</p>
+            <button id="retryBtn" class="retry-btn">Coba Lagi</button>
+        </div>
+
+        <!-- Daftar Surah -->
+        <div id="surahList" class="surah-list"></div>
+
+        <!-- Footer -->
+        <div class="quran-footer">
+            <p>Sumber: equran.id API</p>
+        </div>
+    </div>
+
+    <script src="js/quran.js"></script>
+</body>
+</html>

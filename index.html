@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Masjid Al Muhtadin</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/program-unggulan.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <section class="screen-section screen-1">
+            <div class="app-header">
+                <div class="header-top">
+                    <div class="masjid-brand">
+                        <svg class="main-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L14.5 6.5L19 7L16 10.5L17 15L12 13.5L7 15L8 10.5L5 7L9.5 6.5L12 2Z" stroke="#b8943a" stroke-width="1.5"/>
+                            <circle cx="12" cy="9.5" r="2.5" fill="#b8943a"/>
+                        </svg>
+                        <div class="brand-text">
+                            <h2>Masjid Al Muhtadin</h2>
+                            <p>📍 Ciamas, Bogor</p>
+                        </div>
+                    </div>
+                    <div class="notification-badge">
+                        <svg class="bell-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22C13.1 22 14 21.1 14 20H10C10 21.1 10.9 22 12 22ZM18 16V11C18 7.93 16.36 5.36 13.5 4.68V4C13.5 3.17 12.83 2.5 12 2.5C11.17 2.5 10.5 3.17 10.5 4V4.68C7.63 5.36 6 7.92 6 11V16L4 18V19H20V18L18 16Z" fill="#043927"/>
+                        </svg>
+                        <span class="badge-number">3</span>
+                    </div>
+                </div>
+
+                <div class="greeting-section">
+                    <h1>Assalamu’alaikum,<br>Jamaah Al Muhtadin</h1>
+                    <p>🍃 Semoga hari ini penuh keberkahan</p>
+                </div>
+
+                <div class="jadwal-container">
+                    <div class="jadwal-info">
+                        <h3 class="sholat-title">Adzan Maghrib</h3>
+                        <p class="sholat-status">Akan tiba dalam</p>
+                        <div class="sholat-countdown">
+                            <div class="countdown-item">
+                                <span class="time-digit">01</span>
+                                <span class="time-label">Jam</span>
+                            </div>
+                            <span class="time-separator">:</span>
+                            <div class="countdown-item">
+                                <span class="time-digit">24</span>
+                                <span class="time-label">Menit</span>
+                            </div>
+                            <span class="time-separator">:</span>
+                            <div class="countdown-item">
+                                <span class="time-digit">56</span>
+                                <span class="time-label">Detik</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jadwal-progress">
+                        <div class="circle-progress">
+                            <svg class="mosque-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C12.5523 2 13 2.44772 13 3V4.06182C16.944 4.55792 20 7.92496 20 12H4C4 7.92496 7.05602 4.55792 11 4.06182V3C11 2.44772 11.4477 2 12 2Z" fill="#ffffff"/>
+                                <rect x="4" y="13" width="16" height="2" rx="0.5" fill="#ffffff"/>
+                                <path d="M5 16H19V21H5V16Z" fill="#ffffff"/>
+                                <path d="M12 6C10.5 6 9.5 7 9.5 8C10.5 8 11.5 7.5 12 6Z" fill="#f1c40f"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Jadwal Sholat Lengkap (di luar app-header, di bawah kotak countdown yang melayang) -->
+            <div class="jadwal-lengkap">
+                <div class="jadwal-lengkap-title">Jadwal Sholat</div>
+                <div class="jadwal-grid">
+                    <div class="jadwal-item" data-sholat="subuh">
+                        <span class="waktu-label">Subuh</span>
+                        <span class="waktu-nama">Fajr</span>
+                        <span class="waktu-jam">04:31</span>
+                    </div>
+                    <div class="jadwal-item" data-sholat="dzuhur">
+                        <span class="waktu-label">Dzuhur</span>
+                        <span class="waktu-nama">Dhuhr</span>
+                        <span class="waktu-jam">11:38</span>
+                    </div>
+                    <div class="jadwal-item" data-sholat="ashar">
+                        <span class="waktu-label">Ashar</span>
+                        <span class="waktu-nama">Asr</span>
+                        <span class="waktu-jam">14:57</span>
+                    </div>
+                    <div class="jadwal-item" data-sholat="maghrib">
+                        <span class="waktu-label">Maghrib</span>
+                        <span class="waktu-nama">Maghrib</span>
+                        <span class="waktu-jam">17:37</span>
+                    </div>
+                    <div class="jadwal-item" data-sholat="isya">
+                        <span class="waktu-label">Isya</span>
+                        <span class="waktu-nama">Isha</span>
+                        <span class="waktu-jam">18:47</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Menu Cepat di bawah jadwal sholat -->
+            <div class="menu-cepat-bawah">
+                <div class="menu-cepat-bawah-title">Menu Cepat</div>
+                <div class="menu-cepat-bawah-grid">
+                    
+                    <div class="menu-cepat-bawah-item">
+                        <div class="menu-cepat-bawah-icon hijau">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" fill="#ffffff"/>
+                            </svg>
+                        </div>
+                        <span class="menu-cepat-bawah-label">Profil</span>
+                    </div>
+
+                    <div class="menu-cepat-bawah-item">
+                        <div class="menu-cepat-bawah-icon emas">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2a8 8 0 00-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 00-8-8zm0 11a3 3 0 110-6 3 3 0 010 6z" fill="#ffffff"/>
+                            </svg>
+                        </div>
+                        <span class="menu-cepat-bawah-label">Info Masjid</span>
+                    </div>
+
+                    <div class="menu-cepat-bawah-item">
+                        <div class="menu-cepat-bawah-icon hijau">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" fill="#ffffff"/>
+                            </svg>
+                        </div>
+                        <span class="menu-cepat-bawah-label">Info Keuangan</span>
+                    </div>
+
+                    <div class="menu-cepat-bawah-item">
+                        <div class="menu-cepat-bawah-icon emas">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="3" y="3" width="18" height="18" rx="2" stroke="#ffffff" stroke-width="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5" fill="#ffffff"/>
+                                <path d="M21 15l-5-5L6 21" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <span class="menu-cepat-bawah-label">Galeri</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Hikmah Hari Ini -->
+            <div class="hikmah-container">
+                <div class="hikmah-title">Hikmah Hari Ini</div>
+                <div class="hikmah-card">
+                    <div class="hikmah-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#d4af37"/>
+                        </svg>
+                    </div>
+                    <div class="hikmah-content" id="hikmahContent">
+                        <h4 id="hikmahJudul">🌟 Mutiara Hikmah</h4>
+                        <p id="hikmahTeks">"Barang siapa yang berjalan menuju masjid, maka Allah akan menyediakan baginya tempat di surga setiap kali ia pergi dan pulang."</p>
+                        <span class="hikmah-source" id="hikmahSumber">— HR. Bukhari & Muslim</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="swipe-up-guide">Geser ke atas ⇡</div>
+        </section>
+
+        <section class="screen-section screen-2">
+            
+            <div>
+                <h3 class="section-title">Menu Cepat</h3>
+                <div class="menu-cepat-grid">
+                    
+                    <a href="quran.html" style="text-decoration: none;">
+                        <div class="menu-cepat-item">
+                            <div class="menu-circle hijau">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L14.5 6.5L19 7L16 10.5L17 15L12 13.5L7 15L8 10.5L5 7L9.5 6.5L12 2Z" stroke="#ffffff" stroke-width="1.5"/><circle cx="12" cy="9.5" r="2.5" fill="#ffffff"/></svg>
+                            </div>
+                            <span class="menu-label">Quran</span>
+                        </div>
+                    </a>
+
+                    <a href="dzikir.html" style="text-decoration: none;">
+                        <div class="menu-cepat-item">
+                            <div class="menu-circle emas">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke="#ffffff" stroke-width="2"/></svg>
+                            </div>
+                            <span class="menu-label">Dzikir Pagi Sore</span>
+                        </div>
+                    </a>
+
+                    <div class="menu-cepat-item">
+                        <div class="menu-circle hijau">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#ffffff"/></svg>
+                        </div>
+                        <span class="menu-label">Azkar (Harian)</span>
+                    </div>
+
+                    <div class="menu-cepat-item">
+                        <div class="menu-circle emas">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2z" stroke="#ffffff" stroke-width="2"/><path d="M8 2v4M16 2v4M3 10h18" stroke="#ffffff" stroke-width="2"/><text x="12" y="18" text-anchor="middle" fill="#ffffff" font-size="6" font-weight="bold">H</text></svg>
+                        </div>
+                        <span class="menu-label">Kalender Hijriyah</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div>
+                <div class="pengingat-header">
+                    <h3 class="section-title" style="margin:0;">Pengingat Kebaikan</h3>
+                    <a href="#" class="lihat-semua">Lihat semua ❯</a>
+                </div>
+                <div class="pengingat-slider">
+                    
+                    <div class="pengingat-card hijau-gelap">
+                        <div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="gold-icon"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14z" stroke="#b8943a" stroke-width="2" stroke-linejoin="round"/><path d="M6.5 22H20v-3H6.5a2.5 2.5 0 0 0 0 5z" stroke="#b8943a" stroke-width="2" stroke-linejoin="round"/></svg></div>
+                        <h4 class="card-headline font-white">Sunnah<br>di Hari Jum'at</h4>
+                        <p class="card-subtext font-soft">Perbanyak doa & shalawat</p>
+                        <div class="arrow-circle bg-white"><span class="arrow-sign color-green">❯</span></div>
+                    </div>
+
+                    <div class="pengingat-card krem">
+                        <div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="gold-icon"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" stroke="#b8943a" stroke-width="2"/></svg></div>
+                        <h4 class="card-headline font-green">Dzikir<br>Pagi & Sore</h4>
+                        <p class="card-subtext font-dark">"Subhanallah wabihamdihi Subhanallahil adzim"</p>
+                        <div class="arrow-circle bg-green"><span class="arrow-sign font-white">❯</span></div>
+                    </div>
+
+                    <div class="pengingat-card hijau-pucat">
+                        <div class="card-icon-wrap"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="gold-icon"><path d="M11.189 10.517C11.189 14.24 8.163 17.266 4.44 17.266m15.12 0c3.724 0 6.75-3.026 6.75-6.749 0-3.724-3.026-6.75-6.75-6.75" stroke="#b8943a" stroke-width="2" stroke-linecap="round"/><path d="M10 7.5a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zm11 0a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0z" fill="#b8943a"/></svg></div>
+                        <h4 class="card-headline font-green">Mutiara Hikmah<br>Hari Ini</h4>
+                        <p class="card-subtext font-dark">"Barang siapa yang berjalan menuju masjid..." (HR. Muslim)</p>
+                        <div class="arrow-circle bg-green"><span class="arrow-sign font-white">❯</span></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Program Unggulan -->
+            <div>
+                <div class="program-unggulan-header">
+                    <h3 class="program-unggulan-title">Program Unggulan</h3>
+                    <a href="#" class="lihat-semua">Lihat semua ❯</a>
+                </div>
+                <div class="program-unggulan-slider">
+                    
+                    <div class="program-card">
+                        <div class="program-card-image emas-bg">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L14.5 6.5L19 7L16 10.5L17 15L12 13.5L7 15L8 10.5L5 7L9.5 6.5L12 2Z" fill="#b8943a"/>
+                                <circle cx="12" cy="9.5" r="2.5" fill="#d4af37"/>
+                            </svg>
+                        </div>
+                        <div class="program-card-info">
+                            <h4 class="program-card-title">Operasional Masjid</h4>
+                            <p class="program-card-persen">65% Terkumpul</p>
+                            <div class="program-progress-bar">
+                                <div class="program-progress-fill" style="width: 65%;"></div>
+                            </div>
+                            <p class="program-card-nominal">Rp 325.000.000 dari Rp 500.000.000</p>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div class="program-card-image hijau-bg">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#043927"/>
+                            </svg>
+                        </div>
+                        <div class="program-card-info">
+                            <h4 class="program-card-title">Santunan Anak Yatim</h4>
+                            <p class="program-card-persen">42% Terkumpul</p>
+                            <div class="program-progress-bar">
+                                <div class="program-progress-fill" style="width: 42%;"></div>
+                            </div>
+                            <p class="program-card-nominal">Rp 84.000.000 dari Rp 200.000.000</p>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div class="program-card-image biru-bg">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3b82f6"/>
+                            </svg>
+                        </div>
+                        <div class="program-card-info">
+                            <h4 class="program-card-title">Pembangunan Gedung</h4>
+                            <p class="program-card-persen">78% Terkumpul</p>
+                            <div class="program-progress-bar">
+                                <div class="program-progress-fill" style="width: 78%;"></div>
+                            </div>
+                            <p class="program-card-nominal">Rp 1.170.000.000 dari Rp 1.500.000.000</p>
+                        </div>
+                    </div>
+
+                    <div class="program-card">
+                        <div class="program-card-image ungu-bg">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z" fill="#8b5cf6"/>
+                                <path d="M7 9h2v2H7V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9z" fill="#8b5cf6"/>
+                            </svg>
+                        </div>
+                        <div class="program-card-info">
+                            <h4 class="program-card-title">Beasiswa Pelajar</h4>
+                            <p class="program-card-persen">25% Terkumpul</p>
+                            <div class="program-progress-bar">
+                                <div class="program-progress-fill" style="width: 25%;"></div>
+                            </div>
+                            <p class="program-card-nominal">Rp 62.500.000 dari Rp 250.000.000</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Laporan Keuangan Singkat -->
+            <div class="keuangan-container">
+                <div class="keuangan-card">
+                    <div class="keuangan-header">
+                        <div class="keuangan-header-left">
+                            <div class="keuangan-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" fill="#d4af37"/>
+                                </svg>
+                            </div>
+                            <span class="keuangan-title">Laporan Keuangan</span>
+                        </div>
+                        <span class="keuangan-badge">Bulan Ini</span>
+                    </div>
+                    <div class="keuangan-grid">
+                        <div class="keuangan-item">
+                            <span class="keuangan-item-label">Pemasukan</span>
+                            <span class="keuangan-item-nominal hijau-muda">Rp 45.800.000</span>
+                        </div>
+                        <div class="keuangan-item">
+                            <span class="keuangan-item-label">Pengeluaran</span>
+                            <span class="keuangan-item-nominal merah">Rp 28.200.000</span>
+                        </div>
+                    </div>
+                    <div class="keuangan-footer">
+                        <span class="keuangan-footer-label">Saldo Kas Saat Ini</span>
+                        <span class="keuangan-footer-nominal emas">Rp 120.600.000</span>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="screen-section screen-3">
+            
+            <!-- Target Amal Harian -->
+            <div>
+                <h3 class="section-title">Target Amal Harian</h3>
+                <div class="target-amal-card">
+                    <label class="amal-item">
+                        <input type="checkbox" id="amal-shalat" class="amal-checkbox">
+                        <span class="custom-checkbox"></span>
+                        <div class="amal-text">
+                            <h4>Shalat Tepat Waktu</h4>
+                            <p>Menjaga shalat fardhu di awal waktu</p>
+                        </div>
+                    </label>
+
+                    <label class="amal-item">
+                        <input type="checkbox" id="amal-tilawah" class="amal-checkbox">
+                        <span class="custom-checkbox"></span>
+                        <div class="amal-text">
+                            <h4>Tilawah Al-Qur'an</h4>
+                            <p>Membaca minimal 1 lembar hari ini</p>
+                        </div>
+                    </label>
+
+                    <label class="amal-item">
+                        <input type="checkbox" id="amal-sedekah" class="amal-checkbox" style="border:none;">
+                        <span class="custom-checkbox"></span>
+                        <div class="amal-text">
+                            <h4>Sedekah Subuh</h4>
+                            <p>Berbagi kebaikan di waktu fajar</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Bottom Navigation Bar (di screen 3) -->
+            <nav class="bottom-nav">
+                <a href="index.html" class="nav-bottom-item active">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        <path d="M9 22V12h6v10" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Beranda</span>
+                </a>
+                <a href="#" class="nav-bottom-item">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2L14.5 6.5L19 7L16 10.5L17 15L12 13.5L7 15L8 10.5L5 7L9.5 6.5L12 2Z" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="12" cy="9.5" r="2.5" fill="currentColor"/>
+                    </svg>
+                    <span>Shalat</span>
+                </a>
+                <a href="#" class="nav-bottom-item">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                    </svg>
+                    <span>Kajian</span>
+                </a>
+                <a href="#" class="nav-bottom-item">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="currentColor"/>
+                    </svg>
+                    <span>Donasi</span>
+                </a>
+                <a href="#" class="nav-bottom-item">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                        <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    <span>Lainnya</span>
+                </a>
+            </nav>
+
+            <div class="footer-area">
+                <svg class="footer-logo" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L14.5 6.5L19 7L16 10.5L17 15L12 13.5L7 15L8 10.5L5 7L9.5 6.5L12 2Z" stroke="#8c96a3" stroke-width="1.5"/>
+                </svg>
+                <p class="footer-text">Memakmurkan Masjid dan Jamaahnya<br>© 2026 Masjid Al Muhtadin</p>
+            </div>
+
+        </section>
+
+    </div>
+
+    <script src="js/app.js"></script>
+
+</body>
+</html>
