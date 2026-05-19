@@ -129,6 +129,19 @@
         .dzikir-card:active {
             transform: scale(0.99);
         }
+        .dzikir-nomor {
+            display: inline-flex;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: #043927;
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
         .dzikir-arab {
             font-family: 'Amiri', serif;
             font-size: 1.5rem;
@@ -258,7 +271,9 @@
         <div id="tab-pagi" class="tab-content active">
             <div class="dzikir-list">
 
+                <!-- [1] Ta'awudz -->
                 <div class="dzikir-card">
+                    <div class="dzikir-nomor">1</div>
                     <div class="dzikir-arab">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
                     <div class="dzikir-latin">A'udzu billahi minasy syaithonir rojiim</div>
                     <div class="dzikir-arti">"Aku berlindung kepada Allah dari godaan setan yang terkutuk"</div>
@@ -271,23 +286,27 @@
                     </div>
                 </div>
 
+                <!-- [2] Ayat Kursi -->
                 <div class="dzikir-card">
-                    <div class="dzikir-arab">اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ</div>
+                    <div class="dzikir-nomor">2</div>
+                    <div class="dzikir-arab">ٱللَّهُ لَآ إِلَٰهَ إِلَّا هُوَ ٱلْحَىُّ ٱلْقَيُّومُ ۚ لَا تَأْخُذُهُۥ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُۥ مَا فِى ٱلسَّمَٰوَٰتِ وَمَا فِى ٱلْأَرْضِ ۗ مَن ذَا ٱلَّذِى يَشْفَعُ عِندَهُۥٓ إِلَّا بِإِذْنِهِۦ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَىْءٍ مِّنْ عِلْمِهِۦٓ إِلَّا بِمَا شَآءَ ۚ وَسِعَ كُرْسِيُّهُ ٱلسَّمَٰوَٰتِ وَٱلْأَرْضَ ۖ وَلَا يَـُٔودُهُۥ حِفْظُهُمَا ۚ وَهُوَ ٱلْعَلِىُّ ٱلْعَظِيمُ</div>
                     <div class="dzikir-latin">Allahu laa ilaaha illaa huwal hayyul qayyuum, laa ta'khudzuhuu sinatuw walaa nauum...</div>
-                    <div class="dzikir-arti">"Allah, tidak ada Tuhan selain Dia, Yang Maha Hidup, Yang terus menerus mengurus (makhluk-Nya)..." (QS. Al-Baqarah: 255)</div>
+                    <div class="dzikir-arti">"Allah, tidak ada ilah (yang berhak disembah) melainkan Dia, yang hidup kekal lagi terus menerus mengurus (makhluk-Nya). Dia tidak mengantuk dan tidak tidur..." (QS. Al Baqarah: 255)</div>
                     <div class="dzikir-info">
                         <div class="dzikir-pengulangan">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
                             <span>1x</span>
                         </div>
-                        <span class="dzikir-fadhilah">Ayat Kursi - Dilindungi sepanjang hari</span>
+                        <span class="dzikir-fadhilah">Dilindungi (oleh Allah) hingga petang</span>
                     </div>
                 </div>
 
+                <!-- [3] Al Ikhlas, Al Falaq, An Naas -->
                 <div class="dzikir-card">
-                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ. قُلْ هُوَ اللَّهُ أَحَدٌ، اللَّهُ الصَّمَدُ، لَمْ يَلِدْ وَلَمْ يُولَدْ، وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ</div>
+                    <div class="dzikir-nomor">3</div>
+                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ<br>قُلْ هُوَ اللَّهُ أَحَدٌ<br>اللَّهُ الصَّمَدُ<br>لَمْ يَلِدْ وَلَمْ يُولَدْ<br>وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</div>
                     <div class="dzikir-latin">Qul huwallahu ahad, allahush shamad, lam yalid wa lam yuulad, wa lam yakul lahu kufuwan ahad</div>
-                    <div class="dzikir-arti">"Katakanlah: Dialah Allah Yang Maha Esa, Allah tempat meminta..." (QS. Al-Ikhlas)</div>
+                    <div class="dzikir-arti">"Katakanlah: Dialah Allah, Yang Maha Esa. Allah adalah ilah yang bergantung kepada-Nya segala urusan..." (QS. Al Ikhlas: 1-4)</div>
                     <div class="dzikir-info">
                         <div class="dzikir-pengulangan">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
@@ -298,9 +317,10 @@
                 </div>
 
                 <div class="dzikir-card">
-                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ، مِنْ شَرِّ مَا خَلَقَ...</div>
+                    <div class="dzikir-nomor">3</div>
+                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ<br>قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ<br>مِن شَرِّ مَا خَلَقَ<br>وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ<br>وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ<br>وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ</div>
                     <div class="dzikir-latin">Qul a'udzu birabbil falaq, min syarri ma khalaq...</div>
-                    <div class="dzikir-arti">"Katakanlah: Aku berlindung kepada Tuhan yang menguasai waktu subuh..." (QS. Al-Falaq)</div>
+                    <div class="dzikir-arti">"Katakanlah: Aku berlindung kepada Rabb yang menguasai Shubuh, dari kejahatan makhluk-Nya..." (QS. Al Falaq: 1-5)</div>
                     <div class="dzikir-info">
                         <div class="dzikir-pengulangan">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
@@ -311,9 +331,10 @@
                 </div>
 
                 <div class="dzikir-card">
-                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ. قُلْ أَعُوذُ بِرَبِّ النَّاسِ، مَلِكِ النَّاسِ...</div>
+                    <div class="dzikir-nomor">3</div>
+                    <div class="dzikir-arab">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ<br>قُلْ أَعُوذُ بِرَبِّ النَّاسِ<br>مَلِكِ النَّاسِ<br>إِلَهِ النَّاسِ<br>مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ<br>الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ<br>مِنَ الْجِنَّةِ وَ النَّاسِ</div>
                     <div class="dzikir-latin">Qul a'udzu birabbin naas, malikin naas...</div>
-                    <div class="dzikir-arti">"Katakanlah: Aku berlindung kepada Tuhan manusia, Raja manusia..." (QS. An-Nas)</div>
+                    <div class="dzikir-arti">"Katakanlah: Aku berlindung kepada Rabb manusia, Raja manusia, Sembahan manusia, dari kejahatan (bisikan) syaitan yang biasa bersembunyi..." (QS. An Naas: 1-6)</div>
                     <div class="dzikir-info">
                         <div class="dzikir-pengulangan">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
@@ -323,45 +344,256 @@
                     </div>
                 </div>
 
+                <!-- [4] Ashbahna -->
                 <div class="dzikir-card">
-                    <div class="dzikir-arab">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ</div>
-                    <div class="dzikir-latin">Ashbahnaa wa ashbahal mulku lillah, walhamdu lillah, laa ilaaha illallah wahdahu laa syariika lah</div>
-                    <div class="dzikir-arti">"Kami telah memasuki waktu pagi dan kerajaan hanya milik Allah, segala puji bagi Allah, tidak ada Tuhan selain Allah Yang Maha Esa, tidak ada sekutu bagi-Nya"</div>
+                    <div class="dzikir-nomor">4</div>
+                    <div class="dzikir-arab">أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لاَ إِلَـهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرُ. رَبِّ أَسْأَلُكَ خَيْرَ مَا فِيْ هَذَا الْيَوْمِ وَخَيْرَ مَا بَعْدَهُ، وَأَعُوْذُ بِكَ مِنْ شَرِّ مَا فِيْ هَذَا الْيَوْمِ وَشَرِّ مَا بَعْدَهُ، رَبِّ أَعُوْذُ بِكَ مِنَ الْكَسَلِ وَسُوْءِ الْكِبَرِ، رَبِّ أَعُوْذُ بِكَ مِنْ عَذَابٍ فِي النَّارِ وَعَذَابٍ فِي الْقَبْرِ</div>
+                    <div class="dzikir-latin">Ash-bahnaa wa ash-bahal mulku lillah walhamdulillah, laa ilaha illallah wahdahu laa syarika lah, lahul mulku walahul hamdu wa huwa 'ala kulli syai-in qodir. Robbi as-aluka khoiro maa fii hadzal yaum wa khoiro maa ba'dahu, wa a'udzu bika min syarri maa fii hadzal yaum wa syarri maa ba'dahu. Robbi a'udzu bika minal kasali wa su-il kibar. Robbi a'udzu bika min 'adzabin fin naari wa 'adzabin fil qobri.</div>
+                    <div class="dzikir-arti">"Kami telah memasuki waktu pagi dan kerajaan hanya milik Allah, segala puji bagi Allah. Tidak ada ilah (yang berhak disembah) kecuali Allah semata, tiada sekutu bagi-Nya. Milik Allah kerajaan dan bagi-Nya pujian. Dia-lah Yang Mahakuasa atas segala sesuatu. Wahai Rabbku, aku mohon kepada-Mu kebaikan di hari ini dan kebaikan sesudahnya. Aku berlindung kepada-Mu dari kejahatan hari ini dan kejahatan sesudahnya. Wahai Rabbku, aku berlindung kepada-Mu dari kemalasan dan kejelekan di hari tua. Wahai Rabbku, aku berlindung kepada-Mu dari siksaan di neraka dan siksaan di alam kubur."</div>
                     <div class="dzikir-info">
                         <div class="dzikir-pengulangan">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
                             <span>1x</span>
                         </div>
-                        <span class="dzikir-fadhilah">Doa pagi hari</span>
+                        <span class="dzikir-fadhilah">HR. Muslim no. 2723</span>
                     </div>
                 </div>
 
+                <!-- [5] Allahumma bika ashbahna -->
                 <div class="dzikir-card">
-                    <div class="dzikir-arab">سُبْحَانَ اللَّهِ وَبِحَمْدِهِ، سُبْحَانَ اللَّهِ الْعَظِيمِ</div>
-                    <div class="dzikir-latin">Subhanallah wa bihamdih, subhanallahil 'adziim</div>
-                    <div class="dzikir-arti">"Maha Suci Allah dengan segala puji-Nya, Maha Suci Allah Yang Maha Agung"</div>
+                    <div class="dzikir-nomor">5</div>
+                    <div class="dzikir-arab">اَللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوْتُ وَإِلَيْكَ النُّشُوْرُ</div>
+                    <div class="dzikir-latin">Allahumma bika ash-bahnaa wa bika amsaynaa wa bika nahyaa wa bika namuutu wa ilaikan nusyuur.</div>
+                    <div class="dzikir-arti">"Ya Allah, dengan rahmat dan pertolongan-Mu kami memasuki waktu pagi, dan dengan rahmat dan pertolongan-Mu kami memasuki waktu petang. Dengan rahmat dan pertolongan-Mu kami hidup dan dengan kehendak-Mu kami mati. Dan kepada-Mu kebangkitan (bagi semua makhluk)."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">HR. Tirmidzi no. 3391, Abu Daud no. 5068</span>
+                    </div>
+                </div>
+
+                <!-- [6] Sayyidul Istighfar -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">6</div>
+                    <div class="dzikir-arab">اَللَّهُمَّ أَنْتَ رَبِّيْ لاَ إِلَـهَ إِلاَّ أَنْتَ، خَلَقْتَنِيْ وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوْذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوْءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوْءُ بِذَنْبِيْ فَاغْفِرْ لِيْ فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوْبَ إِلاَّ أَنْتَ</div>
+                    <div class="dzikir-latin">Allahumma anta robbii laa ilaha illa anta, kholaqtanii wa anaa 'abduka wa anaa 'ala 'ahdika wa wa'dika mas-tatho'tu. A'udzu bika min syarri maa shona'tu. Abu-u laka bi ni'matika 'alayya wa abu-u bi dzambii. Fagh-firlii fainnahu laa yagh-firudz dzunuuba illa anta.</div>
+                    <div class="dzikir-arti">"Ya Allah, Engkau adalah Rabbku, tidak ada ilah yang berhak disembah kecuali Engkau, Engkaulah yang menciptakanku. Aku adalah hamba-Mu. Aku akan setia pada perjanjianku pada-Mu semampuku dan aku yakin akan janji-Mu. Aku berlindung kepada-Mu dari kejelekan yang kuperbuat. Aku mengakui nikmat-Mu kepadaku dan aku mengakui dosaku. Oleh karena itu, ampunilah aku. Sesungguhnya tiada yang mengampuni dosa kecuali Engkau."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Sayyidul Istighfar - Penghuni surga</span>
+                    </div>
+                </div>
+
+                <!-- [7] Allahumma inni ashbahtu -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">7</div>
+                    <div class="dzikir-arab">اَللَّهُمَّ إِنِّيْ أَصْبَحْتُ أُشْهِدُكَ وَأُشْهِدُ حَمَلَةَ عَرْشِكَ، وَمَلاَئِكَتَكَ وَجَمِيْعَ خَلْقِكَ، أَنَّكَ أَنْتَ اللهُ لاَ إِلَـهَ إِلاَّ أَنْتَ وَحْدَكَ لاَ شَرِيْكَ لَكَ، وَأَنَّ مُحَمَّدًا عَبْدُكَ وَرَسُوْلُكَ</div>
+                    <div class="dzikir-latin">Allahumma inni ash-bahtu usy-hiduka wa usy-hidu hamalata 'arsyika wa malaa-ikatak wa jami'a kholqik, annaka antallahu laa ilaha illa anta wahdaka laa syariika lak, wa anna Muhammadan 'abduka wa rosuuluk.</div>
+                    <div class="dzikir-arti">"Ya Allah, sesungguhnya aku di waktu pagi ini mempersaksikan Engkau, malaikat yang memikul 'Arys-Mu, malaikat-malaikat dan seluruh makhluk-Mu, bahwa sesungguhnya Engkau adalah Allah, tiada ilah yang berhak disembah kecuali Engkau semata, tiada sekutu bagi-Mu dan sesungguhnya Muhammad adalah hamba dan utusan-Mu."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>4x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Dibebaskan dari siksa neraka</span>
+                    </div>
+                </div>
+
+                <!-- [8] Allahumma inni as-alukal 'afwa -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">8</div>
+                    <div class="dzikir-arab">اَللَّهُمَّ إِنِّيْ أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي الدُّنْيَا وَاْلآخِرَةِ، اَللَّهُمَّ إِنِّيْ أَسْأَلُكَ الْعَفْوَ وَالْعَافِيَةَ فِي دِيْنِيْ وَدُنْيَايَ وَأَهْلِيْ وَمَالِيْ اللَّهُمَّ اسْتُرْ عَوْرَاتِى وَآمِنْ رَوْعَاتِى. اَللَّهُمَّ احْفَظْنِيْ مِنْ بَيْنِ يَدَيَّ، وَمِنْ خَلْفِيْ، وَعَنْ يَمِيْنِيْ وَعَنْ شِمَالِيْ، وَمِنْ فَوْقِيْ، وَأَعُوْذُ بِعَظَمَتِكَ أَنْ أُغْتَالَ مِنْ تَحْتِيْ</div>
+                    <div class="dzikir-latin">Allahumma innii as-alukal 'afwa wal 'aafiyah fid dunyaa wal aakhiroh. Allahumma innii as-alukal 'afwa wal 'aafiyah fii diinii wa dun-yaya wa ahlii wa maalii. Allahumas-tur 'awrootii wa aamin row'aatii. Allahummahfazh-nii mim bayni yadayya wa min kholfii wa 'an yamiinii wa 'an syimaalii wa min fawqii wa a'udzu bi 'azhomatik an ughtala min tahtii.</div>
+                    <div class="dzikir-arti">"Ya Allah, sesungguhnya aku memohon kebajikan dan keselamatan di dunia dan akhirat. Ya Allah, sesungguhnya aku memohon kebajikan dan keselamatan dalam agama, dunia, keluarga dan hartaku. Ya Allah, tutupilah auratku dan tenteramkanlah aku dari rasa takut. Ya Allah, peliharalah aku dari muka, belakang, kanan, kiri dan atasku. Aku berlindung dengan kebesaran-Mu, agar aku tidak disambar dari bawahku."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">HR. Abu Daud no. 5074, Ibnu Majah no. 3871</span>
+                    </div>
+                </div>
+
+                <!-- [9] Allahumma 'aalimal ghoybi -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">9</div>
+                    <div class="dzikir-arab">اَللَّهُمَّ عَالِمَ الْغَيْبِ وَالشَّهَادَةِ فَاطِرَ السَّمَاوَاتِ وَاْلأَرْضِ، رَبَّ كُلِّ شَيْءٍ وَمَلِيْكَهُ، أَشْهَدُ أَنْ لاَ إِلَـهَ إِلاَّ أَنْتَ، أَعُوْذُ بِكَ مِنْ شَرِّ نَفْسِيْ، وَمِنْ شَرِّ الشَّيْطَانِ وَشِرْكِهِ، وَأَنْ أَقْتَرِفَ عَلَى نَفْسِيْ سُوْءًا أَوْ أَجُرَّهُ إِلَى مُسْلِمٍ</div>
+                    <div class="dzikir-latin">Allahumma 'aalimal ghoybi wasy syahaadah faathiros samaawaati wal ardh. Robba kulli syai-in wa maliikah. Asyhadu alla ilaha illa anta. A'udzu bika min syarri nafsii wa min syarrisy syaythooni wa syirkihi, wa an aqtarifa 'alaa nafsii suu-an aw ajurrohu ilaa muslim.</div>
+                    <div class="dzikir-arti">"Ya Allah, Yang Maha Mengetahui yang ghaib dan yang nyata, wahai Rabb pencipta langit dan bumi, Rabb segala sesuatu dan yang merajainya. Aku bersaksi bahwa tidak ada ilah yang berhak disembah kecuali Engkau. Aku berlindung kepadaMu dari kejahatan diriku, setan dan balatentaranya, dan aku (berlindung kepada-Mu) dari berbuat kejelekan terhadap diriku atau menyeretnya kepada seorang muslim."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">HR. Tirmidzi no. 3392, Abu Daud no. 5067</span>
+                    </div>
+                </div>
+
+                <!-- [10] Bismillahilladzi laa yadhurru -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">10</div>
+                    <div class="dzikir-arab">بِسْمِ اللَّهِ الَّذِى لاَ يَضُرُّ مَعَ اسْمِهِ شَىْءٌ فِى الأَرْضِ وَلاَ فِى السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ</div>
+                    <div class="dzikir-latin">Bismillahilladzi laa yadhurru ma'asmihi syai-un fil ardhi wa laa fis samaa' wa huwas samii'ul 'aliim.</div>
+                    <div class="dzikir-arti">"Dengan nama Allah yang bila disebut, segala sesuatu di bumi dan langit tidak akan berbahaya, Dia-lah Yang Maha Mendengar lagi Maha Mengetahui."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>3x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Tidak ada bahaya yang tiba-tiba memudaratkannya</span>
+                    </div>
+                </div>
+
+                <!-- [11] Rodhiitu billaahi robbaa -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">11</div>
+                    <div class="dzikir-arab">رَضِيْتُ بِاللهِ رَبًّا، وَبِاْلإِسْلاَمِ دِيْنًا، وَبِمُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا</div>
+                    <div class="dzikir-latin">Rodhiitu billaahi robbaa wa bil-islaami diinaa, wa bi-muhammadin shallallaahu 'alaihi wa sallama nabiyya.</div>
+                    <div class="dzikir-arti">"Aku ridha Allah sebagai Rabb, Islam sebagai agama dan Muhammad shallallahu 'alaihi wa sallam sebagai nabi."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>3x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Mendapat ridha Allah</span>
+                    </div>
+                </div>
+
+                <!-- [12] Yaa Hayyu Yaa Qoyyum -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">12</div>
+                    <div class="dzikir-arab">يَا حَيُّ يَا قَيُّوْمُ بِرَحْمَتِكَ أَسْتَغِيْثُ، وَأَصْلِحْ لِيْ شَأْنِيْ كُلَّهُ وَلاَ تَكِلْنِيْ إِلَى نَفْسِيْ طَرْفَةَ عَيْنٍ أَبَدًا</div>
+                    <div class="dzikir-latin">Yaa Hayyu Yaa Qoyyum, bi-rohmatika as-taghiits, wa ash-lih lii sya'nii kullahu wa laa takilnii ilaa nafsii thorfata 'ainin Abadan.</div>
+                    <div class="dzikir-arti">"Wahai Rabb Yang Maha Hidup, wahai Rabb Yang Berdiri Sendiri, dengan rahmat-Mu aku minta pertolongan, perbaikilah segala urusanku dan jangan diserahkan kepadaku sekali pun sekejap mata."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Diajarkan Nabi pada Fathimah</span>
+                    </div>
+                </div>
+
+                <!-- [13] Ashbahna 'ala fithrotil islam -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">13</div>
+                    <div class="dzikir-arab">أَصْبَحْنَا عَلَى فِطْرَةِ اْلإِسْلاَمِ وَعَلَى كَلِمَةِ اْلإِخْلاَصِ، وَعَلَى دِيْنِ نَبِيِّنَا مُحَمَّدٍ صَلَّى اللهُ عَلَيْهِ وَسَلَّمَ، وَعَلَى مِلَّةِ أَبِيْنَا إِبْرَاهِيْمَ، حَنِيْفًا مُسْلِمًا وَمَا كَانَ مِنَ الْمُشْرِكِيْنَ</div>
+                    <div class="dzikir-latin">Ash-bahnaa 'ala fithrotil islaam wa 'alaa kalimatil ikhlaash, wa 'alaa diini nabiyyinaa Muhammadin shallallahu 'alaihi wa sallam, wa 'alaa millati abiina Ibraahiima haniifam muslimaaw wa maa kaana minal musyrikin</div>
+                    <div class="dzikir-arti">"Di waktu pagi kami memegang agama Islam, kalimat ikhlas (kalimat syahadat), agama Nabi kami Muhammad shallallahu 'alaihi wa sallam, dan agama bapak kami Ibrahim, yang berdiri di atas jalan yang lurus, muslim dan tidak tergolong orang-orang musyrik."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x (pagi saja)</span>
+                        </div>
+                        <span class="dzikir-fadhilah">HR. Ahmad (3: 406)</span>
+                    </div>
+                </div>
+
+                <!-- [14] Subhanallah wa bihamdih 100x -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">14</div>
+                    <div class="dzikir-arab">سُبْحَانَ اللهِ وَبِحَمْدِهِ</div>
+                    <div class="dzikir-latin">Subhanallah wa bi-hamdih.</div>
+                    <div class="dzikir-arti">"Maha suci Allah, aku memuji-Nya."</div>
                     <div class="dzikir-info">
                         <div class="dzikir-pengulangan">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
                             <span>100x</span>
                         </div>
-                        <span class="dzikir-fadhilah">Dihapus dosa walau sebanyak buih di laut</span>
+                        <span class="dzikir-fadhilah">Tidak ada yang lebih baik kecuali yang mengamalkan lebih</span>
                     </div>
                 </div>
 
+                <!-- [15] Laa ilaha illallah 10x -->
                 <div class="dzikir-card">
-                    <div class="dzikir-arab">لَا إِلَٰهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَىٰ كُلِّ شَيْءٍ قَدِيرٌ</div>
-                    <div class="dzikir-latin">Laa ilaaha illallah wahdahu laa syariika lah, lahul mulku wa lahul hamdu wa huwa 'alaa kulli syai-in qodiir</div>
-                    <div class="dzikir-arti">"Tidak ada Tuhan selain Allah Yang Maha Esa, tidak ada sekutu bagi-Nya. Milik-Nya kerajaan dan pujian, dan Dia Maha Kuasa atas segala sesuatu"</div>
+                    <div class="dzikir-nomor">15</div>
+                    <div class="dzikir-arab">لاَ إِلَـهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرُ</div>
+                    <div class="dzikir-latin">Laa ilaha illallah wahdahu laa syarika lah, lahul mulku walahul hamdu wa huwa 'ala kulli syai-in qodiir.</div>
+                    <div class="dzikir-arti">"Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagiNya. Bagi-Nya kerajaan dan segala pujian. Dia-lah yang berkuasa atas segala sesuatu."</div>
                     <div class="dzikir-info">
                         <div class="dzikir-pengulangan">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
                             <span>10x</span>
                         </div>
-                        <span class="dzikir-fadhilah">Pahala seperti memerdekakan budak</span>
+                        <span class="dzikir-fadhilah">Seperti memerdekakan 10 budak</span>
                     </div>
                 </div>
 
+                <!-- [16] Laa ilaha illallah 100x -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">16</div>
+                    <div class="dzikir-arab">لاَ إِلَـهَ إِلاَّ اللهُ وَحْدَهُ لاَ شَرِيْكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيْرُ</div>
+                    <div class="dzikir-latin">Laa ilaha illallah wahdahu laa syarika lah, lahul mulku walahul hamdu wa huwa 'ala kulli syai-in qodiir.</div>
+                    <div class="dzikir-arti">"Tidak ada ilah yang berhak disembah selain Allah semata, tidak ada sekutu bagi-Nya. Milik Allah kerajaan dan segala pujian. Dia-lah yang berkuasa atas segala sesuatu."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>100x (sehari)</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Terjaga dari setan sepanjang hari</span>
+                    </div>
+                </div>
+
+                <!-- [17] Subhanallah wa bihamdih 'adada kholqih -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">17</div>
+                    <div class="dzikir-arab">سُبْحَانَ اللهِ وَبِحَمْدِهِ: عَدَدَ خَلْقِهِ، وَرِضَا نَفْسِهِ، وَزِنَةَ عَرْشِهِ وَمِدَادَ كَلِمَاتِهِ</div>
+                    <div class="dzikir-latin">Subhanallah wa bi-hamdih, 'adada kholqih wa ridhoo nafsih. wa zinata 'arsyih, wa midaada kalimaatih.</div>
+                    <div class="dzikir-arti">"Maha Suci Allah, aku memujiNya sebanyak makhluk-Nya, sejauh kerelaan-Nya, seberat timbangan 'Arsy-Nya dan sebanyak tinta tulisan kalimat-Nya."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>3x (pagi saja)</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Mengalahkan dzikir dari Shubuh hingga Dhuha</span>
+                    </div>
+                </div>
+
+                <!-- [18] Allahumma inni as-aluka 'ilman naafi'a -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">18</div>
+                    <div class="dzikir-arab">اَللَّهُمَّ إِنِّيْ أَسْأَلُكَ عِلْمًا نَافِعًا، وَرِزْقًا طَيِّبًا، وَعَمَلاً مُتَقَبَّلاً</div>
+                    <div class="dzikir-latin">Allahumma innii as-aluka 'ilman naafi'a, wa rizqon thoyyibaa, wa 'amalan mutaqobbalaa.</div>
+                    <div class="dzikir-arti">"Ya Allah, sungguh aku memohon kepada-Mu ilmu yang bermanfaat, rizki yang halal dan amal yang diterima."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>1x (setelah Shubuh)</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Ilmu bermanfaat, rizki halal, amal diterima</span>
+                    </div>
+                </div>
+
+                <!-- [19] Astaghfirullah -->
+                <div class="dzikir-card">
+                    <div class="dzikir-nomor">19</div>
+                    <div class="dzikir-arab">أَسْتَغْفِرُ اللهَ وَأَتُوْبُ إِلَيْهِ</div>
+                    <div class="dzikir-latin">Astagh-firullah wa atuubu ilaih.</div>
+                    <div class="dzikir-arti">"Aku memohon ampun kepada Allah dan bertobat kepada-Nya."</div>
+                    <div class="dzikir-info">
+                        <div class="dzikir-pengulangan">
+                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="#b8943a"/><path d="M12 6v6l4 2" stroke="#b8943a" stroke-width="1.5"/></svg>
+                            <span>100x (sehari)</span>
+                        </div>
+                        <span class="dzikir-fadhilah">Istighfar - memohon ampun kepada Allah</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Konten Dzikir Sore (placeholder) -->
+        <div id="tab-sore" class="tab-content">
+            <div class="dzikir-list">
+                <div class="dzikir-card" style="text-align:center; padding:40px 20px;">
+                    <p style="color:#718096; font-size:0.9rem;">🌇 Dzikir Sore akan segera hadir</p>
+                    <p style="color:#83b299; font-size:0.75rem; margin-top:8px;">InsyaAllah menyusul dengan konten lengkap</p>
+                </div>
             </div>
         </div>
 
@@ -374,15 +606,12 @@
 
     <script>
         function switchTab(tab) {
-            // Sembunyikan semua tab
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
             
-            // Tampilkan tab yang dipilih
             document.getElementById('tab-' + tab).classList.add('active');
             document.querySelector('.tab-btn[onclick*="' + tab + '"]').classList.add('active');
             
-            // Update badge waktu
             const statusEl = document.getElementById('waktuStatus');
             if (tab === 'pagi') {
                 statusEl.textContent = 'Waktu Pagi';
@@ -391,14 +620,11 @@
             }
         }
 
-        // Deteksi waktu otomatis
         document.addEventListener('DOMContentLoaded', function() {
             const hour = new Date().getHours();
             if (hour >= 6 && hour < 17) {
-                // Pagi (06:00 - 16:59)
                 switchTab('pagi');
             } else {
-                // Sore/Malam (17:00 - 05:59)
                 switchTab('sore');
             }
         });
