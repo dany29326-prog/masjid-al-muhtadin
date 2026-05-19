@@ -46,10 +46,10 @@ body {
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     background-color: #043927;
-            background-image: linear-gradient(to right, #043927 0%, #043927 20%, rgba(4, 57, 39, 0.8) 28%, rgba(4, 57, 39, 0.4) 35%, rgba(4, 57, 39, 0) 40%),
+    background-image: linear-gradient(to right, #043927 0%, #043927 30%, rgba(4, 57, 39, 0.6) 40%, rgba(4, 57, 39, 0) 55%),
                       url('../masjid_muhtadin.jpg');
-    background-size: 60% auto;
-    background-position: right bottom;
+    background-size: auto 100%, contain;
+    background-position: left center, right center;
     background-repeat: no-repeat;
 }
 
