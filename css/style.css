@@ -39,40 +39,40 @@ body {
    ========================================= */
 .app-header {
     width: 100%;
-    min-height: 340px;
-    padding: 30px 24px 0 24px;
+    min-height: 280px;
+    padding: 20px 24px 0 24px;
     text-align: left;
     position: relative;
-    border-bottom-left-radius: 45px;
-    border-bottom-right-radius: 45px;
+    border-bottom-left-radius: 35px;
+    border-bottom-right-radius: 35px;
     background-color: #043927;
             background-image: linear-gradient(to right, #043927 0%, #043927 20%, rgba(4, 57, 39, 0.8) 28%, rgba(4, 57, 39, 0.4) 35%, rgba(4, 57, 39, 0) 40%),
                       url('../masjid_muhtadin.jpg');
-    background-size: 70% auto;
+    background-size: 60% auto;
     background-position: right bottom;
     background-repeat: no-repeat;
 }
 
-.header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 35px; }
-.masjid-brand { display: flex; align-items: center; gap: 10px; }
-.main-logo { width: 40px; height: 40px; }
-.brand-text h2 { color: #ffffff; font-size: 1.1rem; font-weight: 600; margin: 0; }
-.brand-text p { color: #b8943a; font-size: 0.8rem; margin: 2px 0 0 0; }
-.notification-badge { position: relative; background-color: #ffffff; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-.badge-number { position: absolute; top: -2px; right: -2px; background-color: #e67e22; color: #ffffff; font-size: 0.7rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #ffffff; }
+.header-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.masjid-brand { display: flex; align-items: center; gap: 8px; }
+.main-logo { width: 32px; height: 32px; }
+.brand-text h2 { color: #ffffff; font-size: 0.95rem; font-weight: 600; margin: 0; }
+.brand-text p { color: #b8943a; font-size: 0.7rem; margin: 2px 0 0 0; }
+.notification-badge { position: relative; background-color: #ffffff; width: 34px; height: 34px; border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.badge-number { position: absolute; top: -2px; right: -2px; background-color: #e67e22; color: #ffffff; font-size: 0.6rem; font-weight: 700; width: 16px; height: 16px; border-radius: 50%; display: flex; justify-content: center; align-items: center; border: 2px solid #ffffff; }
 
-.greeting-section { margin-top: 60px; }
+.greeting-section { margin-top: 35px; }
 .greeting-section h1 {
     color: #ffffff;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: 700;
     line-height: 1.3;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     letter-spacing: -0.5px;
 }
 .greeting-section p {
     color: #ffffff;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     opacity: 0.9;
     margin: 0;
     display: flex;
@@ -118,19 +118,19 @@ body {
 }
 .jadwal-lengkap-title {
     color: #0c1a30;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 700;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
 }
 .jadwal-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+    gap: 6px;
 }
 .jadwal-item {
     text-align: center;
-    padding: 10px 4px;
-    border-radius: 14px;
+    padding: 8px 4px;
+    border-radius: 12px;
     background-color: #ffffff;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
@@ -163,25 +163,25 @@ body {
 .jadwal-item.active .waktu-jam { color: #d4af37; }
 
 /* Menu Cepat di Bawah Jadwal */
-.menu-cepat-bawah { margin-top: 20px; padding: 0 24px; }
-.menu-cepat-bawah-title { color: #0c1a30; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; }
-.menu-cepat-bawah-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.menu-cepat-bawah { margin-top: 12px; padding: 0 24px; }
+.menu-cepat-bawah-title { color: #0c1a30; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; }
+.menu-cepat-bawah-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
 .menu-cepat-bawah-item {
     background-color: #ffffff;
-    border-radius: 16px;
-    padding: 16px 14px;
+    border-radius: 12px;
+    padding: 12px 12px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 .menu-cepat-bawah-item:active { transform: scale(0.97); }
 .menu-cepat-bawah-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 12px;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -189,24 +189,24 @@ body {
 }
 .menu-cepat-bawah-icon.hijau { background: linear-gradient(135deg, #043927 0%, #065a3e 100%); }
 .menu-cepat-bawah-icon.emas { background: linear-gradient(135deg, #d4af37 0%, #b8943a 100%); }
-.menu-cepat-bawah-icon svg { width: 22px; height: 22px; }
-.menu-cepat-bawah-label { color: #0c1a30; font-size: 0.8rem; font-weight: 600; line-height: 1.2; }
+.menu-cepat-bawah-icon svg { width: 18px; height: 18px; }
+.menu-cepat-bawah-label { color: #0c1a30; font-size: 0.75rem; font-weight: 600; line-height: 1.2; }
 
 /* Hikmah Hari Ini */
-.hikmah-container { margin-top: 20px; padding: 0 24px; }
-.hikmah-title { color: #0c1a30; font-size: 0.85rem; font-weight: 700; margin-bottom: 12px; }
+.hikmah-container { margin-top: 12px; padding: 0 24px; }
+.hikmah-title { color: #0c1a30; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; }
 .hikmah-card {
     background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
-    border-radius: 18px;
-    padding: 20px;
+    border-radius: 14px;
+    padding: 14px;
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: 10px;
     box-shadow: 0 4px 15px rgba(4, 57, 39, 0.2);
 }
 .hikmah-icon {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.15);
     display: flex;
@@ -214,18 +214,18 @@ body {
     align-items: center;
     flex-shrink: 0;
 }
-.hikmah-icon svg { width: 20px; height: 20px; }
+.hikmah-icon svg { width: 16px; height: 16px; }
 .hikmah-content { flex: 1; }
-.hikmah-content h4 { color: #d4af37; font-size: 0.85rem; font-weight: 700; margin: 0 0 6px 0; }
+.hikmah-content h4 { color: #d4af37; font-size: 0.75rem; font-weight: 700; margin: 0 0 4px 0; }
 .hikmah-content p {
     color: rgba(255, 255, 255, 0.85);
-    font-size: 0.78rem;
+    font-size: 0.7rem;
     font-weight: 500;
-    line-height: 1.5;
-    margin: 0 0 10px 0;
+    line-height: 1.4;
+    margin: 0 0 6px 0;
     font-style: italic;
 }
-.hikmah-source { color: #83b299; font-size: 0.7rem; font-weight: 600; }
+.hikmah-source { color: #83b299; font-size: 0.65rem; font-weight: 600; }
 
 /* Swipe Up Guide */
 .swipe-up-guide {
