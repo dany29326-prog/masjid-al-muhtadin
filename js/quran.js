@@ -50,13 +50,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 window.open("https://equran.id/surat/" + surah.nomor, "_blank");
             };
 
-            const ayatCount = surah.jumlah_ayat || 0;
-            const turun = surah.tempat_turun || "Mekah";
+            const ayatCount = surah.jumlahAyat || 0;
+            const turun = surah.tempatTurun || "Mekah";
 
             card.innerHTML = `
                 <div class="surah-number">${surah.nomor}</div>
                 <div class="surah-info">
-                    <div class="surah-name-latin">${surah.nama_latin}</div>
+                    <div class="surah-name-latin">${surah.namaLatin}</div>
                     <div class="surah-detail">${turun} • ${ayatCount} Ayat</div>
                 </div>
                 <div class="surah-name-arab">${surah.nama}</div>
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         const filtered = allSurahs.filter(function (s) {
             return (
-                s.nama_latin.toLowerCase().includes(keyword) ||
+                s.namaLatin.toLowerCase().includes(keyword) ||
                 s.nama.toLowerCase().includes(keyword) ||
                 s.nomor.toString().includes(keyword)
             );
