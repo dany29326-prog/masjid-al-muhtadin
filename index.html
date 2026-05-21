@@ -275,6 +275,7 @@
                 </div>
                 <div class="program-unggulan-slider">
                     
+                    <!-- Card 1: Operasional Masjid (Kotak Jumat) -->
                     <div class="program-card">
                         <div class="program-card-image emas-bg">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -283,15 +284,16 @@
                             </svg>
                         </div>
                         <div class="program-card-info">
-                            <h4 class="program-card-title">Operasional Masjid</h4>
-                            <p class="program-card-persen">65% Terkumpul</p>
+                            <h4 class="program-card-title">Operasional Masjid (Jum'at)</h4>
+                            <p class="program-card-persen" id="persen-jumat">Memuat...</p>
                             <div class="program-progress-bar">
-                                <div class="program-progress-fill" style="width: 65%;"></div>
+                                <div class="program-progress-fill" id="bar-jumat" style="width: 0%;"></div>
                             </div>
-                            <p class="program-card-nominal">Rp 325.000.000 dari Rp 500.000.000</p>
+                            <p class="program-card-nominal" id="nominal-jumat">Menghitung...</p>
                         </div>
                     </div>
 
+                    <!-- Card 2: Kotak Sosial -->
                     <div class="program-card">
                         <div class="program-card-image hijau-bg">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -299,45 +301,31 @@
                             </svg>
                         </div>
                         <div class="program-card-info">
-                            <h4 class="program-card-title">Santunan Anak Yatim</h4>
-                            <p class="program-card-persen">42% Terkumpul</p>
-                            <div class="program-progress-bar">
-                                <div class="program-progress-fill" style="width: 42%;"></div>
+                            <h4 class="program-card-title">Kotak Sosial</h4>
+                            <p class="program-card-persen" id="persen-sosial" style="display:none;">Memuat...</p>
+                            <div class="program-progress-bar" style="display:none;">
+                                <div class="program-progress-fill" id="bar-sosial" style="width: 0%;"></div>
                             </div>
-                            <p class="program-card-nominal">Rp 84.000.000 dari Rp 200.000.000</p>
+                            <p class="program-card-nominal" id="nominal-sosial" style="font-size: 1.1rem; color: #043927; font-weight: bold; margin-top: 10px;">Menghitung...</p>
+                            <p style="font-size: 0.8rem; color: #666; margin-top: 4px;">Total Terkumpul</p>
                         </div>
                     </div>
 
+                    <!-- Card 3: Kotak Barakah -->
                     <div class="program-card">
-                        <div class="program-card-image biru-bg">
+                        <div class="program-card-image biru-bg" style="background: rgba(212, 175, 55, 0.2);">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#3b82f6"/>
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" fill="#d4af37"/>
                             </svg>
                         </div>
                         <div class="program-card-info">
-                            <h4 class="program-card-title">Pembangunan Gedung</h4>
-                            <p class="program-card-persen">78% Terkumpul</p>
-                            <div class="program-progress-bar">
-                                <div class="program-progress-fill" style="width: 78%;"></div>
+                            <h4 class="program-card-title">Kotak Barakah</h4>
+                            <p class="program-card-persen" id="persen-barakah" style="display:none;">Memuat...</p>
+                            <div class="program-progress-bar" style="display:none;">
+                                <div class="program-progress-fill" id="bar-barakah" style="width: 0%;"></div>
                             </div>
-                            <p class="program-card-nominal">Rp 1.170.000.000 dari Rp 1.500.000.000</p>
-                        </div>
-                    </div>
-
-                    <div class="program-card">
-                        <div class="program-card-image ungu-bg">
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12z" fill="#8b5cf6"/>
-                                <path d="M7 9h2v2H7V9zm4 0h2v2h-2V9zm4 0h2v2h-2V9z" fill="#8b5cf6"/>
-                            </svg>
-                        </div>
-                        <div class="program-card-info">
-                            <h4 class="program-card-title">Beasiswa Pelajar</h4>
-                            <p class="program-card-persen">25% Terkumpul</p>
-                            <div class="program-progress-bar">
-                                <div class="program-progress-fill" style="width: 25%;"></div>
-                            </div>
-                            <p class="program-card-nominal">Rp 62.500.000 dari Rp 250.000.000</p>
+                            <p class="program-card-nominal" id="nominal-barakah" style="font-size: 1.1rem; color: #043927; font-weight: bold; margin-top: 10px;">Menghitung...</p>
+                            <p style="font-size: 0.8rem; color: #666; margin-top: 4px;">Total Terkumpul</p>
                         </div>
                     </div>
 

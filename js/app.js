@@ -418,5 +418,68 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    // ===== FETCH DATA DONASI DARI GOOGLE SHEETS =====
+    async function fetchDonasiData() {
+        const url = "https://script.google.com/macros/s/AKfycbxBz0V6UubcDqHIljZde_Zxuiw3uGbRP81bBKN-CPNnJybXabilNNr3oVQn8jwJ4n8UKw/exec";
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            let totalJumat = 0;
+            let totalSosial = 0;
+            let totalBarakah = 0;
+
+            // Loop through data (skip header at index 0)
+            if (Array.isArray(data)) {
+                for (let i = 1; i < data.length; i++) {
+                    const row = data[i];
+                    if (!row) continue;
+                    const jenis = row[1] ? row[1].trim() : "";
+                    const jumlah = parseFloat(row[2]) || 0;
+
+                    if (jenis === "KOTAK JUMAT") {
+                        totalJumat += jumlah;
+                    } else if (jenis === "KOTAK SOSIAL") {
+                        totalSosial += jumlah;
+                    } else if (jenis === "KOTAK BARAKAH") {
+                        totalBarakah += jumlah;
+                    }
+                }
+            }
+
+            // Target Operasional Masjid (Kotak Jumat)
+            const targetJumat = 10000000;
+            const persenJumat = Math.min(Math.round((totalJumat / targetJumat) * 100), 100);
+
+            // Update DOM Kotak Jumat
+            const persenJumatEl = document.getElementById("persen-jumat");
+            const barJumatEl = document.getElementById("bar-jumat");
+            const nominalJumatEl = document.getElementById("nominal-jumat");
+
+            if (persenJumatEl) persenJumatEl.textContent = `${persenJumat}% Terkumpul`;
+            if (barJumatEl) barJumatEl.style.width = `${persenJumat}%`;
+            if (nominalJumatEl) nominalJumatEl.textContent = `Rp ${totalJumat.toLocaleString("id-ID")} dari Rp ${targetJumat.toLocaleString("id-ID")}`;
+
+            // Update DOM Kotak Sosial
+            const nominalSosialEl = document.getElementById("nominal-sosial");
+            if (nominalSosialEl) nominalSosialEl.textContent = `Rp ${totalSosial.toLocaleString("id-ID")}`;
+
+            // Update DOM Kotak Barakah
+            const nominalBarakahEl = document.getElementById("nominal-barakah");
+            if (nominalBarakahEl) nominalBarakahEl.textContent = `Rp ${totalBarakah.toLocaleString("id-ID")}`;
+
+        } catch (error) {
+            console.error("Gagal mengambil data donasi:", error);
+            const nomJumat = document.getElementById("nominal-jumat");
+            const nomSosial = document.getElementById("nominal-sosial");
+            const nomBarakah = document.getElementById("nominal-barakah");
+            
+            if (nomJumat) nomJumat.textContent = "Gagal memuat data";
+            if (nomSosial) nomSosial.textContent = "Gagal memuat data";
+            if (nomBarakah) nomBarakah.textContent = "Gagal memuat data";
+        }
+    }
+
     updateHikmah();
+    fetchDonasiData();
 });
