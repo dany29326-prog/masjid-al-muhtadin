@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kalkulator Zakat - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f9fa;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            color: #2d3748;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: #f7f9fa;
+            min-height: 100vh;
+            padding-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
+            padding: 30px 24px 45px 24px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            color: white;
+            position: relative;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:active { background: rgba(255, 255, 255, 0.2); }
+        .back-btn svg { width: 20px; height: 20px; }
+        
+        .header-title { font-size: 1.25rem; font-weight: 700; }
+        .header-sub { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-top: 4px; font-weight: 500; }
+
+        /* Tabs */
+        .tabs-container {
+            display: flex;
+            margin: -20px 24px 20px 24px;
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            position: relative;
+            z-index: 2;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #718096;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+        }
+        .tab-btn.active {
+            background-color: #043927;
+            color: #ffffff;
+        }
+
+        /* Calculator Content */
+        .calc-content {
+            padding: 0 24px;
+        }
+        .calc-panel {
+            display: none;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        .calc-panel.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .input-group {
+            background-color: #ffffff;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid #edf2f7;
+            margin-bottom: 16px;
+        }
+        .input-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .input-prefix {
+            position: absolute;
+            left: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #a0aec0;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px 12px 12px 42px;
+            border: 2px solid #edf2f7;
+            border-radius: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #2d3748;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .input-field:focus {
+            border-color: #d4af37;
+        }
+
+        /* Nisab & Info */
+        .info-card {
+            background: #fff9ec;
+            border: 1px solid rgba(184, 148, 58, 0.25);
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .info-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #b8943a;
+            font-weight: 700;
+            font-size: 0.8rem;
+            flex-shrink: 0;
+        }
+        .info-text {
+            font-size: 0.7rem;
+            line-height: 1.4;
+            color: #7d6528;
+            font-weight: 500;
+        }
+        .info-text strong {
+            color: #b8943a;
+            font-weight: 700;
+        }
+
+        /* Result Panel */
+        .result-panel {
+            background: linear-gradient(135deg, #043927 0%, #032c1e 100%);
+            border-radius: 20px;
+            padding: 20px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(4, 57, 39, 0.15);
+            position: relative;
+            overflow: hidden;
+            margin-top: 10px;
+            margin-bottom: 25px;
+        }
+        .result-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 12px;
+            margin-bottom: 14px;
+        }
+        .result-title {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #a4cbb7;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .nisab-badge {
+            font-size: 0.6rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 20px;
+        }
+        .nisab-badge.passed {
+            background: rgba(111, 207, 151, 0.2);
+            color: #6fcf97;
+            border: 1px solid rgba(111, 207, 151, 0.3);
+        }
+        .nisab-badge.not-passed {
+            background: rgba(235, 87, 87, 0.2);
+            color: #eb5757;
+            border: 1px solid rgba(235, 87, 87, 0.3);
+        }
+        .result-amount {
+            font-size: 1.7rem;
+            font-weight: 700;
+            color: #d4af37;
+            margin-bottom: 6px;
+        }
+        .result-desc {
+            font-size: 0.7rem;
+            color: #a4cbb7;
+            line-height: 1.4;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.68rem;
+            color: #a0aec0;
+            margin-top: 15px;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <a href="index.html" class="back-btn">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <h2 class="header-title">Kalkulator Zakat</h2>
+            </div>
+            <p class="header-sub">Hitung kewajiban zakat Anda secara mudah dan presisi sesuai syariat islam</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs-container">
+            <button class="tab-btn active" data-tab="profesi">Zakat Profesi</button>
+            <button class="tab-btn" data-tab="maal">Zakat Maal</button>
+            <button class="tab-btn" data-tab="fitrah">Zakat Fitrah</button>
+        </div>
+
+        <!-- Content -->
+        <div class="calc-content">
+
+            <!-- NISAB INFO (Dynamically updated if needed, static standard here) -->
+            <div class="info-card">
+                <div class="info-icon">i</div>
+                <div class="info-text" id="nisabInfoText">
+                    Nisab Zakat Profesi setara dengan <strong>522 kg beras</strong>. Jika harga beras saat ini berkisar Rp 15.000/kg, maka nisab bulanan adalah sebesar <strong>Rp 7.830.000 / bulan</strong> dengan kadar zakat <strong>2,5%</strong>.
+                </div>
+            </div>
+
+            <!-- PANEL ZAKAT PROFESI -->
+            <div class="calc-panel active" id="panel-profesi">
+                <div class="input-group">
+                    <span class="input-label">Pendapatan / Gaji Bulanan</span>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="text" class="input-field format-rupiah" id="gaji" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-label">Pendapatan Lainnya (Bonus, Sampingan, dll)</span>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="text" class="input-field format-rupiah" id="pendapatanLain" placeholder="0">
+                    </div>
+                </div>
+
+                <!-- Result -->
+                <div class="result-panel">
+                    <div class="result-header">
+                        <span class="result-title">Hasil Zakat Profesi</span>
+                        <span class="nisab-badge not-passed" id="badge-profesi">Belum Wajib</span>
+                    </div>
+                    <div class="result-amount" id="hasil-profesi">Rp 0</div>
+                    <div class="result-desc" id="desc-profesi">Masukkan jumlah pendapatan bulanan Anda di atas untuk memulai kalkulasi zakat.</div>
+                </div>
+            </div>
+
+            <!-- PANEL ZAKAT MAAL -->
+            <div class="calc-panel" id="panel-maal">
+                <div class="input-group">
+                    <span class="input-label">Nilai Uang Tunai, Tabungan, Deposito</span>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="text" class="input-field format-rupiah" id="tabungan" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-label">Nilai Emas / Perak (Milik Sendiri & Bukan Perhiasan Harian)</span>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="text" class="input-field format-rupiah" id="emas" placeholder="0">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-label">Investasi, Properti Dagang, Saham, Piutang Lancar</span>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="text" class="input-field format-rupiah" id="investasi" placeholder="0">
+                    </div>
+                </div>
+
+                <!-- Result -->
+                <div class="result-panel">
+                    <div class="result-header">
+                        <span class="result-title">Hasil Zakat Maal</span>
+                        <span class="nisab-badge not-passed" id="badge-maal">Belum Wajib</span>
+                    </div>
+                    <div class="result-amount" id="hasil-maal">Rp 0</div>
+                    <div class="result-desc" id="desc-maal">Nisab Zakat Maal setara dengan nilai emas murni 85 gram. (Estimasi saat ini: Rp 85.000.000 dengan kepemilikan minimal 1 tahun/haul).</div>
+                </div>
+            </div>
+
+            <!-- PANEL ZAKAT FITRAH -->
+            <div class="calc-panel" id="panel-fitrah">
+                <div class="input-group">
+                    <span class="input-label">Jumlah Anggota Keluarga / Jiwa</span>
+                    <div class="input-wrapper">
+                        <span class="input-prefix" style="left:15px; font-size: 0.9rem;">👥</span>
+                        <input type="number" class="input-field" id="jumlahJiwa" placeholder="0" min="0" style="padding-left: 45px;">
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <span class="input-label">Harga Beras per Kilogram saat ini</span>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="text" class="input-field format-rupiah" id="hargaBeras" value="15.000">
+                    </div>
+                </div>
+
+                <!-- Result -->
+                <div class="result-panel">
+                    <div class="result-header">
+                        <span class="result-title">Hasil Zakat Fitrah</span>
+                        <span class="nisab-badge passed" id="badge-fitrah" style="background: rgba(212,175,55,0.2); color:#d4af37; border-color:rgba(212,175,55,0.3);">Wajib Fitrah</span>
+                    </div>
+                    <div class="result-amount" id="hasil-fitrah">Rp 0</div>
+                    <div class="result-desc" id="desc-fitrah">Zakat Fitrah setara dengan 2.5 kg atau 3.5 liter beras per jiwa. Zakat ini dibayarkan sebelum shalat Idul Fitri tiba.</div>
+                </div>
+            </div>
+
+            <p class="footer-note">"Ambillah zakat dari sebagian harta mereka, dengan zakat itu kamu membersihkan dan mensucikan mereka..."<br>— QS. At-Taubah: 103</p>
+
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Tab switching logic
+            const tabButtons = document.querySelectorAll(".tab-btn");
+            const panels = document.querySelectorAll(".calc-panel");
+            const nisabInfoText = document.getElementById("nisabInfoText");
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    tabButtons.forEach(b => b.classList.remove("active"));
+                    panels.forEach(p => p.classList.remove("active"));
+
+                    btn.classList.add("active");
+                    const tabId = btn.getAttribute("data-tab");
+                    document.getElementById(`panel-${tabId}`).classList.add("active");
+
+                    // Update Nisab Info Text
+                    if (tabId === "profesi") {
+                        nisabInfoText.innerHTML = "Nisab Zakat Profesi setara dengan <strong>522 kg beras</strong>. Jika harga beras saat ini berkisar Rp 15.000/kg, maka nisab bulanan adalah sebesar <strong>Rp 7.830.000 / bulan</strong> dengan kadar zakat <strong>2,5%</strong>.";
+                    } else if (tabId === "maal") {
+                        nisabInfoText.innerHTML = "Nisab Zakat Maal setara dengan harga emas murni <strong>85 gram</strong>. Jika harga emas berkisar Rp 1.000.000/gram, maka nisabnya adalah sebesar <strong>Rp 85.000.000 / tahun</strong> dengan kadar zakat <strong>2,5%</strong>.";
+                    } else if (tabId === "fitrah") {
+                        nisabInfoText.innerHTML = "Zakat Fitrah wajib ditunaikan bagi setiap Muslim di bulan Ramadhan setara dengan <strong>2.5 kg / 3.5 liter beras</strong> per jiwa, atau dapat diuangkan setara dengan harga beras tersebut.";
+                    }
+                });
+            });
+
+            // Rupiah formatting helper
+            const formatInputs = document.querySelectorAll(".format-rupiah");
+            
+            formatInputs.forEach(input => {
+                input.addEventListener("input", function (e) {
+                    let value = this.value.replace(/[^0-9]/g, "");
+                    if (value === "") {
+                        this.value = "";
+                    } else {
+                        this.value = parseInt(value).toLocaleString("id-ID");
+                    }
+                    calculateZakat();
+                });
+            });
+
+            const parseRupiah = (str) => {
+                if (!str) return 0;
+                return parseFloat(str.replace(/[^0-9]/g, "")) || 0;
+            };
+
+            const formatRupiah = (num) => {
+                return "Rp " + Math.round(num).toLocaleString("id-ID");
+            };
+
+            const gajiEl = document.getElementById("gaji");
+            const pendLainEl = document.getElementById("pendapatanLain");
+            const tabunganEl = document.getElementById("tabungan");
+            const emasEl = document.getElementById("emas");
+            const investasiEl = document.getElementById("investasi");
+            const jumlahJiwaEl = document.getElementById("jumlahJiwa");
+            const hargaBerasEl = document.getElementById("hargaBeras");
+
+            jumlahJiwaEl.addEventListener("input", calculateZakat);
+            hargaBerasEl.addEventListener("input", calculateZakat);
+
+            function calculateZakat() {
+                // 1. Zakat Profesi
+                const gaji = parseRupiah(gajiEl.value);
+                const pendLain = parseRupiah(pendLainEl.value);
+                const totalProfesi = gaji + pendLain;
+                const nisabProfesiBulanan = 522 * 15000; // Rp 7.830.000
+
+                const badgeProfesi = document.getElementById("badge-profesi");
+                const hasilProfesi = document.getElementById("hasil-profesi");
+                const descProfesi = document.getElementById("desc-profesi");
+
+                if (totalProfesi >= nisabProfesiBulanan) {
+                    const zakat = totalProfesi * 0.025;
+                    badgeProfesi.textContent = "Wajib Zakat";
+                    badgeProfesi.className = "nisab-badge passed";
+                    badgeProfesi.style.background = "rgba(111, 207, 151, 0.2)";
+                    badgeProfesi.style.color = "#6fcf97";
+                    badgeProfesi.style.borderColor = "rgba(111, 207, 151, 0.3)";
+                    hasilProfesi.textContent = formatRupiah(zakat);
+                    descProfesi.innerHTML = `Pendapatan Anda sebesar <strong>${formatRupiah(totalProfesi)}</strong> telah melewati batas nisab bulanan (Rp 7.830.000). Wajib menunaikan zakat 2.5%.`;
+                } else {
+                    badgeProfesi.textContent = "Belum Wajib";
+                    badgeProfesi.className = "nisab-badge not-passed";
+                    badgeProfesi.style.background = "rgba(235, 87, 87, 0.2)";
+                    badgeProfesi.style.color = "#eb5757";
+                    badgeProfesi.style.borderColor = "rgba(235, 87, 87, 0.3)";
+                    hasilProfesi.textContent = "Rp 0";
+                    descProfesi.innerHTML = `Pendapatan Anda sebesar <strong>${formatRupiah(totalProfesi)}</strong> belum melewati batas nisab bulanan (Rp 7.830.000).`;
+                }
+
+                // 2. Zakat Maal
+                const tabungan = parseRupiah(tabunganEl.value);
+                const emas = parseRupiah(emasEl.value);
+                const investasi = parseRupiah(investasiEl.value);
+                const totalMaal = tabungan + emas + investasi;
+                const nisabMaal = 85 * 1000000; // Emas 85 gram @Rp 1.000.000 = Rp 85.000.000
+
+                const badgeMaal = document.getElementById("badge-maal");
+                const hasilMaal = document.getElementById("hasil-maal");
+                const descMaal = document.getElementById("desc-maal");
+
+                if (totalMaal >= nisabMaal) {
+                    const zakat = totalMaal * 0.025;
+                    badgeMaal.textContent = "Wajib Zakat";
+                    badgeMaal.className = "nisab-badge passed";
+                    badgeMaal.style.background = "rgba(111, 207, 151, 0.2)";
+                    badgeMaal.style.color = "#6fcf97";
+                    badgeMaal.style.borderColor = "rgba(111, 207, 151, 0.3)";
+                    hasilMaal.textContent = formatRupiah(zakat);
+                    descMaal.innerHTML = `Total harta maal Anda sebesar <strong>${formatRupiah(totalMaal)}</strong> telah melewati batas nisab tahunan (Rp 85.000.000). Wajib menunaikan zakat 2.5%.`;
+                } else {
+                    badgeMaal.textContent = "Belum Wajib";
+                    badgeMaal.className = "nisab-badge not-passed";
+                    badgeMaal.style.background = "rgba(235, 87, 87, 0.2)";
+                    badgeMaal.style.color = "#eb5757";
+                    badgeMaal.style.borderColor = "rgba(235, 87, 87, 0.3)";
+                    hasilMaal.textContent = "Rp 0";
+                    descMaal.innerHTML = `Total harta maal Anda sebesar <strong>${formatRupiah(totalMaal)}</strong> belum melewati batas nisab emas 85 gram (Rp 85.000.000).`;
+                }
+
+                // 3. Zakat Fitrah
+                const jiwa = parseFloat(jumlahJiwaEl.value) || 0;
+                const hargaBeras = parseRupiah(hargaBerasEl.value) || 15000;
+                const totalBeras = jiwa * 2.5;
+                const zakatUang = totalBeras * hargaBeras;
+
+                const hasilFitrah = document.getElementById("hasil-fitrah");
+                const descFitrah = document.getElementById("desc-fitrah");
+
+                if (jiwa > 0) {
+                    hasilFitrah.textContent = formatRupiah(zakatUang);
+                    descFitrah.innerHTML = `Zakat Fitrah wajib ditunaikan untuk <strong>${jiwa} Jiwa</strong> sebesar <strong>${totalBeras} kg beras</strong> atau berupa uang tunai senilai <strong>${formatRupiah(zakatUang)}</strong>.`;
+                } else {
+                    hasilFitrah.textContent = "Rp 0";
+                    descFitrah.innerHTML = "Masukkan jumlah jiwa/anggota keluarga Anda untuk menghitung jumlah Zakat Fitrah.";
+                }
+            }
+        });
+    </script>
+</body>
+</html>

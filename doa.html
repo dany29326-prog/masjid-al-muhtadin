@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kumpulan Doa - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f7f9fa;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            color: #2d3748;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 480px;
+            background-color: #f7f9fa;
+            min-height: 100vh;
+            padding-bottom: 40px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
+            padding: 30px 24px 45px 24px;
+            border-bottom-left-radius: 35px;
+            border-bottom-right-radius: 35px;
+            color: white;
+            position: relative;
+        }
+        .header-top {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .back-btn:active { background: rgba(255, 255, 255, 0.2); }
+        .back-btn svg { width: 20px; height: 20px; }
+        
+        .header-title { font-size: 1.25rem; font-weight: 700; }
+        .header-sub { font-size: 0.8rem; color: rgba(255,255,255,0.75); margin-top: 4px; font-weight: 500; }
+
+        /* Search Box */
+        .search-container {
+            margin: -20px 24px 15px 24px;
+            position: relative;
+            z-index: 2;
+        }
+        .search-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 4px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            border: 1px solid #edf2f7;
+        }
+        .search-box svg {
+            width: 20px;
+            height: 20px;
+            color: #a0aec0;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 12px 0;
+            border: none;
+            outline: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #2d3748;
+        }
+        .search-box input::placeholder {
+            color: #cbd5e0;
+        }
+
+        /* Category Slider */
+        .categories-slider {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 5px 24px 15px 24px;
+            scrollbar-width: none;
+        }
+        .categories-slider::-webkit-scrollbar {
+            display: none;
+        }
+        .category-btn {
+            background: #ffffff;
+            border: 1px solid #edf2f7;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #718096;
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+        }
+        .category-btn.active {
+            background: #043927;
+            color: white;
+            border-color: #043927;
+            box-shadow: 0 4px 10px rgba(4, 57, 39, 0.15);
+        }
+
+        /* Doa List Area */
+        .doa-list {
+            flex: 1;
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* Doa Card */
+        .doa-card {
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 18px;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        .doa-card:active {
+            transform: scale(0.98);
+        }
+        .doa-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .doa-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .doa-badge {
+            font-size: 0.55rem;
+            font-weight: 700;
+            color: #b8943a;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .doa-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: #0c1a30;
+        }
+        .doa-arrow {
+            color: #d4af37;
+            font-size: 0.9rem;
+            font-weight: 700;
+            transition: transform 0.25s ease;
+        }
+        
+        /* Expandable Area */
+        .doa-body {
+            max-height: 0;
+            opacity: 0;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding-top: 0;
+        }
+
+        .doa-card.expanded {
+            border-color: rgba(212, 175, 55, 0.25);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.08);
+        }
+        .doa-card.expanded .doa-arrow {
+            transform: rotate(90deg);
+        }
+        .doa-card.expanded .doa-body {
+            max-height: 500px;
+            opacity: 1;
+            padding-top: 18px;
+            border-top: 1px dashed #edf2f7;
+            margin-top: 14px;
+        }
+
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            font-size: 1.6rem;
+            line-height: 2.2;
+            color: #043927;
+            text-align: right;
+            direction: rtl;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .latin-text {
+            font-size: 0.75rem;
+            font-style: italic;
+            color: #b8943a;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .translation-text {
+            font-size: 0.72rem;
+            color: #4a5568;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+        .translation-text strong {
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        /* Empty State */
+        .empty-state {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            color: #a0aec0;
+        }
+        .empty-state svg {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+        .empty-state h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 6px;
+        }
+        .empty-state p {
+            font-size: 0.75rem;
+            max-width: 250px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- Header -->
+        <div class="header">
+            <div class="header-top">
+                <a href="index.html" class="back-btn">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <h2 class="header-title">Kumpulan Doa</h2>
+            </div>
+            <p class="header-sub">Koleksi doa-doa harian lengkap beserta teks Arab, latin, dan terjemahan</p>
+        </div>
+
+        <!-- Search Box -->
+        <div class="search-container">
+            <div class="search-box">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2.5"/>
+                    <path d="M16 16l4 4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <input type="text" id="searchDoa" placeholder="Cari doa harian..." autocomplete="off">
+            </div>
+        </div>
+
+        <!-- Category Slider -->
+        <div class="categories-slider">
+            <button class="category-btn active" data-category="semua">Semua Doa</button>
+            <button class="category-btn" data-category="harian">Harian</button>
+            <button class="category-btn" data-category="sholat">Ibadah Sholat</button>
+            <button class="category-btn" data-category="masjid">Masjid</button>
+            <button class="category-btn" data-category="aktivitas">Aktivitas</button>
+        </div>
+
+        <!-- Doa List Area -->
+        <div class="doa-list" id="doaList">
+            <!-- Doa cards will be generated by JS -->
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                <path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <h3>Doa Tidak Ditemukan</h3>
+            <p>Cobalah menggunakan kata kunci pencarian yang lain.</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Static Doa Database
+            const doaData = [
+                {
+                    id: 1,
+                    category: "harian",
+                    badge: "Doa Harian",
+                    title: "Doa Sebelum Makan",
+                    arabic: "اللَّهُمَّ بَارِكْ لَنَا فِيمَا رَزَقْتَنَا وَقِنَا عَذَابَ النَّارِ",
+                    latin: "Allahumma baariki lanaa fiimaa razaqtanaa wa qinaa 'adzaaban-naar.",
+                    translation: "<strong>Artinya:</strong> \"Ya Allah, berkahilah kami pada apa yang telah Engkau karuniakan kepada kami dan peliharalah kami dari siksa api neraka.\""
+                },
+                {
+                    id: 2,
+                    category: "harian",
+                    badge: "Doa Harian",
+                    title: "Doa Setelah Makan",
+                    arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ",
+                    latin: "Alhamdu lillahil-ladzii ath'amanaa wa saqaanaa wa ja'alanaa muslimiin.",
+                    translation: "<strong>Artinya:</strong> \"Segala puji bagi Allah yang telah memberi kami makan dan minum, serta menjadikan kami termasuk golongan orang-orang muslim.\""
+                },
+                {
+                    id: 3,
+                    category: "harian",
+                    badge: "Doa Harian",
+                    title: "Doa Sebelum Tidur",
+                    arabic: "بِاسْمِكَ اللَّهُمَّ أَحْيَا وَأَمُوتُ",
+                    latin: "Bismika Allahumma ahyaa wa amuutu.",
+                    translation: "<strong>Artinya:</strong> \"Dengan nama-Mu ya Allah aku hidup dan aku mati.\""
+                },
+                {
+                    id: 4,
+                    category: "harian",
+                    badge: "Doa Harian",
+                    title: "Doa Bangun Tidur",
+                    arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ",
+                    latin: "Alhamdu lillahil-ladzii ahyaanaa ba'da maa amaatanaa wa ilaihin-nusyuur.",
+                    translation: "<strong>Artinya:</strong> \"Segala puji bagi Allah yang telah menghidupkan kami setelah mematikan kami, dan hanya kepada-Nya kami kembali.\""
+                },
+                {
+                    id: 5,
+                    category: "masjid",
+                    badge: "Doa Masjid",
+                    title: "Doa Masuk Masjid",
+                    arabic: "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ",
+                    latin: "Allahummaftah-lii abwaaba rahmatik.",
+                    translation: "<strong>Artinya:</strong> \"Ya Allah, bukakanlah bagiku pintu-pintu rahmat-Mu.\""
+                },
+                {
+                    id: 6,
+                    category: "masjid",
+                    badge: "Doa Masjid",
+                    title: "Doa Keluar Masjid",
+                    arabic: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ",
+                    latin: "Allahumma innii as'aluka min fadlhlik.",
+                    translation: "<strong>Artinya:</strong> \"Ya Allah, sesungguhnya aku memohon keutamaan dari-Mu.\""
+                },
+                {
+                    id: 7,
+                    category: "sholat",
+                    badge: "Ibadah Sholat",
+                    title: "Doa Iftitah",
+                    arabic: "اللَّهُ أَكْبَرُ كَبِيرًا وَالْحَمْدُ لِلَّهِ كَثِيرًا وَسُبْحَانَ اللَّهِ بُكْرَةً وَأَصِيلاً",
+                    latin: "Allahu akbaru kabiiraw-walhamdu lillahi katsiiraw-wa subhaanallahi bukrataw-wa-ashiilaa.",
+                    translation: "<strong>Artinya:</strong> \"Allah Maha Besar dengan sebesar-besarnya, segala puji bagi Allah dengan sebanyak-banyaknya, dan Maha Suci Allah di waktu pagi dan petang.\""
+                },
+                {
+                    id: 8,
+                    category: "aktivitas",
+                    badge: "Aktivitas",
+                    title: "Doa Keluar Rumah",
+                    arabic: "بِسْمِ اللَّهِ تَوَكَّلْتُ عَلَى اللَّهِ لاَ حَوْلَ وَلاَ قُوَّةَ إِلاَّ بِاللَّهِ",
+                    latin: "Bismillahi tawakkaltu 'alallahi laa hawla wa laa quwwata illa billah.",
+                    translation: "<strong>Artinya:</strong> \"Dengan nama Allah, aku berserah diri kepada Allah. Tiada daya dan kekuatan melainkan dengan pertolongan Allah.\""
+                },
+                {
+                    id: 9,
+                    category: "harian",
+                    badge: "Doa Harian",
+                    title: "Doa Kedua Orang Tua",
+                    arabic: "رَبِّ اغْفِرْ لِي وَلِوَالِدَيَّ وَارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا",
+                    latin: "Rabbighfir-lii waliwaalidayya warhamhumaa kamaa rabbayaanii shaghiiraa.",
+                    translation: "<strong>Artinya:</strong> \"Wahai Tuhanku, ampunilah aku dan kedua orang tuaku, dan sayangilah mereka berdua sebagaimana mereka berdua mendidikku sewaktu kecil.\""
+                },
+                {
+                    id: 10,
+                    category: "aktivitas",
+                    badge: "Aktivitas",
+                    title: "Doa Sapu Jagad (Kebaikan Dunia Akhirat)",
+                    arabic: "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ",
+                    latin: "Rabbanaa aatinaa fid-dunyaa hasanataw-wa fil-aakhirati hasanataw-wa qinaa 'adzaaban-naar.",
+                    translation: "<strong>Artinya:</strong> \"Wahai Tuhan kami, berikanlah kepada kami kebaikan di dunia dan kebaikan di akhirat, dan peliharalah kami dari siksa api neraka.\""
+                }
+            ];
+
+            const doaList = document.getElementById("doaList");
+            const searchDoa = document.getElementById("searchDoa");
+            const categoryBtns = document.querySelectorAll(".category-btn");
+            const emptyState = document.getElementById("emptyState");
+
+            let currentCategory = "semua";
+            let searchQuery = "";
+
+            // Render Doa Cards
+            function renderDoa() {
+                // Filter data
+                const filtered = doaData.filter(doa => {
+                    const matchCategory = currentCategory === "semua" || doa.category === currentCategory;
+                    const matchSearch = doa.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                        doa.latin.toLowerCase().includes(searchQuery.toLowerCase());
+                    return matchCategory && matchSearch;
+                });
+
+                // Clear current list
+                doaList.innerHTML = "";
+
+                // Show/hide empty state
+                if (filtered.length === 0) {
+                    emptyState.style.display = "flex";
+                } else {
+                    emptyState.style.display = "none";
+                    
+                    // Generate cards
+                    filtered.forEach(doa => {
+                        const card = document.createElement("div");
+                        card.className = "doa-card";
+                        card.setAttribute("data-id", doa.id);
+                        
+                        card.innerHTML = `
+                            <div class="doa-header">
+                                <div class="doa-title-wrap">
+                                    <span class="doa-badge">${doa.badge}</span>
+                                    <h3 class="doa-title">${doa.title}</h3>
+                                </div>
+                                <span class="doa-arrow">❯</span>
+                            </div>
+                            <div class="doa-body">
+                                <div class="arabic-text">${doa.arabic}</div>
+                                <div class="latin-text">${doa.latin}</div>
+                                <div class="translation-text">${doa.translation}</div>
+                            </div>
+                        `;
+
+                        // Add expand event
+                        card.addEventListener("click", function(e) {
+                            // Prevent toggle if text is selected
+                            if (window.getSelection().toString()) return;
+
+                            const isExpanded = card.classList.contains("expanded");
+                            
+                            // Collapse all other cards first for accordion feel
+                            document.querySelectorAll(".doa-card").forEach(c => {
+                                c.classList.remove("expanded");
+                            });
+
+                            if (!isExpanded) {
+                                card.classList.add("expanded");
+                                // Smooth scroll card into view
+                                setTimeout(() => {
+                                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                }, 250);
+                            }
+                        });
+
+                        doaList.appendChild(card);
+                    });
+                }
+            }
+
+            // Category filter click
+            categoryBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    categoryBtns.forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    currentCategory = btn.getAttribute("data-category");
+                    renderDoa();
+                });
+            });
+
+            // Search filter input
+            searchDoa.addEventListener("input", function() {
+                searchQuery = this.value;
+                renderDoa();
+            });
+
+            // Initial render
+            renderDoa();
+        });
+    </script>
+</body>
+</html>
