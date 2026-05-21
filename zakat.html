@@ -325,6 +325,14 @@
             <!-- PANEL ZAKAT MAAL -->
             <div class="calc-panel" id="panel-maal">
                 <div class="input-group">
+                    <span class="input-label">Harga Emas per Gram saat ini</span>
+                    <div class="input-wrapper">
+                        <span class="input-prefix">Rp</span>
+                        <input type="text" class="input-field format-rupiah" id="hargaEmas" value="1.300.000">
+                    </div>
+                </div>
+
+                <div class="input-group">
                     <span class="input-label">Nilai Uang Tunai, Tabungan, Deposito</span>
                     <div class="input-wrapper">
                         <span class="input-prefix">Rp</span>
@@ -355,7 +363,7 @@
                         <span class="nisab-badge not-passed" id="badge-maal">Belum Wajib</span>
                     </div>
                     <div class="result-amount" id="hasil-maal">Rp 0</div>
-                    <div class="result-desc" id="desc-maal">Nisab Zakat Maal setara dengan nilai emas murni 85 gram. (Estimasi saat ini: Rp 85.000.000 dengan kepemilikan minimal 1 tahun/haul).</div>
+                    <div class="result-desc" id="desc-maal">Nisab Zakat Maal setara dengan nilai emas murni 83 gram (20 Dinar). (Pastikan harga emas per gram sudah sesuai dengan harga saat ini).</div>
                 </div>
             </div>
 
@@ -414,7 +422,7 @@
                     if (tabId === "profesi") {
                         nisabInfoText.innerHTML = "Nisab Zakat Profesi setara dengan <strong>522 kg beras</strong>. Jika harga beras saat ini berkisar Rp 15.000/kg, maka nisab bulanan adalah sebesar <strong>Rp 7.830.000 / bulan</strong> dengan kadar zakat <strong>2,5%</strong>.";
                     } else if (tabId === "maal") {
-                        nisabInfoText.innerHTML = "Nisab Zakat Maal setara dengan harga emas murni <strong>85 gram</strong>. Jika harga emas berkisar Rp 1.000.000/gram, maka nisabnya adalah sebesar <strong>Rp 85.000.000 / tahun</strong> dengan kadar zakat <strong>2,5%</strong>.";
+                        nisabInfoText.innerHTML = "Nisab Zakat Maal setara dengan harga emas murni <strong>83 gram</strong> (20 Dinar). Nisab akan mengikuti harga emas yang Anda masukkan dengan kadar zakat <strong>2,5%</strong>.";
                     } else if (tabId === "fitrah") {
                         nisabInfoText.innerHTML = "Zakat Fitrah wajib ditunaikan bagi setiap Muslim di bulan Ramadhan setara dengan <strong>2.5 kg / 3.5 liter beras</strong> per jiwa, atau dapat diuangkan setara dengan harga beras tersebut.";
                     }
@@ -487,11 +495,12 @@
                 }
 
                 // 2. Zakat Maal
+                const hargaEmas = parseRupiah(document.getElementById("hargaEmas").value) || 1300000;
                 const tabungan = parseRupiah(tabunganEl.value);
                 const emas = parseRupiah(emasEl.value);
                 const investasi = parseRupiah(investasiEl.value);
                 const totalMaal = tabungan + emas + investasi;
-                const nisabMaal = 85 * 1000000; // Emas 85 gram @Rp 1.000.000 = Rp 85.000.000
+                const nisabMaal = 83 * hargaEmas; // Emas 83 gram (20 Dinar)
 
                 const badgeMaal = document.getElementById("badge-maal");
                 const hasilMaal = document.getElementById("hasil-maal");
@@ -505,7 +514,7 @@
                     badgeMaal.style.color = "#6fcf97";
                     badgeMaal.style.borderColor = "rgba(111, 207, 151, 0.3)";
                     hasilMaal.textContent = formatRupiah(zakat);
-                    descMaal.innerHTML = `Total harta maal Anda sebesar <strong>${formatRupiah(totalMaal)}</strong> telah melewati batas nisab tahunan (Rp 85.000.000). Wajib menunaikan zakat 2.5%.`;
+                    descMaal.innerHTML = `Total harta maal Anda sebesar <strong>${formatRupiah(totalMaal)}</strong> telah melewati batas nisab tahunan (${formatRupiah(nisabMaal)}). Wajib menunaikan zakat 2.5%.`;
                 } else {
                     badgeMaal.textContent = "Belum Wajib";
                     badgeMaal.className = "nisab-badge not-passed";
@@ -513,7 +522,7 @@
                     badgeMaal.style.color = "#eb5757";
                     badgeMaal.style.borderColor = "rgba(235, 87, 87, 0.3)";
                     hasilMaal.textContent = "Rp 0";
-                    descMaal.innerHTML = `Total harta maal Anda sebesar <strong>${formatRupiah(totalMaal)}</strong> belum melewati batas nisab emas 85 gram (Rp 85.000.000).`;
+                    descMaal.innerHTML = `Total harta maal Anda sebesar <strong>${formatRupiah(totalMaal)}</strong> belum melewati batas nisab emas 83 gram (${formatRupiah(nisabMaal)}).`;
                 }
 
                 // 3. Zakat Fitrah
