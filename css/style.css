@@ -244,11 +244,12 @@ body {
 /* =========================================
    3. LAYAR 2: MENU & PENGINGAT
    ========================================= */
-.screen-2 { padding: 30px 20px; justify-content: flex-start; gap: 30px; }
+.screen-2 { padding: 30px 20px 90px 20px; justify-content: flex-start; gap: 20px; overflow-y: auto; scrollbar-width: none; }
+.screen-2::-webkit-scrollbar { display: none; }
 .section-title { color: #0c1a30; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; padding-left: 5px; }
 
 /* Menu Cepat Screen-2 */
-.menu-cepat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px 8px; }
+.menu-cepat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px 8px; }
 .menu-cepat-item { background-color: #ffffff; border-radius: 18px; padding: 15px 5px; display: flex; flex-direction: column; align-items: center; gap: 10px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); cursor: pointer; transition: transform 0.2s ease; }
 .menu-cepat-item:active { transform: scale(0.95); }
 .menu-circle { width: 46px; height: 46px; border-radius: 50%; display: flex; justify-content: center; align-items: center; }
@@ -256,6 +257,85 @@ body {
 .menu-circle.hijau { background: linear-gradient(135deg, #043927 0%, #032b1e 100%); }
 .menu-circle.emas { background: linear-gradient(135deg, #d4af37 0%, #b8943a 100%); }
 .menu-label { color: #333333; font-size: 0.65rem; font-weight: 600; text-align: center; line-height: 1.2; }
+.menu-sublabel { color: #b8943a; font-size: 0.52rem; font-weight: 700; text-align: center; margin-top: -6px; word-break: break-word; }
+
+/* Kartu Tanggal Hijriah Memanjang */
+.hijri-calendar-card {
+    background: linear-gradient(135deg, #fffdf7 0%, #fff9ec 100%);
+    border-radius: 20px;
+    padding: 16px 18px 16px 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(212, 175, 55, 0.1);
+    margin-top: 15px;
+    border: 1px solid rgba(184, 148, 58, 0.2);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    position: relative;
+}
+.hijri-calendar-card::before {
+    content: '';
+    display: block;
+    width: 5px;
+    min-height: 100%;
+    background: linear-gradient(180deg, #d4af37 0%, #b8943a 100%);
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 20px 0 0 20px;
+}
+.hijri-calendar-card:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 10px rgba(212, 175, 55, 0.15);
+}
+.hijri-card-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(212, 175, 55, 0.12);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    overflow: hidden;
+    margin-left: 18px;
+}
+.hijri-card-icon svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    flex-shrink: 0;
+}
+.hijri-card-content {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    flex: 1;
+}
+.hijri-masehi-text {
+    font-size: 0.7rem;
+    color: #b8943a;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+.hijri-islam-text {
+    font-size: 1.05rem;
+    color: #043927;
+    font-weight: 700;
+    margin-top: 3px;
+    letter-spacing: -0.3px;
+}
+.hijri-card-arrow {
+    color: #d4af37;
+    font-size: 1rem;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-right: 4px;
+}
 
 /* Slider Pengingat Kebaikan */
 .pengingat-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding: 0 5px; }
@@ -390,3 +470,84 @@ body {
 .nav-bottom-item:hover {
     color: rgba(255, 255, 255, 0.8);
 }
+
+/* =========================================
+   6. FLOATING SCROLL DOTS
+   ========================================= */
+.scroll-dots {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    z-index: 150;
+    pointer-events: auto;
+}
+
+.scroll-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: rgba(4, 57, 39, 0.3);
+    border: 1.5px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.scroll-dot.active {
+    background-color: #d4af37;
+    border-color: #ffffff;
+    transform: scale(1.4);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+}
+
+/* =========================================
+   7. DAILY TARGET AMAL PROGRESS BAR
+   ========================================= */
+.amal-progress-container {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.amal-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.amal-progress-title {
+    color: #718096;
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+.amal-progress-badge {
+    color: #b8943a;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.amal-progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: #edf2f7;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.amal-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #043927 0%, #065a3e 100%);
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
