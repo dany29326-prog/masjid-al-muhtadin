@@ -112,61 +112,94 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
     }
 
-    // Fungsi membersihkan dan menerjemahkan nama bulan Hijriah ke Bahasa Indonesia
-    function getCleanHijriMonth(monthEn) {
-        const months = {
-            "Muharram": "Muharram", "Safar": "Safar", "Rabi' al-awwal": "Rabiul Awal",
-            "Rabi' ath-thani": "Rabiul Akhir", "Jumada al-ula": "Jumadil Awal", "Jumada al-akhirah": "Jumadil Akhir",
-            "Rajab": "Rajab", "Sha'ban": "Sya'ban", "Ramadan": "Ramadhan",
-            "Shawwal": "Syawal", "Dhu al-qi'dah": "Dzulqadah", "Dhu al-hijjah": "Dzulhijjah",
-            "Muḥarram": "Muharram", "Ṣafar": "Safar", "Rabīʿ al-awwal": "Rabiul Awal",
-            "Rabīʿ al-thānī": "Rabiul Akhir", "Rabīʿ ath-thānī": "Rabiul Akhir", "Jumādā al-ūlā": "Jumadil Awal",
-            "Jumādā al-ākhirah": "Jumadil Akhir", "Shaʿbān": "Sya'ban", "Ramaḍān": "Ramadhan",
-            "Dhū al-qaʿdah": "Dzulqadah", "Dhū al-ḥijjah": "Dzulhijjah", "Dhu al-Qi'dah": "Dzulqadah",
-            "Dhu al-Hijjah": "Dzulhijjah"
+    // ===== KALENDER HIJRIAH (Konversi Lokal + API Override) =====
+
+    // Konversi tanggal Gregorian ke Hijriah menggunakan algoritma Tabular (akurasi ±1 hari)
+    function getLocalHijriDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const day = now.getDate();
+
+        // Hitung Julian Day Number (JDN)
+        const a = Math.floor((14 - month) / 12);
+        const y = year + 4800 - a;
+        const m = month + 12 * a - 3;
+        const jdn = day + Math.floor((153 * m + 2) / 5) + 365 * y +
+            Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+
+        // Konversi JDN ke Hijriah
+        const l  = jdn - 1948440 + 10632;
+        const n  = Math.floor((l - 1) / 10631);
+        const l2 = l - 10631 * n + 354;
+        const j  = Math.floor((10985 - l2) / 5316) * Math.floor((50 * l2) / 17719) +
+                   Math.floor(l2 / 5670) * Math.floor((43 * l2) / 15238);
+        const l3 = l2 - Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50) -
+                   Math.floor(j / 16) * Math.floor((15238 * j) / 43) + 29;
+
+        const hijriYear  = 30 * n + j - 30;
+        const hijriMonth = Math.ceil(l3 / 29);
+        const hijriDay   = l3 - Math.floor(29.5001 * (hijriMonth - 1));
+
+        const monthNames = [
+            "Muharram","Safar","Rabiul Awal","Rabiul Akhir",
+            "Jumadil Awal","Jumadil Akhir","Rajab","Sya'ban",
+            "Ramadhan","Syawal","Dzulqadah","Dzulhijjah"
+        ];
+
+        return {
+            day:       Math.max(1, hijriDay),
+            monthName: monthNames[(hijriMonth - 1) % 12] || "Muharram",
+            year:      hijriYear
         };
-        
-        const cleanKey = monthEn.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-        return months[monthEn] || months[cleanKey] || cleanKey;
     }
 
-    // Fungsi memformat tanggal Masehi ke Bahasa Indonesia
+    // Tanggal Masehi dalam Bahasa Indonesia
     function getIndonesianGregorianDate() {
         const today = new Date();
-        const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
-        const months = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-        
-        const dayName = days[today.getDay()];
-        const dayNum = today.getDate();
-        const monthName = months[today.getMonth()];
-        const year = today.getFullYear();
-        
-        return `${dayName}, ${dayNum} ${monthName} ${year}`;
+        const days   = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
+        const months = ["Januari","Februari","Maret","April","Mei","Juni",
+                        "Juli","Agustus","September","Oktober","November","Desember"];
+        return `${days[today.getDay()]}, ${today.getDate()} ${months[today.getMonth()]} ${today.getFullYear()}`;
     }
 
-    // Fungsi memperbarui teks Kalender Hijriyah di UI
+    // Terjemahkan nama bulan API ke Bahasa Indonesia
+    function getCleanHijriMonth(monthEn) {
+        const map = {
+            "Muharram":"Muharram","Safar":"Safar",
+            "Rabi' al-awwal":"Rabiul Awal","Rabi' al-awwal":"Rabiul Awal",
+            "Rabi' ath-thani":"Rabiul Akhir","Rabi al-thani":"Rabiul Akhir",
+            "Jumada al-ula":"Jumadil Awal","Jumada al-akhirah":"Jumadil Akhir",
+            "Rajab":"Rajab","Sha'ban":"Sya'ban","Ramadan":"Ramadhan",
+            "Shawwal":"Syawal","Dhu al-Qi'dah":"Dzulqadah","Dhu al-qi'dah":"Dzulqadah",
+            "Dhu al-Hijjah":"Dzulhijjah","Dhu al-hijjah":"Dzulhijjah"
+        };
+        const clean = monthEn.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+        return map[monthEn] || map[clean] || clean;
+    }
+
+    // Update UI kartu Hijriah — selalu tampil instan, API hanya mempresisikan tanggal Hijriah
     function updateHijriDateUI(hijri) {
-        const hijriIslamText = document.getElementById("hijriIslamText");
-        const hijriMasehiText = document.getElementById("hijriMasehiText");
+        const masehiEl = document.getElementById("hijriMasehiText");
+        const islamEl  = document.getElementById("hijriIslamText");
 
-        // Tanggal Masehi selalu tersedia secara lokal, langsung tampilkan
-        if (hijriMasehiText) {
-            hijriMasehiText.textContent = getIndonesianGregorianDate();
-        }
+        // Masehi: selalu dari kalkulasi lokal
+        if (masehiEl) masehiEl.textContent = getIndonesianGregorianDate();
 
-        if (hijriIslamText) {
+        if (islamEl) {
             if (hijri && hijri.month && hijri.month.en) {
-                const cleanMonth = getCleanHijriMonth(hijri.month.en);
-                hijriIslamText.textContent = `${parseInt(hijri.day)} ${cleanMonth} ${hijri.year} H`;
+                // Data akurat dari API
+                const mn = getCleanHijriMonth(hijri.month.en);
+                islamEl.textContent = `${parseInt(hijri.day)} ${mn} ${hijri.year} H`;
             } else {
-                // Fallback: hitung perkiraan Hijriah lokal dari Masehi
-                // Ini muncul saat offline dan tidak ada cache sama sekali
-                hijriIslamText.textContent = "Memuat kalender...";
+                // Kalkulasi lokal sebagai fallback instan
+                const h = getLocalHijriDate();
+                islamEl.textContent = `${h.day} ${h.monthName} ${h.year} H`;
             }
         }
     }
 
-    // Tampilkan tanggal Masehi segera tanpa menunggu API
+    // Tampilkan tanggal SEKARANG juga — tidak tunggu API
     updateHijriDateUI(null);
 
     // Fungsi fetch jadwal sholat dari API dengan Caching
