@@ -1,0 +1,138 @@
+/* style.css - Masjid Al Muhtadin */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Poppins', system-ui, sans-serif;
+  background: #F0FDF4;
+  padding-bottom: 80px;
+}
+
+/* ==================== UTILITY CLASSES ==================== */
+.hidden {
+  display: none;
+}
+
+.page-content {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ==================== BOTTOM NAVIGATION ==================== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 24px 24px 0 0;
+  padding: 8px 12px;
+  display: flex;
+  justify-content: space-around;
+  z-index: 100;
+}
+
+.nav-item {
+  text-align: center;
+  flex: 1;
+  padding: 8px 0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #9CA3AF;
+}
+
+.nav-item.active {
+  background: #0D7C3E;
+  color: white;
+}
+
+.nav-item i {
+  font-size: 1.25rem;
+}
+
+.nav-item p {
+  font-size: 11px;
+  margin-top: 4px;
+}
+
+/* ==================== TAP EFFECT ==================== */
+.tap-effect {
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+}
+
+.tap-effect:active {
+  transform: scale(0.97);
+}
+
+/* ==================== PROGRESS BAR ANIMATION ==================== */
+.progress-animate {
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== PRAYER HIGHLIGHT ==================== */
+.prayer-active {
+  background: #0D7C3E !important;
+  color: white !important;
+  border-radius: 16px;
+  transform: scale(1.02);
+}
+
+/* ==================== TOAST NOTIFICATION ==================== */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 16px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  text-align: center;
+  padding: 12px;
+  border-radius: 16px;
+  font-size: 14px;
+  z-index: 200;
+  animation: fadeIn 0.2s ease;
+}
+
+/* ==================== CAROUSEL / HORIZONTAL SCROLL ==================== */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ==================== ANIMATIONS ==================== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== RESPONSIVE ADJUSTMENTS ==================== */
+@media (max-width: 480px) {
+  .nav-item i {
+    font-size: 1rem;
+  }
+  
+  .nav-item p {
+    font-size: 9px;
+  }
+  
+  .bottom-nav {
+    padding: 6px 8px;
+  }
+}
