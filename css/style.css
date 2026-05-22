@@ -403,6 +403,59 @@ body {
 .keuangan-footer-nominal { color: #ffffff; font-size: 1rem; font-weight: 700; }
 .keuangan-footer-nominal.emas { color: #d4af37; }
 
+/* Layanan Masjid CTA (End of Screen 2) */
+.layanan-masjid-cta {
+    margin-top: 25px;
+}
+.layanan-btn {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
+    border-radius: 16px;
+    padding: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(18, 140, 126, 0.3);
+    transition: transform 0.2s ease;
+}
+.layanan-btn:active {
+    transform: scale(0.98);
+}
+.layanan-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+.layanan-icon svg {
+    width: 24px;
+    height: 24px;
+}
+.layanan-text {
+    flex-grow: 1;
+}
+.layanan-text h4 {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+}
+.layanan-text p {
+    color: #e0e0e0;
+    font-size: 0.75rem;
+    margin: 0;
+}
+.layanan-arrow {
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
 /* =========================================
    4. LAYAR 3: TARGET AMAL & FOOTER
    ========================================= */
