@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Galeri Masjid - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #f7f9fa; display: flex; justify-content: center; min-height: 100vh; color: #2d3748; }
+        .app-container { width: 100%; max-width: 480px; background-color: #f7f9fa; min-height: 100vh; padding-bottom: 40px; position: relative; }
+        .header { background: linear-gradient(135deg, #043927 0%, #065a3e 100%); padding: 30px 24px 45px 24px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; color: white; position: relative; z-index: 2; }
+        .header-top { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+        .back-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); display: flex; justify-content: center; align-items: center; border: none; color: white; cursor: pointer; text-decoration: none; }
+        .header-title { font-size: 1.25rem; font-weight: 700; }
+        
+        .content { margin-top: -20px; padding: 0 20px; position: relative; z-index: 3; }
+        
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .album-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+        
+        .album-card:active {
+            transform: scale(0.96);
+        }
+
+        .album-cover {
+            width: 100%;
+            height: 120px;
+            background-color: #e2e8f0;
+            position: relative;
+        }
+
+        .album-cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .album-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+        }
+
+        .album-photos-count {
+            color: white;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .album-info {
+            padding: 12px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .album-title {
+            color: #0c1a30;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .album-date {
+            color: #718096;
+            font-size: 0.7rem;
+        }
+
+        .section-header {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .section-header p {
+            color: #718096;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="header-top">
+                <a href="index.html" class="back-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
+                <h1 class="header-title">Galeri Masjid</h1>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="card" style="background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 25px; display: flex; align-items: center; gap: 15px;">
+                <div style="width: 50px; height: 50px; background: rgba(212, 175, 55, 0.1); border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" style="width: 24px; height: 24px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </div>
+                <div>
+                    <h3 style="color: #0c1a30; font-size: 0.95rem; margin-bottom: 4px;">Koleksi Foto Kegiatan</h3>
+                    <p style="color: #718096; font-size: 0.75rem; line-height: 1.5;">Pilih album di bawah ini untuk melihat foto-foto yang tersimpan di Google Photos.</p>
+                </div>
+            </div>
+
+            <div class="album-grid">
+                
+                <!-- Album 1 -->
+                <a href="https://photos.app.goo.gl/NmkqrtzKR3C1Zv1J7" target="_blank" class="album-card">
+                    <div class="album-cover">
+                        <img src="masjid_muhtadin.jpg" alt="Idul Adha 1445H" onerror="this.src='https://images.unsplash.com/photo-1596484552834-6a58f84cb713?auto=format&fit=crop&w=400&q=80'">
+                        <div class="album-overlay">
+                            <span class="album-photos-count">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                Buka Album
+                            </span>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4 class="album-title">Idul Adha 1445 H</h4>
+                        <span class="album-date">Juni 2024</span>
+                    </div>
+                </a>
+
+                <!-- Album 2 -->
+                <a href="https://photos.app.goo.gl/NmkqrtzKR3C1Zv1J7" target="_blank" class="album-card">
+                    <div class="album-cover">
+                        <img src="https://images.unsplash.com/photo-1596484552834-6a58f84cb713?auto=format&fit=crop&w=400&q=80" alt="Kajian Akbar">
+                        <div class="album-overlay">
+                            <span class="album-photos-count">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                Buka Album
+                            </span>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4 class="album-title">Kajian Akbar Ramadhan</h4>
+                        <span class="album-date">Maret 2024</span>
+                    </div>
+                </a>
+
+                <!-- Album 3 -->
+                <a href="https://photos.app.goo.gl/NmkqrtzKR3C1Zv1J7" target="_blank" class="album-card">
+                    <div class="album-cover">
+                        <img src="https://images.unsplash.com/photo-1609599006353-e629aaab31fa?auto=format&fit=crop&w=400&q=80" alt="Santunan Yatim">
+                        <div class="album-overlay">
+                            <span class="album-photos-count">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                Buka Album
+                            </span>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4 class="album-title">Santunan Yatim & Dhuafa</h4>
+                        <span class="album-date">Muharram 1445 H</span>
+                    </div>
+                </a>
+
+                <!-- Album 4 -->
+                <a href="https://photos.app.goo.gl/NmkqrtzKR3C1Zv1J7" target="_blank" class="album-card">
+                    <div class="album-cover">
+                        <img src="https://images.unsplash.com/photo-1542816417-0983c9c9ad53?auto=format&fit=crop&w=400&q=80" alt="Kerja Bakti">
+                        <div class="album-overlay">
+                            <span class="album-photos-count">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 12px; height: 12px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                                Buka Album
+                            </span>
+                        </div>
+                    </div>
+                    <div class="album-info">
+                        <h4 class="album-title">Kerja Bakti Pengecatan</h4>
+                        <span class="album-date">Desember 2023</span>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
