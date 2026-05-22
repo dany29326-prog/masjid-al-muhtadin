@@ -487,8 +487,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const hijriModalTitle = document.getElementById('hijriModalTitle');
 
     function generateHijriCalendar() {
-        if (!hijriCalendarDays) return;
-        hijriCalendarDays.innerHTML = ''; // Clear previous
+        const grid = document.getElementById('hijriCalendarGrid');
+        if (!grid) return;
+        grid.innerHTML = ''; // Clear previous
+
+        // Recreate Header Hari
+        const days = ['Ahad', 'Senin', 'Selasa', 'Rabu', 'Kamis', "Jum'at", 'Sabtu'];
+        days.forEach(d => {
+            const el = document.createElement('div');
+            el.className = 'hijri-day-header';
+            el.textContent = d;
+            grid.appendChild(el);
+        });
 
         const today = new Date();
         const todayHijri = getLocalHijriDate(today);
@@ -507,7 +517,7 @@ document.addEventListener("DOMContentLoaded", function () {
         for (let i = 0; i < startDayOfWeek; i++) {
             const emptyCell = document.createElement('div');
             emptyCell.className = 'hijri-date-cell empty';
-            hijriCalendarDays.appendChild(emptyCell);
+            grid.appendChild(emptyCell);
         }
 
         let currentGregorian = new Date(firstDayGregorian);
@@ -543,7 +553,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <span class="hijri-num">${hDateNum}</span>
             `;
 
-            hijriCalendarDays.appendChild(cell);
+            grid.appendChild(cell);
 
             // Move to next day
             currentGregorian.setDate(currentGregorian.getDate() + 1);
