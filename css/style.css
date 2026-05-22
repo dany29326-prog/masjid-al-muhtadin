@@ -595,6 +595,16 @@ body {
     margin: 0;
     font-size: 1.1rem;
     color: #0c1a30;
+    flex-grow: 1;
+    text-align: center;
+}
+.hijri-nav-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #043927;
+    cursor: pointer;
+    padding: 0 10px;
 }
 .hijri-modal-close {
     background: none;

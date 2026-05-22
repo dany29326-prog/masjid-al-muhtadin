@@ -485,8 +485,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeHijriModalBtn = document.getElementById('closeHijriModal');
     const hijriCalendarDays = document.getElementById('hijriCalendarDays');
     const hijriModalTitle = document.getElementById('hijriModalTitle');
+    const prevHijriMonthBtn = document.getElementById('prevHijriMonth');
+    const nextHijriMonthBtn = document.getElementById('nextHijriMonth');
 
-    function generateHijriCalendar() {
+    let currentHijriMonthOffset = 0;
+
+    function generateHijriCalendar(offset = 0) {
         const grid = document.getElementById('hijriCalendarGrid');
         if (!grid) return;
         grid.innerHTML = ''; // Clear previous
@@ -501,16 +505,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
         const today = new Date();
-        const todayHijri = getLocalHijriDate(today);
+        let hDate = getLocalHijriDate(today);
 
         // Find the 1st day of current Hijri month (Gregorian date)
         const firstDayGregorian = new Date(today);
-        firstDayGregorian.setDate(today.getDate() - (todayHijri.day - 1));
+        firstDayGregorian.setDate(today.getDate() - (hDate.day - 1));
 
+        // Shift by offset
+        if (offset > 0) {
+            for (let i = 0; i < offset; i++) {
+                firstDayGregorian.setDate(firstDayGregorian.getDate() + 30);
+                hDate = getLocalHijriDate(firstDayGregorian);
+                firstDayGregorian.setDate(firstDayGregorian.getDate() - (hDate.day - 1));
+            }
+        } else if (offset < 0) {
+            for (let i = 0; i < Math.abs(offset); i++) {
+                firstDayGregorian.setDate(firstDayGregorian.getDate() - 20);
+                hDate = getLocalHijriDate(firstDayGregorian);
+                firstDayGregorian.setDate(firstDayGregorian.getDate() - (hDate.day - 1));
+            }
+        }
+
+        const targetMonthHijri = getLocalHijriDate(firstDayGregorian);
         const startDayOfWeek = firstDayGregorian.getDay(); // 0 (Ahad) to 6 (Sabtu)
         
         if (hijriModalTitle) {
-            hijriModalTitle.textContent = `${todayHijri.monthName} ${todayHijri.year} H`;
+            hijriModalTitle.textContent = `${targetMonthHijri.monthName} ${targetMonthHijri.year} H`;
         }
 
         // Empty cells for the first row to align day of week
@@ -525,14 +545,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Loop up to 30 days
         while (daysGenerated < 30) {
-            const hDate = getLocalHijriDate(currentGregorian);
+            const tempHDate = getLocalHijriDate(currentGregorian);
             
             // Stop if we hit the next Hijri month (day 1 again)
-            if (hDate.day === 1 && daysGenerated > 25) break;
+            if (tempHDate.day === 1 && daysGenerated > 25) break;
 
             const dayOfWeek = currentGregorian.getDay();
             const gDateNum = currentGregorian.getDate();
-            const hDateNum = hDate.day;
+            const hDateNum = tempHDate.day;
 
             const cell = document.createElement('div');
             cell.className = 'hijri-date-cell';
@@ -564,9 +584,24 @@ document.addEventListener("DOMContentLoaded", function () {
     if (hijriCard && hijriModal) {
         hijriCard.style.cursor = 'pointer';
         hijriCard.addEventListener('click', () => {
-            generateHijriCalendar();
+            currentHijriMonthOffset = 0;
+            generateHijriCalendar(currentHijriMonthOffset);
             hijriModal.classList.add('show');
         });
+
+        if (prevHijriMonthBtn) {
+            prevHijriMonthBtn.addEventListener('click', () => {
+                currentHijriMonthOffset--;
+                generateHijriCalendar(currentHijriMonthOffset);
+            });
+        }
+
+        if (nextHijriMonthBtn) {
+            nextHijriMonthBtn.addEventListener('click', () => {
+                currentHijriMonthOffset++;
+                generateHijriCalendar(currentHijriMonthOffset);
+            });
+        }
 
         if (closeHijriModalBtn) {
             closeHijriModalBtn.addEventListener('click', () => {
