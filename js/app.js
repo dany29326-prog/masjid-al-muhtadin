@@ -115,11 +115,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // ===== KALENDER HIJRIAH (Konversi Lokal + API Override) =====
 
     // Konversi tanggal Gregorian ke Hijriah menggunakan algoritma Tabular (akurasi ±1 hari)
-    function getLocalHijriDate() {
-        const now = new Date();
-        const year = now.getFullYear();
-        const month = now.getMonth() + 1;
-        const day = now.getDate();
+    function getLocalHijriDate(inputDate) {
+        const d = inputDate || new Date();
+        const year = d.getFullYear();
+        const month = d.getMonth() + 1;
+        const day = d.getDate();
 
         // Hitung Julian Day Number (JDN)
         const a = Math.floor((14 - month) / 12);
@@ -129,25 +129,15 @@ document.addEventListener("DOMContentLoaded", function () {
             Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
 
         // Konversi JDN ke Hijriah
-        const l  = jdn - 1948440 + 10632;
-        const n  = Math.floor((l - 1) / 10631);
-        const l2 = l - 10631 * n + 354;
-        const j  = Math.floor((10985 - l2) / 5316) * Math.floor((50 * l2) / 17719) +
-        let wd = (jd + 1) % 7;
-        let iyear = 10631.0 / 30.0;
-        let epochAstro = 1948084;
-        let epochCivil = 1948085;
-        let shift1 = 8.01 / 60.0;
-
-        let z = jd - epochCivil;
-        let cyc = Math.floor(z / 10631.0);
-        z = z - 10631 * cyc;
-        let j = Math.floor((z - shift1) / iyear);
-        let iy = 30 * cyc + j;
-        z = z - Math.floor(j * iyear + shift1);
-        let im = Math.floor((z + 28.5001) / 29.5);
-        if (im === 13) im = 12;
-        let id = z - Math.floor(29.5001 * im - 29);
+        let l = jdn - 1948440 + 10632;
+        const n = Math.floor((l - 1) / 10631);
+        l = l - 10631 * n + 354;
+        const j = Math.floor((10985 - l) / 5316) * Math.floor((50 * l) / 17719) + Math.floor(l / 5670) * Math.floor((43 * l) / 15238);
+        l = l - Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50) - Math.floor(j / 16) * Math.floor((15238 * j) / 43) + 29;
+        
+        const hijriMonth = Math.floor((24 * l) / 709);
+        const hijriDay   = l - Math.floor((709 * hijriMonth) / 24);
+        const hijriYear  = 30 * n + j - 30;
 
         const monthNames = [
             "Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir",
@@ -156,10 +146,10 @@ document.addEventListener("DOMContentLoaded", function () {
         ];
 
         return {
-            day:       Math.max(1, id),
-            monthName: monthNames[(im - 1) % 12] || "Muharram",
-            year:      iy,
-            monthIndex: im
+            day:       Math.max(1, hijriDay),
+            monthName: monthNames[(hijriMonth - 1) % 12] || "Muharram",
+            year:      hijriYear,
+            monthIndex: hijriMonth
         };
     }
 
