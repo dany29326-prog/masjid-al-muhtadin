@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Profil Masjid - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #f7f9fa; display: flex; justify-content: center; min-height: 100vh; color: #2d3748; }
+        .app-container { width: 100%; max-width: 480px; background-color: #f7f9fa; min-height: 100vh; padding-bottom: 40px; position: relative; }
+        .header { background: linear-gradient(135deg, #043927 0%, #065a3e 100%); padding: 30px 24px 45px 24px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; color: white; }
+        .header-top { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .back-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); display: flex; justify-content: center; align-items: center; border: none; color: white; cursor: pointer; text-decoration: none; }
+        .header-title { font-size: 1.25rem; font-weight: 700; }
+        .content { margin-top: -20px; padding: 0 20px; }
+        .card { background: white; border-radius: 20px; padding: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .hero-image { width: 100%; height: 200px; border-radius: 16px; object-fit: cover; margin-bottom: 20px; background-color: #e2e8f0; }
+        .section-title { font-size: 1.1rem; font-weight: 700; color: #043927; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .section-title svg { width: 20px; height: 20px; color: #d4af37; }
+        .text-body { font-size: 0.9rem; line-height: 1.6; color: #4a5568; }
+        .text-body p { margin-bottom: 10px; }
+        .pengurus-list { list-style: none; }
+        .pengurus-item { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px dashed #edf2f7; }
+        .pengurus-item:last-child { border-bottom: none; }
+        .pengurus-role { font-weight: 600; color: #2d3748; font-size: 0.9rem; }
+        .pengurus-name { color: #718096; font-size: 0.9rem; }
+        .visi-misi { background: rgba(212, 175, 55, 0.1); border-left: 4px solid #d4af37; padding: 15px; border-radius: 8px; margin-bottom: 20px; }
+        .visi-misi h4 { color: #b8943a; font-size: 0.95rem; margin-bottom: 5px; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="header-top">
+                <a href="index.html" class="back-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
+                <h1 class="header-title">Profil Masjid</h1>
+            </div>
+        </div>
+        <div class="content">
+            <div class="card">
+                <img src="masjid_muhtadin.jpg" alt="Masjid Al-Muhtadin" class="hero-image" onerror="this.src='https://images.unsplash.com/photo-1564683214965-3619addd900d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'">
+                
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    Sejarah Singkat
+                </h2>
+                <div class="text-body">
+                    <p>Masjid Al-Muhtadin didirikan sebagai pusat ibadah dan pendidikan agama bagi umat Islam di lingkungan sekitar. Dengan semangat kebersamaan, masjid ini terus berkembang menjadi pusat kegiatan spiritual, sosial, dan ekonomi keummatan.</p>
+                </div>
+
+                <div class="visi-misi" style="margin-top:20px;">
+                    <h4>Visi</h4>
+                    <p class="text-body" style="margin-bottom: 10px;">Menjadi masjid yang makmur, mandiri, dan menjadi rahmat bagi lingkungan sekitar.</p>
+                    <h4>Misi</h4>
+                    <ul class="text-body" style="padding-left: 15px;">
+                        <li>Menyelenggarakan peribadatan yang khusyuk dan tertib.</li>
+                        <li>Mengadakan kajian rutin untuk pembinaan akidah dan akhlak.</li>
+                        <li>Mengelola ZISWAF secara transparan dan profesional.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    Susunan Pengurus (Takmir)
+                </h2>
+                <ul class="pengurus-list">
+                    <li class="pengurus-item">
+                        <span class="pengurus-role">Ketua Takmir</span>
+                        <span class="pengurus-name">Bpk. H. Fulan</span>
+                    </li>
+                    <li class="pengurus-item">
+                        <span class="pengurus-role">Wakil Ketua</span>
+                        <span class="pengurus-name">Bpk. H. Abdullah</span>
+                    </li>
+                    <li class="pengurus-item">
+                        <span class="pengurus-role">Sekretaris</span>
+                        <span class="pengurus-name">Ust. Ahmad</span>
+                    </li>
+                    <li class="pengurus-item">
+                        <span class="pengurus-role">Bendahara</span>
+                        <span class="pengurus-name">Bpk. Umar</span>
+                    </li>
+                    <li class="pengurus-item">
+                        <span class="pengurus-role">Seksi Da'wah</span>
+                        <span class="pengurus-name">Ust. Ali</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

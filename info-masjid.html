@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Info Masjid - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #f7f9fa; display: flex; justify-content: center; min-height: 100vh; color: #2d3748; }
+        .app-container { width: 100%; max-width: 480px; background-color: #f7f9fa; min-height: 100vh; padding-bottom: 40px; position: relative; }
+        .header { background: linear-gradient(135deg, #043927 0%, #065a3e 100%); padding: 30px 24px 45px 24px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; color: white; position: relative; z-index: 2; }
+        .header-top { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+        .back-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); display: flex; justify-content: center; align-items: center; border: none; color: white; cursor: pointer; text-decoration: none; }
+        .header-title { font-size: 1.25rem; font-weight: 700; }
+        .content { margin-top: -20px; padding: 0 20px; position: relative; z-index: 3; }
+        
+        .tab-container { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
+        .tab-container::-webkit-scrollbar { display: none; }
+        .tab-btn { padding: 8px 16px; background: white; border: 1px solid #edf2f7; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #718096; white-space: nowrap; cursor: pointer; }
+        .tab-btn.active { background: #043927; color: white; border-color: #043927; }
+
+        .feed-card { background: white; border-radius: 16px; padding: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 16px; }
+        .feed-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .feed-badge { padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; }
+        .badge-kajian { background: rgba(212, 175, 55, 0.15); color: #b8943a; }
+        .badge-sosial { background: rgba(229, 62, 62, 0.1); color: #e53e3e; }
+        .badge-info { background: rgba(49, 130, 206, 0.1); color: #3182ce; }
+        .feed-date { font-size: 0.75rem; color: #a0aec0; }
+        .feed-title { font-size: 1.05rem; font-weight: 700; color: #0c1a30; margin-bottom: 8px; line-height: 1.4; }
+        .feed-desc { font-size: 0.85rem; color: #718096; line-height: 1.6; margin-bottom: 15px; }
+        .feed-image { width: 100%; height: auto; border-radius: 12px; margin-bottom: 15px; object-fit: cover; }
+        
+        .feed-meta { display: flex; align-items: center; gap: 15px; border-top: 1px dashed #edf2f7; padding-top: 15px; }
+        .meta-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #718096; }
+        .meta-item svg { width: 16px; height: 16px; color: #043927; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="header-top">
+                <a href="index.html" class="back-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
+                <h1 class="header-title">Info Masjid</h1>
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="tab-container">
+                <div class="tab-btn active">Semua</div>
+                <div class="tab-btn">Kajian</div>
+                <div class="tab-btn">Sosial</div>
+                <div class="tab-btn">Pengumuman</div>
+            </div>
+
+            <!-- Feed 1: Kajian -->
+            <div class="feed-card">
+                <div class="feed-header">
+                    <span class="feed-badge badge-kajian">KAJIAN RUTIN</span>
+                    <span class="feed-date">Hari ini</span>
+                </div>
+                <h3 class="feed-title">Kajian Tafsir Al-Qur'an (Surat Al-Kahfi)</h3>
+                <img src="https://images.unsplash.com/photo-1609599006353-e629aaab31fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Flyer Kajian" class="feed-image">
+                <p class="feed-desc">Hadirilah kajian rutin mingguan ba'da Maghrib bersama Ustadz Fulan. Mari ajak keluarga dan sahabat untuk memakmurkan majelis ilmu.</p>
+                <div class="feed-meta">
+                    <div class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        18:00 WIB (Ba'da Maghrib)
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feed 2: Sosial (Sakit) -->
+            <div class="feed-card">
+                <div class="feed-header">
+                    <span class="feed-badge badge-sosial">INFO SOSIAL</span>
+                    <span class="feed-date">Kemarin</span>
+                </div>
+                <h3 class="feed-title">Mohon Doa Kesembuhan</h3>
+                <p class="feed-desc">Telah dirawat di RSUD setempat, Bapak H. Abdullah (Jamaah RT 03). Mari kita doakan bersama agar beliau segera diangkat penyakitnya oleh Allah SWT dan bisa beraktivitas kembali.</p>
+                <div class="feed-meta">
+                    <div class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        Ruang Mawar, RSUD
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feed 3: Pengumuman -->
+            <div class="feed-card">
+                <div class="feed-header">
+                    <span class="feed-badge badge-info">PENGUMUMAN</span>
+                    <span class="feed-date">3 hari lalu</span>
+                </div>
+                <h3 class="feed-title">Kerja Bakti Rutin Bulanan</h3>
+                <p class="feed-desc">Diberitahukan kepada seluruh jamaah dan warga sekitar, insyaAllah hari Ahad pagi kita akan mengadakan kerja bakti membersihkan area luar masjid dan tempat wudhu.</p>
+                <div class="feed-meta">
+                    <div class="meta-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                        Ahad, 07:00 WIB
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

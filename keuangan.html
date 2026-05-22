@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Info Keuangan - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #f7f9fa; display: flex; justify-content: center; min-height: 100vh; color: #2d3748; }
+        .app-container { width: 100%; max-width: 480px; background-color: #f7f9fa; min-height: 100vh; padding-bottom: 40px; position: relative; }
+        .header { background: linear-gradient(135deg, #043927 0%, #065a3e 100%); padding: 30px 24px 60px 24px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; color: white; position: relative; z-index: 1; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+        .back-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); display: flex; justify-content: center; align-items: center; border: none; color: white; cursor: pointer; text-decoration: none; }
+        .header-title { font-size: 1.25rem; font-weight: 700; flex-grow: 1; text-align: center; margin-right: 40px; }
+        
+        .saldo-card { background: white; border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: -40px 20px 20px 20px; position: relative; z-index: 2; text-align: center; }
+        .saldo-label { color: #718096; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
+        .saldo-amount { color: #043927; font-size: 2rem; font-weight: 700; margin-bottom: 15px; }
+        .saldo-month { display: inline-block; padding: 6px 15px; background: #edf2f7; border-radius: 20px; font-size: 0.8rem; color: #4a5568; font-weight: 600; }
+
+        .content { padding: 0 20px; }
+        
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; margin-top: 10px; }
+        .section-title { font-size: 1.1rem; font-weight: 700; color: #0c1a30; }
+        .section-total { font-weight: 700; }
+        .total-in { color: #043927; }
+        .total-out { color: #e53e3e; }
+
+        .transaction-card { background: white; border-radius: 16px; padding: 0; box-shadow: 0 4px 15px rgba(0,0,0,0.03); margin-bottom: 20px; overflow: hidden; }
+        .trx-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; border-bottom: 1px solid #edf2f7; }
+        .trx-item:last-child { border-bottom: none; }
+        
+        .trx-info { display: flex; align-items: center; gap: 15px; }
+        .trx-icon { width: 40px; height: 40px; border-radius: 12px; display: flex; justify-content: center; align-items: center; flex-shrink: 0; }
+        .icon-in { background: rgba(4, 57, 39, 0.1); color: #043927; }
+        .icon-out { background: rgba(229, 62, 62, 0.1); color: #e53e3e; }
+        .trx-icon svg { width: 20px; height: 20px; }
+        
+        .trx-details h4 { color: #2d3748; font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+        .trx-details p { color: #a0aec0; font-size: 0.75rem; }
+        
+        .trx-amount { font-weight: 700; font-size: 0.95rem; }
+        .amount-in { color: #043927; }
+        .amount-out { color: #e53e3e; }
+
+        .summary-box { background: #043927; border-radius: 16px; padding: 20px; color: white; display: flex; justify-content: space-between; margin-bottom: 30px; }
+        .summary-item { text-align: center; flex: 1; }
+        .summary-item:first-child { border-right: 1px solid rgba(255,255,255,0.2); }
+        .summary-label { font-size: 0.75rem; opacity: 0.8; margin-bottom: 5px; }
+        .summary-value { font-size: 1.1rem; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="header-top">
+                <a href="index.html" class="back-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
+                <h1 class="header-title">Laporan Keuangan</h1>
+            </div>
+        </div>
+
+        <div class="saldo-card">
+            <div class="saldo-label">Total Saldo Kas Masjid</div>
+            <div class="saldo-amount">Rp 45.850.000</div>
+            <div class="saldo-month">Bulan Berjalan: Mei 2026</div>
+        </div>
+
+        <div class="content">
+            
+            <div class="summary-box">
+                <div class="summary-item">
+                    <div class="summary-label">Total Pemasukan</div>
+                    <div class="summary-value">+ Rp 12.500.000</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Total Pengeluaran</div>
+                    <div class="summary-value">- Rp 4.200.000</div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2 class="section-title">Pemasukan</h2>
+            </div>
+            
+            <div class="transaction-card">
+                <div class="trx-item">
+                    <div class="trx-info">
+                        <div class="trx-icon icon-in">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                        </div>
+                        <div class="trx-details">
+                            <h4>Kotak Infaq Jum'at</h4>
+                            <p>Akumulasi 4 Pekan</p>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-in">+ Rp 8.000.000</div>
+                </div>
+                <div class="trx-item">
+                    <div class="trx-info">
+                        <div class="trx-icon icon-in">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                        </div>
+                        <div class="trx-details">
+                            <h4>Kotak Sosial / Anak Yatim</h4>
+                            <p>Akumulasi Bulanan</p>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-in">+ Rp 3.500.000</div>
+                </div>
+                <div class="trx-item">
+                    <div class="trx-info">
+                        <div class="trx-icon icon-in">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                        </div>
+                        <div class="trx-details">
+                            <h4>Donasi Hamba Allah</h4>
+                            <p>Transfer Bank</p>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-in">+ Rp 1.000.000</div>
+                </div>
+            </div>
+
+            <div class="section-header">
+                <h2 class="section-title">Pengeluaran</h2>
+            </div>
+            
+            <div class="transaction-card">
+                <div class="trx-item">
+                    <div class="trx-info">
+                        <div class="trx-icon icon-out">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <div class="trx-details">
+                            <h4>Operasional Listrik & Air</h4>
+                            <p>Tagihan PLN & PDAM</p>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-out">- Rp 1.500.000</div>
+                </div>
+                <div class="trx-item">
+                    <div class="trx-info">
+                        <div class="trx-icon icon-out">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        </div>
+                        <div class="trx-details">
+                            <h4>Kafalah Petugas Jum'at</h4>
+                            <p>Khatib & Imam (4 Pekan)</p>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-out">- Rp 1.200.000</div>
+                </div>
+                <div class="trx-item">
+                    <div class="trx-info">
+                        <div class="trx-icon icon-out">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+                        </div>
+                        <div class="trx-details">
+                            <h4>Kebersihan & Pemeliharaan</h4>
+                            <p>Alat pel, pewangi, perbaikan</p>
+                        </div>
+                    </div>
+                    <div class="trx-amount amount-out">- Rp 1.500.000</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
