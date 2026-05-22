@@ -16,7 +16,7 @@ body {
     height: 100dvh;
     background-color: #f7f9fa;
     overflow-y: scroll;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     scrollbar-width: none;
     position: relative;
     box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -26,7 +26,7 @@ body {
 
 .screen-section {
     width: 100%;
-    height: 100dvh;
+    min-height: 100dvh;
     scroll-snap-align: start;
     scroll-snap-stop: always;
     display: flex;
@@ -244,11 +244,9 @@ body {
 /* =========================================
    3. LAYAR 2: MENU & PENGINGAT
    ========================================= */
-.screen-1 { padding-bottom: 100px; justify-content: flex-start; overflow-y: auto; scrollbar-width: none; }
-.screen-1::-webkit-scrollbar { display: none; }
+.screen-1 { padding-bottom: 100px; justify-content: flex-start; }
 
-.screen-2 { padding: 30px 20px 90px 20px; justify-content: flex-start; gap: 20px; overflow-y: auto; scrollbar-width: none; }
-.screen-2::-webkit-scrollbar { display: none; }
+.screen-2 { padding: 30px 20px 90px 20px; justify-content: flex-start; gap: 20px; }
 .section-title { color: #0c1a30; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; padding-left: 5px; }
 
 /* Menu Cepat Screen-2 */
