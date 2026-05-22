@@ -197,13 +197,13 @@ body {
 .hikmah-container { margin-top: 12px; padding: 0 24px; }
 .hikmah-title { color: #0c1a30; font-size: 0.75rem; font-weight: 700; margin-bottom: 8px; }
 .hikmah-card {
-    background: linear-gradient(135deg, #043927 0%, #065a3e 100%);
+    background: linear-gradient(135deg, #0c1a30 0%, #162c52 100%);
     border-radius: 14px;
     padding: 14px;
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    box-shadow: 0 4px 15px rgba(4, 57, 39, 0.2);
+    box-shadow: 0 4px 15px rgba(12, 26, 48, 0.2);
 }
 .hikmah-icon {
     width: 32px;
@@ -226,7 +226,7 @@ body {
     margin: 0 0 6px 0;
     font-style: italic;
 }
-.hikmah-source { color: #83b299; font-size: 0.65rem; font-weight: 600; }
+.hikmah-source { color: #94a3b8; font-size: 0.65rem; font-weight: 600; }
 
 /* Swipe Up Guide */
 .swipe-up-guide {
