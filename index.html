@@ -467,6 +467,34 @@
         </nav>
 
 
+        <!-- Hijri Calendar Modal -->
+        <div id="hijriCalendarModal" class="hijri-modal">
+            <div class="hijri-modal-content">
+                <div class="hijri-modal-header">
+                    <h3 id="hijriModalTitle">Bulan Hijriah</h3>
+                    <button id="closeHijriModal" class="hijri-modal-close">&times;</button>
+                </div>
+                <div class="hijri-modal-body">
+                    <div class="hijri-calendar-grid" id="hijriCalendarGrid">
+                        <!-- Header Hari -->
+                        <div class="hijri-day-header">Ahad</div>
+                        <div class="hijri-day-header">Senin</div>
+                        <div class="hijri-day-header">Selasa</div>
+                        <div class="hijri-day-header">Rabu</div>
+                        <div class="hijri-day-header">Kamis</div>
+                        <div class="hijri-day-header">Jum'at</div>
+                        <div class="hijri-day-header">Sabtu</div>
+                        <!-- Dates will be populated here by JS -->
+                    </div>
+                    <div class="hijri-modal-legend">
+                        <div class="legend-item"><span class="legend-box jumat"></span> Jum'at</div>
+                        <div class="legend-item"><span class="legend-box ayyamul-bidh"></span> Ayyamul Bidh</div>
+                        <div class="legend-item"><span class="legend-box today"></span> Hari Ini</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="js/app.js?v=1.0.5"></script>

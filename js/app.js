@@ -133,24 +133,33 @@ document.addEventListener("DOMContentLoaded", function () {
         const n  = Math.floor((l - 1) / 10631);
         const l2 = l - 10631 * n + 354;
         const j  = Math.floor((10985 - l2) / 5316) * Math.floor((50 * l2) / 17719) +
-                   Math.floor(l2 / 5670) * Math.floor((43 * l2) / 15238);
-        const l3 = l2 - Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50) -
-                   Math.floor(j / 16) * Math.floor((15238 * j) / 43) + 29;
+        let wd = (jd + 1) % 7;
+        let iyear = 10631.0 / 30.0;
+        let epochAstro = 1948084;
+        let epochCivil = 1948085;
+        let shift1 = 8.01 / 60.0;
 
-        const hijriYear  = 30 * n + j - 30;
-        const hijriMonth = Math.ceil(l3 / 29);
-        const hijriDay   = l3 - Math.floor(29.5001 * (hijriMonth - 1));
+        let z = jd - epochCivil;
+        let cyc = Math.floor(z / 10631.0);
+        z = z - 10631 * cyc;
+        let j = Math.floor((z - shift1) / iyear);
+        let iy = 30 * cyc + j;
+        z = z - Math.floor(j * iyear + shift1);
+        let im = Math.floor((z + 28.5001) / 29.5);
+        if (im === 13) im = 12;
+        let id = z - Math.floor(29.5001 * im - 29);
 
         const monthNames = [
-            "Muharram","Safar","Rabiul Awal","Rabiul Akhir",
-            "Jumadil Awal","Jumadil Akhir","Rajab","Sya'ban",
-            "Ramadhan","Syawal","Dzulqadah","Dzulhijjah"
+            "Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir",
+            "Jumadil Awal", "Jumadil Akhir", "Rajab", "Sya'ban",
+            "Ramadhan", "Syawal", "Dzulqadah", "Dzulhijjah"
         ];
 
         return {
-            day:       Math.max(1, hijriDay),
-            monthName: monthNames[(hijriMonth - 1) % 12] || "Muharram",
-            year:      hijriYear
+            day:       Math.max(1, id),
+            monthName: monthNames[(im - 1) % 12] || "Muharram",
+            year:      iy,
+            monthIndex: im
         };
     }
 
@@ -478,6 +487,99 @@ document.addEventListener("DOMContentLoaded", function () {
             if (nomSosial) nomSosial.textContent = "Gagal memuat data";
             if (nomBarakah) nomBarakah.textContent = "Gagal memuat data";
         }
+    }
+
+    // ===== MODAL KALENDER HIJRIAH =====
+    const hijriCard = document.querySelector('.hijri-calendar-card');
+    const hijriModal = document.getElementById('hijriCalendarModal');
+    const closeHijriModalBtn = document.getElementById('closeHijriModal');
+    const hijriCalendarDays = document.getElementById('hijriCalendarDays');
+    const hijriModalTitle = document.getElementById('hijriModalTitle');
+
+    function generateHijriCalendar() {
+        if (!hijriCalendarDays) return;
+        hijriCalendarDays.innerHTML = ''; // Clear previous
+
+        const today = new Date();
+        const todayHijri = getLocalHijriDate(today);
+
+        // Find the 1st day of current Hijri month (Gregorian date)
+        const firstDayGregorian = new Date(today);
+        firstDayGregorian.setDate(today.getDate() - (todayHijri.day - 1));
+
+        const startDayOfWeek = firstDayGregorian.getDay(); // 0 (Ahad) to 6 (Sabtu)
+        
+        if (hijriModalTitle) {
+            hijriModalTitle.textContent = `${todayHijri.monthName} ${todayHijri.year} H`;
+        }
+
+        // Empty cells for the first row to align day of week
+        for (let i = 0; i < startDayOfWeek; i++) {
+            const emptyCell = document.createElement('div');
+            emptyCell.className = 'hijri-date-cell empty';
+            hijriCalendarDays.appendChild(emptyCell);
+        }
+
+        let currentGregorian = new Date(firstDayGregorian);
+        let daysGenerated = 0;
+
+        // Loop up to 30 days
+        while (daysGenerated < 30) {
+            const hDate = getLocalHijriDate(currentGregorian);
+            
+            // Stop if we hit the next Hijri month (day 1 again)
+            if (hDate.day === 1 && daysGenerated > 25) break;
+
+            const dayOfWeek = currentGregorian.getDay();
+            const gDateNum = currentGregorian.getDate();
+            const hDateNum = hDate.day;
+
+            const cell = document.createElement('div');
+            cell.className = 'hijri-date-cell';
+
+            if (dayOfWeek === 5) cell.classList.add('jumat');
+            if (hDateNum >= 13 && hDateNum <= 15) cell.classList.add('ayyamul-bidh');
+
+            // Is today?
+            if (currentGregorian.toDateString() === today.toDateString()) {
+                cell.classList.add('today');
+                // Remove others to prioritize today's color
+                cell.classList.remove('jumat');
+                cell.classList.remove('ayyamul-bidh');
+            }
+
+            cell.innerHTML = `
+                <span class="masehi-num">${gDateNum}</span>
+                <span class="hijri-num">${hDateNum}</span>
+            `;
+
+            hijriCalendarDays.appendChild(cell);
+
+            // Move to next day
+            currentGregorian.setDate(currentGregorian.getDate() + 1);
+            daysGenerated++;
+        }
+    }
+
+    if (hijriCard && hijriModal) {
+        hijriCard.style.cursor = 'pointer';
+        hijriCard.addEventListener('click', () => {
+            generateHijriCalendar();
+            hijriModal.classList.add('show');
+        });
+
+        if (closeHijriModalBtn) {
+            closeHijriModalBtn.addEventListener('click', () => {
+                hijriModal.classList.remove('show');
+            });
+        }
+
+        // Click outside to close
+        hijriModal.addEventListener('click', (e) => {
+            if (e.target === hijriModal) {
+                hijriModal.classList.remove('show');
+            }
+        });
     }
 
     updateHikmah();
