@@ -230,8 +230,8 @@ body {
 
 /* Swipe Up Guide */
 .swipe-up-guide {
-    position: absolute;
-    bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 25px;
     width: 100%;
     text-align: center;
     color: #8c96a3;
@@ -244,6 +244,9 @@ body {
 /* =========================================
    3. LAYAR 2: MENU & PENGINGAT
    ========================================= */
+.screen-1 { padding-bottom: 100px; justify-content: flex-start; overflow-y: auto; scrollbar-width: none; }
+.screen-1::-webkit-scrollbar { display: none; }
+
 .screen-2 { padding: 30px 20px 90px 20px; justify-content: flex-start; gap: 20px; overflow-y: auto; scrollbar-width: none; }
 .screen-2::-webkit-scrollbar { display: none; }
 .section-title { color: #0c1a30; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; padding-left: 5px; }
