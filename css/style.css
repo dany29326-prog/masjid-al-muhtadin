@@ -244,9 +244,9 @@ body {
 /* =========================================
    3. LAYAR 2: MENU & PENGINGAT
    ========================================= */
-.screen-1 { padding-bottom: 100px; justify-content: flex-start; }
+.screen-1 { padding-bottom: 130px; justify-content: flex-start; }
 
-.screen-2 { padding: 30px 20px 90px 20px; justify-content: flex-start; gap: 20px; }
+.screen-2 { padding: 30px 20px 130px 20px; justify-content: flex-start; gap: 20px; }
 .section-title { color: #0c1a30; font-size: 1.1rem; font-weight: 700; margin-bottom: 15px; padding-left: 5px; }
 
 /* Menu Cepat Screen-2 */
@@ -459,7 +459,7 @@ body {
 /* =========================================
    4. LAYAR 3: TARGET AMAL & FOOTER
    ========================================= */
-.screen-3 { padding: 40px 20px 80px 20px; justify-content: space-between; }
+.screen-3 { padding: 40px 20px 130px 20px; justify-content: space-between; }
 
 .target-amal-card { background-color: #ffffff; border-radius: 20px; padding: 10px 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04); }
 .amal-item { display: flex; align-items: center; padding: 15px 0; cursor: pointer; position: relative; }
