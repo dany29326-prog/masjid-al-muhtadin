@@ -64,110 +64,140 @@
 
         <div class="saldo-card">
             <div class="saldo-label">Total Saldo Kas Masjid</div>
-            <div class="saldo-amount">Rp 45.850.000</div>
-            <div class="saldo-month">Bulan Berjalan: Mei 2026</div>
+            <div class="saldo-amount" id="total-saldo">Rp 0</div>
+            <div class="saldo-month" id="current-month">Memuat...</div>
         </div>
 
-        <div class="content">
+        <div class="content" id="keuangan-content" style="display: none;">
             
             <div class="summary-box">
                 <div class="summary-item">
                     <div class="summary-label">Total Pemasukan</div>
-                    <div class="summary-value">+ Rp 12.500.000</div>
+                    <div class="summary-value" id="total-in">+ Rp 0</div>
                 </div>
                 <div class="summary-item">
                     <div class="summary-label">Total Pengeluaran</div>
-                    <div class="summary-value">- Rp 4.200.000</div>
+                    <div class="summary-value" id="total-out">- Rp 0</div>
                 </div>
             </div>
 
             <div class="section-header">
                 <h2 class="section-title">Pemasukan</h2>
             </div>
-            
-            <div class="transaction-card">
-                <div class="trx-item">
-                    <div class="trx-info">
-                        <div class="trx-icon icon-in">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        </div>
-                        <div class="trx-details">
-                            <h4>Kotak Infaq Jum'at</h4>
-                            <p>Akumulasi 4 Pekan</p>
-                        </div>
-                    </div>
-                    <div class="trx-amount amount-in">+ Rp 8.000.000</div>
-                </div>
-                <div class="trx-item">
-                    <div class="trx-info">
-                        <div class="trx-icon icon-in">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                        </div>
-                        <div class="trx-details">
-                            <h4>Kotak Sosial / Anak Yatim</h4>
-                            <p>Akumulasi Bulanan</p>
-                        </div>
-                    </div>
-                    <div class="trx-amount amount-in">+ Rp 3.500.000</div>
-                </div>
-                <div class="trx-item">
-                    <div class="trx-info">
-                        <div class="trx-icon icon-in">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-                        </div>
-                        <div class="trx-details">
-                            <h4>Donasi Hamba Allah</h4>
-                            <p>Transfer Bank</p>
-                        </div>
-                    </div>
-                    <div class="trx-amount amount-in">+ Rp 1.000.000</div>
-                </div>
+            <div class="transaction-card" id="list-in">
+                <!-- Data Pemasukan -->
             </div>
 
             <div class="section-header">
                 <h2 class="section-title">Pengeluaran</h2>
             </div>
-            
-            <div class="transaction-card">
-                <div class="trx-item">
-                    <div class="trx-info">
-                        <div class="trx-icon icon-out">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </div>
-                        <div class="trx-details">
-                            <h4>Operasional Listrik & Air</h4>
-                            <p>Tagihan PLN & PDAM</p>
-                        </div>
-                    </div>
-                    <div class="trx-amount amount-out">- Rp 1.500.000</div>
-                </div>
-                <div class="trx-item">
-                    <div class="trx-info">
-                        <div class="trx-icon icon-out">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                        </div>
-                        <div class="trx-details">
-                            <h4>Kafalah Petugas Jum'at</h4>
-                            <p>Khatib & Imam (4 Pekan)</p>
-                        </div>
-                    </div>
-                    <div class="trx-amount amount-out">- Rp 1.200.000</div>
-                </div>
-                <div class="trx-item">
-                    <div class="trx-info">
-                        <div class="trx-icon icon-out">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
-                        </div>
-                        <div class="trx-details">
-                            <h4>Kebersihan & Pemeliharaan</h4>
-                            <p>Alat pel, pewangi, perbaikan</p>
-                        </div>
-                    </div>
-                    <div class="trx-amount amount-out">- Rp 1.500.000</div>
-                </div>
+            <div class="transaction-card" id="list-out">
+                <!-- Data Pengeluaran -->
             </div>
 
         </div>
+        <div id="loading-indicator" style="text-align: center; padding: 40px; color: #718096;">
+            Memuat data keuangan...
+        </div>
     </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbzDxO8T_KJq06d5iXzu6cIVq7_LoVLOkie-P8gTAeKms5yJYkV-ppvkFy-W2k4B4Ju5Ag/exec";
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(angka);
+        }
+
+        async function fetchKeuangan() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                const rows = data.value;
+                if (!rows || rows.length <= 1) {
+                    document.getElementById('loading-indicator').innerHTML = 'Belum ada data keuangan.';
+                    return;
+                }
+
+                let totalIn = 0;
+                let totalOut = 0;
+                let htmlIn = '';
+                let htmlOut = '';
+
+                // Set current month string
+                const now = new Date();
+                const monthStr = now.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+                document.getElementById('current-month').innerText = "Bulan Berjalan: " + monthStr;
+
+                // Process rows (skip header)
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (row[2] === "Laporan Keuangan") {
+                        const jenis = (row[7] || "").toUpperCase();
+                        const nominal = parseFloat(row[8]) || 0;
+                        const ket = row[9] || "Tanpa Keterangan";
+                        
+                        let dateStr = "";
+                        try {
+                            const d = new Date(row[10] || row[0]);
+                            dateStr = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                        } catch(e) {}
+
+                        if (jenis === "PEMASUKAN") {
+                            totalIn += nominal;
+                            htmlIn += `
+                                <div class="trx-item">
+                                    <div class="trx-info">
+                                        <div class="trx-icon icon-in">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                                        </div>
+                                        <div class="trx-details">
+                                            <h4>${ket}</h4>
+                                            <p>${dateStr}</p>
+                                        </div>
+                                    </div>
+                                    <div class="trx-amount amount-in">+ ${formatRupiah(nominal)}</div>
+                                </div>
+                            `;
+                        } else if (jenis === "PENGELUARAN") {
+                            totalOut += nominal;
+                            htmlOut += `
+                                <div class="trx-item">
+                                    <div class="trx-info">
+                                        <div class="trx-icon icon-out">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                                        </div>
+                                        <div class="trx-details">
+                                            <h4>${ket}</h4>
+                                            <p>${dateStr}</p>
+                                        </div>
+                                    </div>
+                                    <div class="trx-amount amount-out">- ${formatRupiah(nominal)}</div>
+                                </div>
+                            `;
+                        }
+                    }
+                }
+
+                // Update UI
+                const saldoAkhir = totalIn - totalOut;
+                document.getElementById('total-saldo').innerText = formatRupiah(saldoAkhir);
+                document.getElementById('total-in').innerText = "+ " + formatRupiah(totalIn);
+                document.getElementById('total-out').innerText = "- " + formatRupiah(totalOut);
+                
+                document.getElementById('list-in').innerHTML = htmlIn || '<div style="padding:20px;text-align:center;color:#718096;font-size:0.85rem;">Belum ada pemasukan</div>';
+                document.getElementById('list-out').innerHTML = htmlOut || '<div style="padding:20px;text-align:center;color:#718096;font-size:0.85rem;">Belum ada pengeluaran</div>';
+
+                document.getElementById('loading-indicator').style.display = 'none';
+                document.getElementById('keuangan-content').style.display = 'block';
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                document.getElementById('loading-indicator').innerHTML = '<span style="color:#e53e3e;">Gagal memuat data. Silakan coba lagi.</span>';
+            }
+        }
+
+        fetchKeuangan();
+    </script>
 </body>
 </html>

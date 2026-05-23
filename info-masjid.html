@@ -48,63 +48,130 @@
         </div>
 
         <div class="content">
-            <div class="tab-container">
-                <div class="tab-btn active">Semua</div>
-                <div class="tab-btn">Kajian</div>
-                <div class="tab-btn">Sosial</div>
-                <div class="tab-btn">Pengumuman</div>
+            <div class="tab-container" id="tab-container" style="display: none;">
+                <div class="tab-btn active" onclick="filterFeed('Semua')">Semua</div>
+                <div class="tab-btn" onclick="filterFeed('Kajian')">Kajian</div>
+                <div class="tab-btn" onclick="filterFeed('Sosial')">Sosial</div>
+                <div class="tab-btn" onclick="filterFeed('Pengumuman')">Pengumuman</div>
             </div>
 
-            <!-- Feed 1: Kajian -->
-            <div class="feed-card">
-                <div class="feed-header">
-                    <span class="feed-badge badge-kajian">KAJIAN RUTIN</span>
-                    <span class="feed-date">Hari ini</span>
-                </div>
-                <h3 class="feed-title">Kajian Tafsir Al-Qur'an (Surat Al-Kahfi)</h3>
-                <img src="https://images.unsplash.com/photo-1609599006353-e629aaab31fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Flyer Kajian" class="feed-image">
-                <p class="feed-desc">Hadirilah kajian rutin mingguan ba'da Maghrib bersama Ustadz Fulan. Mari ajak keluarga dan sahabat untuk memakmurkan majelis ilmu.</p>
-                <div class="feed-meta">
-                    <div class="meta-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        18:00 WIB (Ba'da Maghrib)
-                    </div>
+            <div id="feed-container">
+                <div style="text-align: center; padding: 40px 20px; color: #718096;">
+                    Memuat informasi masjid...
                 </div>
             </div>
-
-            <!-- Feed 2: Sosial (Sakit) -->
-            <div class="feed-card">
-                <div class="feed-header">
-                    <span class="feed-badge badge-sosial">INFO SOSIAL</span>
-                    <span class="feed-date">Kemarin</span>
-                </div>
-                <h3 class="feed-title">Mohon Doa Kesembuhan</h3>
-                <p class="feed-desc">Telah dirawat di RSUD setempat, Bapak H. Abdullah (Jamaah RT 03). Mari kita doakan bersama agar beliau segera diangkat penyakitnya oleh Allah SWT dan bisa beraktivitas kembali.</p>
-                <div class="feed-meta">
-                    <div class="meta-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                        Ruang Mawar, RSUD
-                    </div>
-                </div>
-            </div>
-
-            <!-- Feed 3: Pengumuman -->
-            <div class="feed-card">
-                <div class="feed-header">
-                    <span class="feed-badge badge-info">PENGUMUMAN</span>
-                    <span class="feed-date">3 hari lalu</span>
-                </div>
-                <h3 class="feed-title">Kerja Bakti Rutin Bulanan</h3>
-                <p class="feed-desc">Diberitahukan kepada seluruh jamaah dan warga sekitar, insyaAllah hari Ahad pagi kita akan mengadakan kerja bakti membersihkan area luar masjid dan tempat wudhu.</p>
-                <div class="feed-meta">
-                    <div class="meta-item">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                        Ahad, 07:00 WIB
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbzDxO8T_KJq06d5iXzu6cIVq7_LoVLOkie-P8gTAeKms5yJYkV-ppvkFy-W2k4B4Ju5Ag/exec";
+        let allFeeds = [];
+
+        async function fetchInfoMasjid() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                // Assuming data.value is an array of arrays
+                // Index mapping based on standard: 
+                // 2: Jenis Data, 3: Judul, 4: Kategori, 5: Deskripsi, 6: Link Gambar, 10: Tanggal (or 0 for Timestamp)
+                const rows = data.value;
+                if (!rows || rows.length <= 1) {
+                    document.getElementById('feed-container').innerHTML = '<div style="text-align: center; padding: 40px 20px; color: #718096;">Belum ada informasi.</div>';
+                    return;
+                }
+
+                // Skip header row (index 0)
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (row[2] === "Info Kemasjidan") {
+                        allFeeds.push({
+                            judul: row[3],
+                            kategori: row[4],
+                            deskripsi: row[5],
+                            gambar: row[6],
+                            tanggal: row[10] || row[0] // fallback to timestamp
+                        });
+                    }
+                }
+
+                // Sort newest first
+                allFeeds.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
+
+                document.getElementById('tab-container').style.display = 'flex';
+                renderFeeds(allFeeds);
+
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                document.getElementById('feed-container').innerHTML = '<div style="text-align: center; padding: 40px 20px; color: #e53e3e;">Gagal memuat data. Silakan coba lagi nanti.</div>';
+            }
+        }
+
+        function filterFeed(kategori) {
+            // Update active tab UI
+            const tabs = document.querySelectorAll('.tab-btn');
+            tabs.forEach(tab => {
+                if (tab.innerText === kategori) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+
+            // Filter data
+            if (kategori === 'Semua') {
+                renderFeeds(allFeeds);
+            } else {
+                const filtered = allFeeds.filter(f => f.kategori && f.kategori.toLowerCase().includes(kategori.toLowerCase()));
+                renderFeeds(filtered);
+            }
+        }
+
+        function renderFeeds(feeds) {
+            const container = document.getElementById('feed-container');
+            container.innerHTML = '';
+
+            if (feeds.length === 0) {
+                container.innerHTML = '<div style="text-align: center; padding: 40px 20px; color: #718096;">Belum ada informasi di kategori ini.</div>';
+                return;
+            }
+
+            feeds.forEach(feed => {
+                // Determine badge style
+                let badgeClass = 'badge-info';
+                let catName = feed.kategori || 'INFO';
+                if (catName.toLowerCase().includes('kajian')) badgeClass = 'badge-kajian';
+                else if (catName.toLowerCase().includes('sosial')) badgeClass = 'badge-sosial';
+
+                // Format date manually as it could be ISO string
+                let dateStr = "Hari ini";
+                try {
+                    const d = new Date(feed.tanggal);
+                    dateStr = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+                } catch(e){}
+
+                let imageHtml = '';
+                if (feed.gambar && feed.gambar.trim() !== '') {
+                    imageHtml = `<img src="${feed.gambar}" alt="Flyer" class="feed-image" onerror="this.style.display='none'">`;
+                }
+
+                const cardHtml = `
+                    <div class="feed-card">
+                        <div class="feed-header">
+                            <span class="feed-badge ${badgeClass}">${catName.toUpperCase()}</span>
+                            <span class="feed-date">${dateStr}</span>
+                        </div>
+                        <h3 class="feed-title">${feed.judul}</h3>
+                        ${imageHtml}
+                        <p class="feed-desc">${feed.deskripsi}</p>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        // Initialize
+        fetchInfoMasjid();
+    </script>
 </body>
 </html>
