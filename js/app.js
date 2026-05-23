@@ -419,7 +419,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ===== FETCH DATA DONASI DARI GOOGLE SHEETS =====
     async function fetchDonasiData() {
-        const url = "https://script.google.com/macros/s/AKfycbxBz0V6UubcDqHIljZde_Zxuiw3uGbRP81bBKN-CPNnJybXabilNNr3oVQn8jwJ4n8UKw/exec";
+        const url = "https://script.google.com/macros/s/AKfycbzDxO8T_KJq06d5iXzu6cIVq7_LoVLOkie-P8gTAeKms5yJYkV-ppvkFy-W2k4B4Ju5Ag/exec";
         try {
             const response = await fetch(url);
             const data = await response.json();
@@ -428,20 +428,34 @@ document.addEventListener("DOMContentLoaded", function () {
             let totalSosial = 0;
             let totalBarakah = 0;
 
-            // Loop through data (skip header at index 0)
-            if (Array.isArray(data)) {
-                for (let i = 1; i < data.length; i++) {
-                    const row = data[i];
-                    if (!row) continue;
-                    const jenis = row[1] ? row[1].trim() : "";
-                    const jumlah = parseFloat(row[2]) || 0;
+            const now = new Date();
+            const currentMonth = now.getMonth();
+            const currentYear = now.getFullYear();
 
-                    if (jenis === "KOTAK JUMAT") {
-                        totalJumat += jumlah;
-                    } else if (jenis === "KOTAK SOSIAL") {
-                        totalSosial += jumlah;
-                    } else if (jenis === "KOTAK BARAKAH") {
-                        totalBarakah += jumlah;
+            const rows = data.value;
+            // Loop through data (skip header at index 0)
+            if (rows && rows.length > 1) {
+                for (let i = 1; i < rows.length; i++) {
+                    const row = rows[i];
+                    if (row[2] === "Laporan Keuangan" && (row[7] || "").toUpperCase() === "PEMASUKAN") {
+                        let d;
+                        try {
+                            d = new Date(row[10] || row[0]);
+                        } catch(e) { continue; }
+                        
+                        // FILTER BY CURRENT MONTH
+                        if (d.getMonth() === currentMonth && d.getFullYear() === currentYear) {
+                            const nominal = parseFloat(row[8]) || 0;
+                            const ket = (row[9] || "").toLowerCase();
+
+                            if (ket.includes("jum'at") || ket.includes("jumat")) {
+                                totalJumat += nominal;
+                            } else if (ket.includes("sosial")) {
+                                totalSosial += nominal;
+                            } else if (ket.includes("barokah") || ket.includes("barakah")) {
+                                totalBarakah += nominal;
+                            }
+                        }
                     }
                 }
             }

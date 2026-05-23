@@ -124,10 +124,18 @@
                 let htmlIn = '';
                 let htmlOut = '';
 
-                // Set current month string
+                // Set previous month string
                 const now = new Date();
-                const monthStr = now.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
-                document.getElementById('current-month').innerText = "Bulan Berjalan: " + monthStr;
+                let targetMonth = now.getMonth() - 1;
+                let targetYear = now.getFullYear();
+                if (targetMonth < 0) {
+                    targetMonth = 11;
+                    targetYear -= 1;
+                }
+                
+                const prevMonthDate = new Date(targetYear, targetMonth, 1);
+                const monthStr = prevMonthDate.toLocaleDateString('id-ID', { month: 'long', year: 'numeric' });
+                document.getElementById('current-month').innerText = "Bulan Laporan: " + monthStr;
 
                 // Process rows (skip header)
                 for (let i = 1; i < rows.length; i++) {
@@ -137,11 +145,19 @@
                         const nominal = parseFloat(row[8]) || 0;
                         const ket = row[9] || "Tanpa Keterangan";
                         
+                        let d;
                         let dateStr = "";
                         try {
-                            const d = new Date(row[10] || row[0]);
+                            d = new Date(row[10] || row[0]);
                             dateStr = d.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-                        } catch(e) {}
+                        } catch(e) {
+                            continue; // Skip if invalid date
+                        }
+
+                        // FILTER BY PREVIOUS MONTH
+                        if (d.getMonth() !== targetMonth || d.getFullYear() !== targetYear) {
+                            continue;
+                        }
 
                         if (jenis === "PEMASUKAN") {
                             totalIn += nominal;
