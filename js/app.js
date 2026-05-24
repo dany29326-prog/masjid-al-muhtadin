@@ -386,35 +386,59 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // ===== FLOATING SCROLL DOTS LOGIC =====
+    // ===== FLOATING SCROLL DOTS & SMART AUTO-HIDE NAVBAR LOGIC =====
     const appContainer = document.querySelector(".app-container");
     const scrollDots = document.querySelectorAll(".scroll-dot");
+    const bottomNav = document.querySelector(".bottom-nav");
+    let lastScrollTop = 0;
 
-    if (appContainer && scrollDots.length > 0) {
-        appContainer.addEventListener("scroll", function () {
-            const screenHeight = appContainer.clientHeight;
-            const scrollTop = appContainer.scrollTop;
-            const activeIndex = Math.round(scrollTop / screenHeight);
-
-            scrollDots.forEach((dot, idx) => {
-                if (idx === activeIndex) {
-                    dot.classList.add("active");
-                } else {
-                    dot.classList.remove("active");
-                }
-            });
-        });
-
-        // Click to scroll to screen
-        scrollDots.forEach((dot, idx) => {
-            dot.addEventListener("click", function () {
+    if (appContainer) {
+        if (scrollDots.length > 0) {
+            appContainer.addEventListener("scroll", function () {
                 const screenHeight = appContainer.clientHeight;
-                appContainer.scrollTo({
-                    top: idx * screenHeight,
-                    behavior: "smooth"
+                const scrollTop = appContainer.scrollTop;
+                const activeIndex = Math.round(scrollTop / screenHeight);
+
+                scrollDots.forEach((dot, idx) => {
+                    if (idx === activeIndex) {
+                        dot.classList.add("active");
+                    } else {
+                        dot.classList.remove("active");
+                    }
+                });
+
+                // ===== SMART SNAP-REST AUTO-HIDE NAVBAR =====
+                if (bottomNav) {
+                    const remainder = scrollTop % screenHeight;
+                    // Cek apakah posisi scroll berada tepat di/sangat dekat rest-state halaman
+                    const isAtScreenRest = (remainder < 5) || (screenHeight - remainder < 5);
+
+                    if (scrollTop < 50 || isAtScreenRest) {
+                        // Selalu tampilkan di paling atas atau saat snap-scroll selesai mengunci halaman
+                        bottomNav.classList.remove("nav-hidden");
+                    } else if (scrollTop > lastScrollTop) {
+                        // Gulir ke bawah (sedang transisi) -> Sembunyikan navbar
+                        bottomNav.classList.add("nav-hidden");
+                    } else {
+                        // Gulir ke atas -> Tampilkan navbar kembali
+                        bottomNav.classList.remove("nav-hidden");
+                    }
+                }
+
+                lastScrollTop = scrollTop;
+            });
+
+            // Click to scroll to screen
+            scrollDots.forEach((dot, idx) => {
+                dot.addEventListener("click", function () {
+                    const screenHeight = appContainer.clientHeight;
+                    appContainer.scrollTo({
+                        top: idx * screenHeight,
+                        behavior: "smooth"
+                    });
                 });
             });
-        });
+        }
     }
 
     // ===== FETCH DATA DONASI DARI GOOGLE SHEETS =====
