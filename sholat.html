@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jadwal Sholat - Masjid Al Muhtadin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #1a1a1a; display: flex; justify-content: center; min-height: 100vh; color: #2d3748; }
+        .app-container { width: 100%; max-width: 480px; background-color: #f7f9fa; min-height: 100vh; padding-bottom: 40px; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.5); display: flex; flex-direction: column; }
+        .header { background: linear-gradient(135deg, #043927 0%, #065a3e 100%); padding: 30px 24px 60px 24px; border-bottom-left-radius: 35px; border-bottom-right-radius: 35px; color: white; position: relative; z-index: 1; }
+        .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+        .back-btn { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.12); display: flex; justify-content: center; align-items: center; border: none; color: white; cursor: pointer; text-decoration: none; }
+        .header-title { font-size: 1.25rem; font-weight: 700; flex-grow: 1; text-align: center; margin-right: 40px; }
+        
+        /* Hero Countdown Card */
+        .countdown-card { background: white; border-radius: 20px; padding: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin: -40px 20px 20px 20px; position: relative; z-index: 2; border: 1px solid rgba(4, 57, 39, 0.05); }
+        .countdown-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .location-info { text-align: left; }
+        .location-city { color: #0c1a30; font-size: 0.9rem; font-weight: 700; }
+        .location-sub { color: #b8943a; font-size: 0.7rem; font-weight: 600; margin-top: 2px; }
+        .hijri-date { font-size: 0.75rem; color: #718096; font-weight: 600; background: #f0f4f2; padding: 4px 10px; border-radius: 20px; }
+        
+        .countdown-body { text-align: center; padding: 5px 0; }
+        .countdown-sholat-name { color: #043927; font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
+        .countdown-sholat-status { color: #718096; font-size: 0.75rem; font-weight: 500; margin-bottom: 12px; }
+        
+        .timer-display { display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .timer-digit-box { display: flex; flex-direction: column; align-items: center; }
+        .timer-digit { font-size: 1.6rem; font-weight: 700; color: #043927; background: #ebf3ee; width: 48px; height: 44px; border-radius: 10px; display: flex; justify-content: center; align-items: center; border: 1px solid rgba(4, 57, 39, 0.1); }
+        .timer-label { font-size: 0.6rem; color: #718096; font-weight: 600; margin-top: 4px; text-transform: uppercase; }
+        .timer-colon { font-size: 1.5rem; font-weight: 700; color: #043927; padding-bottom: 18px; }
+
+        .content { padding: 0 20px; flex-grow: 1; }
+        
+        .section-title { font-size: 0.95rem; font-weight: 700; color: #0c1a30; margin: 10px 0 15px 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Vertical Rows Style */
+        .sholat-row { display: flex; justify-content: space-between; align-items: center; background: white; border-radius: 16px; padding: 15px 20px; margin-bottom: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); border: 1px solid #edf2f7; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .sholat-row::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: transparent; transition: all 0.3s ease; }
+        
+        .sholat-row.active { background: linear-gradient(135deg, #043927 0%, #065a3e 100%); color: white; border-color: #043927; box-shadow: 0 8px 25px rgba(4, 57, 39, 0.2); transform: translateY(-2px); }
+        .sholat-row.active::before { background: #d4af37; }
+        
+        .sholat-left { display: flex; align-items: center; gap: 16px; }
+        .sholat-icon { width: 38px; height: 38px; border-radius: 10px; background: #f0f4f2; display: flex; justify-content: center; align-items: center; color: #043927; flex-shrink: 0; transition: all 0.3s ease; }
+        .sholat-row.active .sholat-icon { background: rgba(255, 255, 255, 0.15); color: #d4af37; }
+        .sholat-icon svg { width: 20px; height: 20px; }
+        
+        .sholat-names { display: flex; flex-direction: column; gap: 2px; }
+        .sholat-name-id { font-size: 0.95rem; font-weight: 700; color: #2d3748; transition: all 0.3s ease; }
+        .sholat-row.active .sholat-name-id { color: white; }
+        
+        .sholat-name-ar { font-size: 0.72rem; color: #a0aec0; font-weight: 500; transition: all 0.3s ease; }
+        .sholat-row.active .sholat-name-ar { color: rgba(255, 255, 255, 0.7); }
+        
+        .sholat-right { display: flex; align-items: center; gap: 12px; }
+        .sholat-time { font-size: 1.2rem; font-weight: 700; color: #043927; letter-spacing: 0.5px; transition: all 0.3s ease; }
+        .sholat-row.active .sholat-time { color: #d4af37; }
+        
+        .next-badge { font-size: 0.58rem; font-weight: 700; background: #d4af37; color: #043927; padding: 4px 8px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 2px 5px rgba(212, 175, 55, 0.3); }
+
+        .footer-note { text-align: center; margin-top: 20px; margin-bottom: 20px; font-size: 0.72rem; color: #a0aec0; font-weight: 500; line-height: 1.5; padding: 0 10px; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="header">
+            <div class="header-top">
+                <a href="index.html" class="back-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </a>
+                <h1 class="header-title">Jadwal Sholat</h1>
+            </div>
+        </div>
+
+        <!-- Countdown Card -->
+        <div class="countdown-card">
+            <div class="countdown-header">
+                <div class="location-info">
+                    <div class="location-city">Sukoharjo</div>
+                    <div class="location-sub">📍 Jawa Tengah, ID</div>
+                </div>
+                <div class="hijri-date" id="hijri-date-text">Memuat...</div>
+            </div>
+            <div class="countdown-body">
+                <h3 class="countdown-sholat-name" id="countdown-title">Menghitung...</h3>
+                <p class="countdown-sholat-status">Akan tiba dalam</p>
+                <div class="timer-display">
+                    <div class="timer-digit-box">
+                        <span class="timer-digit" id="timer-hours">00</span>
+                        <span class="timer-label">Jam</span>
+                    </div>
+                    <span class="timer-colon">:</span>
+                    <div class="timer-digit-box">
+                        <span class="timer-digit" id="timer-minutes">00</span>
+                        <span class="timer-label">Menit</span>
+                    </div>
+                    <span class="timer-colon">:</span>
+                    <div class="timer-digit-box">
+                        <span class="timer-digit" id="timer-seconds">00</span>
+                        <span class="timer-label">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content">
+            <h3 class="section-title">Waktu Shalat Hari Ini</h3>
+
+            <!-- Shubuh Row -->
+            <div class="sholat-row" id="row-subuh">
+                <div class="sholat-left">
+                    <div class="sholat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 18a5 5 0 0 0-10 0M12 2v7M4.22 10.22l2.12 2.12M17.66 12.34l2.12-2.12M1 18h22"/></svg>
+                    </div>
+                    <div class="sholat-names">
+                        <span class="sholat-name-id">Subuh</span>
+                        <span class="sholat-name-ar">Fajr</span>
+                    </div>
+                </div>
+                <div class="sholat-right">
+                    <span class="sholat-time" id="time-subuh">04:31</span>
+                </div>
+            </div>
+
+            <!-- Terbit Row -->
+            <div class="sholat-row" id="row-terbit">
+                <div class="sholat-left">
+                    <div class="sholat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    </div>
+                    <div class="sholat-names">
+                        <span class="sholat-name-id">Terbit</span>
+                        <span class="sholat-name-ar">Syuruq</span>
+                    </div>
+                </div>
+                <div class="sholat-right">
+                    <span class="sholat-time" id="time-terbit">05:45</span>
+                </div>
+            </div>
+
+            <!-- Dzuhur Row -->
+            <div class="sholat-row" id="row-dzuhur">
+                <div class="sholat-left">
+                    <div class="sholat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <div class="sholat-names">
+                        <span class="sholat-name-id">Dzuhur</span>
+                        <span class="sholat-name-ar">Dhuhr</span>
+                    </div>
+                </div>
+                <div class="sholat-right">
+                    <span class="sholat-time" id="time-dzuhur">11:38</span>
+                </div>
+            </div>
+
+            <!-- Ashar Row -->
+            <div class="sholat-row" id="row-ashar">
+                <div class="sholat-left">
+                    <div class="sholat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                    </div>
+                    <div class="sholat-names">
+                        <span class="sholat-name-id">Ashar</span>
+                        <span class="sholat-name-ar">Asr</span>
+                    </div>
+                </div>
+                <div class="sholat-right">
+                    <span class="sholat-time" id="time-ashar">14:57</span>
+                </div>
+            </div>
+
+            <!-- Maghrib Row -->
+            <div class="sholat-row" id="row-maghrib">
+                <div class="sholat-left">
+                    <div class="sholat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-10 10h20a10 10 0 0 0-10-10zM2 18h20M5 22h14"/></svg>
+                    </div>
+                    <div class="sholat-names">
+                        <span class="sholat-name-id">Maghrib</span>
+                        <span class="sholat-name-ar">Maghrib</span>
+                    </div>
+                </div>
+                <div class="sholat-right">
+                    <span class="sholat-time" id="time-maghrib">17:37</span>
+                </div>
+            </div>
+
+            <!-- Isya Row -->
+            <div class="sholat-row" id="row-isya">
+                <div class="sholat-left">
+                    <div class="sholat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </div>
+                    <div class="sholat-names">
+                        <span class="sholat-name-id">Isya</span>
+                        <span class="sholat-name-ar">Isha</span>
+                    </div>
+                </div>
+                <div class="sholat-right">
+                    <span class="sholat-time" id="time-isya">18:47</span>
+                </div>
+            </div>
+
+            <p class="footer-note">Jadwal sholat otomatis diselaraskan berdasarkan lokasi Sukoharjo, Jawa Tengah (Metode Kementerian Agama RI).</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Default static timings
+            let jadwalSholat = [
+                { nama: "Subuh",     namaEn: "Fajr",    jam: "04:31" },
+                { nama: "Dzuhur",    namaEn: "Dhuhr",   jam: "11:38" },
+                { nama: "Ashar",     namaEn: "Asr",     jam: "14:57" },
+                { nama: "Maghrib",   namaEn: "Maghrib", jam: "17:37" },
+                { nama: "Isya",      namaEn: "Isha",    jam: "18:47" }
+            ];
+
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, "0");
+            const day = String(today.getDate()).padStart(2, "0");
+            const todayStr = `${year}-${month}-${day}`;
+
+            // Algoritma Tabular lokal untuk tanggal Hijriah fallback
+            function getLocalHijriDate() {
+                const d = new Date();
+                const year = d.getFullYear();
+                const month = d.getMonth() + 1;
+                const day = d.getDate();
+
+                const a = Math.floor((14 - month) / 12);
+                const y = year + 4800 - a;
+                const m = month + 12 * a - 3;
+                const jdn = day + Math.floor((153 * m + 2) / 5) + 365 * y +
+                    Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+
+                let l = jdn - 1948440 + 10632;
+                const n = Math.floor((l - 1) / 10631);
+                l = l - 10631 * n + 354;
+                const j = Math.floor((10985 - l) / 5316) * Math.floor((50 * l) / 17719) + Math.floor(l / 5670) * Math.floor((43 * l) / 15238);
+                l = l - Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50) - Math.floor(j / 16) * Math.floor((15238 * j) / 43) + 29;
+                
+                const hijriMonth = Math.floor((24 * l) / 709);
+                const hijriDay   = l - Math.floor((709 * hijriMonth) / 24);
+                const hijriYear  = 30 * n + j - 30;
+
+                const monthNames = [
+                    "Muharram", "Safar", "Rabiul Awal", "Rabiul Akhir",
+                    "Jumadil Awal", "Jumadil Akhir", "Rajab", "Sya'ban",
+                    "Ramadhan", "Syawal", "Dzulqadah", "Dzulhijjah"
+                ];
+
+                return `${Math.max(1, hijriDay)} ${monthNames[(hijriMonth - 1) % 12]} ${hijriYear} H`;
+            }
+
+            function getCleanHijriMonth(monthEn) {
+                const map = {
+                    "Muharram":"Muharram","Safar":"Safar",
+                    "Rabi' al-awwal":"Rabiul Awal","Rabi' al-akhir":"Rabiul Akhir",
+                    "Jumada al-ula":"Jumadil Awal","Jumada al-akhirah":"Jumadil Akhir",
+                    "Rajab":"Rajab","Sha'ban":"Sya'ban","Ramadan":"Ramadhan",
+                    "Shawwal":"Syawal","Dhu al-Qi'dah":"Dzulqadah","Dhu al-Hijjah":"Dzulhijjah"
+                };
+                const clean = monthEn.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+                return map[monthEn] || map[clean] || clean;
+            }
+
+            function updateUIWithData(timings, hijri) {
+                // Update Hijri Date text
+                const hijriEl = document.getElementById("hijri-date-text");
+                if (hijriEl) {
+                    if (hijri && hijri.day) {
+                        const mn = getCleanHijriMonth(hijri.month.en);
+                        hijriEl.textContent = `${parseInt(hijri.day)} ${mn} ${hijri.year} H`;
+                    } else {
+                        hijriEl.textContent = getLocalHijriDate();
+                    }
+                }
+
+                // Update sholat times in rows
+                const mapping = {
+                    subuh: timings.Fajr,
+                    terbit: timings.Sunrise,
+                    dzuhur: timings.Dhuhr,
+                    ashar: timings.Asr,
+                    maghrib: timings.Maghrib,
+                    isya: timings.Isha
+                };
+
+                for (const [key, val] of Object.entries(mapping)) {
+                    const timeEl = document.getElementById(`time-${key}`);
+                    if (timeEl && val) {
+                        timeEl.textContent = val.split(" ")[0];
+                    }
+                }
+
+                // Update countdown array
+                jadwalSholat = [
+                    { nama: "Subuh",     namaEn: "Fajr",    jam: timings.Fajr.split(" ")[0] },
+                    { nama: "Dzuhur",    namaEn: "Dhuhr",   jam: timings.Dhuhr.split(" ")[0] },
+                    { nama: "Ashar",     namaEn: "Asr",     jam: timings.Asr.split(" ")[0] },
+                    { nama: "Maghrib",   namaEn: "Maghrib", jam: timings.Maghrib.split(" ")[0] },
+                    { nama: "Isya",      namaEn: "Isha",    jam: timings.Isha.split(" ")[0] }
+                ];
+            }
+
+            // Load from localStorage cache if valid, otherwise fetch
+            async function loadJadwal() {
+                const cachedDate = localStorage.getItem("jadwal_shalat_date");
+                const cachedData = localStorage.getItem("jadwal_shalat_cache");
+
+                if (cachedDate === todayStr && cachedData) {
+                    try {
+                        const parsed = JSON.parse(cachedData);
+                        if (parsed.timings) {
+                            updateUIWithData(parsed.timings, parsed.hijri);
+                            runCountdown();
+                            return;
+                        }
+                    } catch(e) {
+                        console.error(e);
+                    }
+                }
+
+                // Fallback: fetch from API
+                try {
+                    const response = await fetch("https://api.aladhan.com/v1/timingsByCity?city=Sukoharjo&country=Indonesia&method=11");
+                    const result = await response.json();
+                    const timings = result.data.timings;
+                    const hijri = result.data.date.hijri;
+                    
+                    if (timings) {
+                        localStorage.setItem("jadwal_shalat_cache", JSON.stringify({ timings, hijri }));
+                        localStorage.setItem("jadwal_shalat_date", todayStr);
+                        updateUIWithData(timings, hijri);
+                    }
+                } catch(err) {
+                    console.warn("Failed to fetch API, using static default sholat times");
+                }
+                runCountdown();
+            }
+
+            function getTimeInMinutes(timeStr) {
+                const [h, m] = timeStr.split(":").map(Number);
+                return h * 60 + m;
+            }
+
+            function pad(n) {
+                return n.toString().padStart(2, "0");
+            }
+
+            function runCountdown() {
+                function updateTimer() {
+                    const now = new Date();
+                    const nowMinutes = now.getHours() * 60 + now.getMinutes();
+                    const nowSeconds = now.getSeconds();
+
+                    let nextSholat = null;
+                    for (let i = 0; i < jadwalSholat.length; i++) {
+                        const waktu = getTimeInMinutes(jadwalSholat[i].jam);
+                        if (waktu > nowMinutes) {
+                            nextSholat = jadwalSholat[i];
+                            break;
+                        }
+                    }
+
+                    if (!nextSholat) {
+                        nextSholat = jadwalSholat[0]; // Next is Subuh tomorrow
+                    }
+
+                    // Update UI Title
+                    document.getElementById("countdown-title").textContent = `Adzan ${nextSholat.nama}`;
+
+                    // Update Active Row highlight
+                    const nextKey = nextSholat.nama.toLowerCase();
+                    const activeKey = nextKey === "subuh" ? "subuh" : nextKey; // Default sholat key mapping
+                    
+                    const rows = document.querySelectorAll(".sholat-row");
+                    rows.forEach(row => {
+                        row.classList.remove("active");
+                        
+                        // Clean existing next badges
+                        const existingBadge = row.querySelector(".next-badge");
+                        if (existingBadge) existingBadge.remove();
+                        
+                        const id = row.id.replace("row-", "");
+                        if (id === activeKey) {
+                            row.classList.add("active");
+                            // Add "Berikutnya" badge
+                            const right = row.querySelector(".sholat-right");
+                            if (right) {
+                                const badge = document.createElement("span");
+                                badge.className = "next-badge";
+                                badge.textContent = "Berikutnya";
+                                right.insertBefore(badge, right.firstChild);
+                            }
+                        }
+                    });
+
+                    // Countdown Math
+                    const nextTime = getTimeInMinutes(nextSholat.jam);
+                    let diffMinutes = nextTime - nowMinutes;
+                    if (diffMinutes < 0) {
+                        diffMinutes = (24 * 60) - nowMinutes + nextTime;
+                    }
+
+                    let totalSeconds = diffMinutes * 60 - nowSeconds;
+                    if (totalSeconds < 0) totalSeconds = 0;
+
+                    const hours = Math.floor(totalSeconds / 3600);
+                    const mins = Math.floor((totalSeconds % 3600) / 60);
+                    const secs = totalSeconds % 60;
+
+                    document.getElementById("timer-hours").textContent = pad(hours);
+                    document.getElementById("timer-minutes").textContent = pad(mins);
+                    document.getElementById("timer-seconds").textContent = pad(secs);
+                }
+
+                updateTimer();
+                setInterval(updateTimer, 1000);
+            }
+
+            // Run
+            loadJadwal();
+        });
+    </script>
+</body>
+</html>

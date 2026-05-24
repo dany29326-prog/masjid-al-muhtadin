@@ -467,18 +467,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 });
             }
-            if (navSholat) {
-                navSholat.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(".jadwal-lengkap");
-                    if (target) {
-                        appContainer.scrollTo({
-                            top: target.offsetTop - 15,
-                            behavior: "smooth"
-                        });
-                    }
-                });
-            }
+
             if (navLainnya) {
                 navLainnya.addEventListener("click", function (e) {
                     e.preventDefault();
