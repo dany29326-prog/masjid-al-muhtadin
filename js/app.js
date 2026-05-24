@@ -391,6 +391,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const scrollDots = document.querySelectorAll(".scroll-dot");
     const bottomNav = document.querySelector(".bottom-nav");
     let lastScrollTop = 0;
+    let scrollStopTimer;
 
     const navBeranda = document.getElementById("nav-beranda");
     const navSholat = document.getElementById("nav-sholat");
@@ -430,9 +431,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     const remainder = scrollTop % screenHeight;
                     // Cek apakah posisi scroll berada tepat di/sangat dekat rest-state halaman
                     const isAtScreenRest = (remainder < 5) || (screenHeight - remainder < 5);
+                    // Cek apakah scroll telah mencapai bagian paling bawah dari kontainer (Screen 3)
+                    const isAtBottom = (scrollTop + screenHeight >= appContainer.scrollHeight - 10);
 
-                    if (scrollTop < 50 || isAtScreenRest) {
-                        // Selalu tampilkan di paling atas atau saat snap-scroll selesai mengunci halaman
+                    if (scrollTop < 50 || isAtScreenRest || isAtBottom) {
+                        // Selalu tampilkan di paling atas, saat snap-scroll selesai mengunci halaman, atau di paling bawah
                         bottomNav.classList.remove("nav-hidden");
                     } else if (scrollTop > lastScrollTop) {
                         // Gulir ke bawah (sedang transisi) -> Sembunyikan navbar
@@ -441,6 +444,12 @@ document.addEventListener("DOMContentLoaded", function () {
                         // Gulir ke atas -> Tampilkan navbar kembali
                         bottomNav.classList.remove("nav-hidden");
                     }
+
+                    // Tampilkan kembali secara otomatis setelah 250ms berhenti melakukan scroll (Debounce)
+                    clearTimeout(scrollStopTimer);
+                    scrollStopTimer = setTimeout(function() {
+                        bottomNav.classList.remove("nav-hidden");
+                    }, 250);
                 }
 
                 lastScrollTop = scrollTop;
