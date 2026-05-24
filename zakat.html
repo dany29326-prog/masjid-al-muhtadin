@@ -330,6 +330,7 @@
                         <span class="input-prefix">Rp</span>
                         <input type="text" class="input-field format-rupiah" id="hargaEmas" value="1.300.000">
                     </div>
+                    <p style="font-size: 0.65rem; color: #a0aec0; font-weight: 600; margin-top: 6px; display: flex; align-items: center; gap: 4px;" id="gold-api-status">🔄 Memuat harga emas terbaru...</p>
                 </div>
 
                 <div class="input-group">
@@ -464,6 +465,47 @@
             jumlahJiwaEl.addEventListener("input", calculateZakat);
             hargaBerasEl.addEventListener("input", calculateZakat);
 
+            // Ambil harga emas Antam real-time dari API
+            async function fetchHargaEmas() {
+                const hargaEmasInput = document.getElementById("hargaEmas");
+                const apiStatus = document.getElementById("gold-api-status");
+                
+                try {
+                    const response = await fetch("https://logam-mulia-api.iamutaki.workers.dev/logammulia");
+                    if (!response.ok) throw new Error("Gagal mengambil data");
+                    
+                    const json = await response.json();
+                    let goldPrice = 0;
+                    
+                    if (json.data) {
+                        if (Array.isArray(json.data) && json.data.length > 0) {
+                            const first = json.data[0];
+                            goldPrice = parseFloat(first.price || first.sell || first.harga || 0);
+                        } else if (typeof json.data === "object") {
+                            goldPrice = parseFloat(json.data.price || json.data.sell || json.data.harga || 0);
+                        }
+                    }
+                    
+                    if (goldPrice > 100000) {
+                        hargaEmasInput.value = goldPrice.toLocaleString("id-ID");
+                        if (apiStatus) {
+                            apiStatus.textContent = "🟢 Terupdate otomatis hari ini via API";
+                            apiStatus.style.color = "#2e7d32";
+                        }
+                        calculateZakat();
+                        console.log("Harga emas berhasil diperbarui dari API Antam:", goldPrice);
+                    } else {
+                        throw new Error("Harga tidak valid");
+                    }
+                } catch (e) {
+                    console.warn("Gagal mengambil harga emas Antam real-time. Menggunakan harga fallback standar:", e);
+                    if (apiStatus) {
+                        apiStatus.textContent = "🟢 Menggunakan harga standar (offline)";
+                        apiStatus.style.color = "#718096";
+                    }
+                }
+            }
+
             function calculateZakat() {
                 // 1. Zakat Profesi
                 const gaji = parseRupiah(gajiEl.value);
@@ -542,6 +584,9 @@
                     descFitrah.innerHTML = "Masukkan jumlah jiwa/anggota keluarga Anda untuk menghitung jumlah Zakat Fitrah.";
                 }
             }
+
+            // Run
+            fetchHargaEmas();
         });
     </script>
 </body>
