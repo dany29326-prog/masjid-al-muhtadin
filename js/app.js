@@ -392,6 +392,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const bottomNav = document.querySelector(".bottom-nav");
     let lastScrollTop = 0;
 
+    const navBeranda = document.getElementById("nav-beranda");
+    const navSholat = document.getElementById("nav-sholat");
+    const navLainnya = document.getElementById("nav-lainnya");
+
     if (appContainer) {
         if (scrollDots.length > 0) {
             appContainer.addEventListener("scroll", function () {
@@ -406,6 +410,20 @@ document.addEventListener("DOMContentLoaded", function () {
                         dot.classList.remove("active");
                     }
                 });
+
+                // Update Active State di Bottom Nav
+                const navItems = document.querySelectorAll(".nav-bottom-item");
+                navItems.forEach(item => {
+                    if (item.id === "nav-beranda" || item.id === "nav-sholat" || item.id === "nav-lainnya") {
+                        item.classList.remove("active");
+                    }
+                });
+                
+                if (activeIndex === 0) {
+                    if (navBeranda) navBeranda.classList.add("active");
+                } else if (activeIndex === 1) {
+                    if (navLainnya) navLainnya.classList.add("active");
+                }
 
                 // ===== SMART SNAP-REST AUTO-HIDE NAVBAR =====
                 if (bottomNav) {
@@ -428,7 +446,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 lastScrollTop = scrollTop;
             });
 
-            // Click to scroll to screen
+            // Click to scroll to screen (Dots)
             scrollDots.forEach((dot, idx) => {
                 dot.addEventListener("click", function () {
                     const screenHeight = appContainer.clientHeight;
@@ -438,6 +456,39 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
                 });
             });
+
+            // Click handlers untuk Navbar Items (Internal Scrolling)
+            if (navBeranda) {
+                navBeranda.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    appContainer.scrollTo({
+                        top: 0,
+                        behavior: "smooth"
+                    });
+                });
+            }
+            if (navSholat) {
+                navSholat.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(".jadwal-lengkap");
+                    if (target) {
+                        appContainer.scrollTo({
+                            top: target.offsetTop - 15,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            }
+            if (navLainnya) {
+                navLainnya.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    const screenHeight = appContainer.clientHeight;
+                    appContainer.scrollTo({
+                        top: screenHeight, // Screen 2
+                        behavior: "smooth"
+                    });
+                });
+            }
         }
     }
 

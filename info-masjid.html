@@ -171,7 +171,13 @@
         }
 
         // Initialize
-        fetchInfoMasjid();
+        fetchInfoMasjid().then(() => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const tabParam = urlParams.get('tab');
+            if (tabParam) {
+                filterFeed(tabParam);
+            }
+        });
     </script>
 </body>
 </html>
