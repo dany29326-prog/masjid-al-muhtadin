@@ -392,7 +392,7 @@ body {
 .keuangan-title { color: #ffffff; font-size: 0.85rem; font-weight: 700; }
 .keuangan-badge { background: rgba(212, 175, 55, 0.2); color: #d4af37; font-size: 0.6rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(212, 175, 55, 0.3); }
 .keuangan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; position: relative; z-index: 1; }
-.keuangan-item { background: rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px; backdrop-filter: blur(4px); }
+.keuangan-item { background: rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 12px; }
 .keuangan-item-label { color: rgba(255, 255, 255, 0.6); font-size: 0.6rem; font-weight: 500; display: block; margin-bottom: 4px; }
 .keuangan-item-nominal { color: #ffffff; font-size: 0.85rem; font-weight: 700; }
 .keuangan-item-nominal.emas { color: #d4af37; }
@@ -502,7 +502,7 @@ body {
 .amal-item:hover .custom-checkbox {
     border-color: #043927;
 }
-.amal-checkbox:checked ~ .amal-checkbox-wrapper .custom-checkbox {
+.amal-item.checked .custom-checkbox {
     background-color: #043927;
     border-color: #043927;
     animation: checkPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -524,7 +524,7 @@ body {
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
 }
-.amal-checkbox:checked ~ .amal-checkbox-wrapper .custom-checkbox::after {
+.amal-item.checked .custom-checkbox::after {
     display: block;
 }
 
@@ -552,8 +552,8 @@ body {
 .amal-text { flex: 1; }
 .amal-text h4 { color: #0c1a30; font-size: 0.9rem; font-weight: 700; margin: 0 0 2px 0; transition: color 0.2s ease; }
 .amal-text p { color: #718096; font-size: 0.72rem; font-weight: 500; margin: 0; transition: color 0.2s ease; }
-.amal-checkbox:checked ~ .amal-text h4 { color: #a0aec0; text-decoration: line-through; }
-.amal-checkbox:checked ~ .amal-text p { color: #cbd5e0; }
+.amal-item.checked .amal-text h4 { color: #a0aec0; text-decoration: line-through; }
+.amal-item.checked .amal-text p { color: #cbd5e0; }
 
 .footer-area { text-align: center; margin-top: auto; padding-top: 30px; }
 .footer-logo { width: 30px; margin-bottom: 10px; opacity: 0.5; }
