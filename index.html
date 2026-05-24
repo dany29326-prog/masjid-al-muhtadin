@@ -395,33 +395,59 @@
                     </div>
                 </div>
 
-                <div class="target-amal-card">
-                    <label class="amal-item">
+                <div class="target-amal-card" style="background: transparent; box-shadow: none; padding: 0;">
+                    
+                    <!-- Item 1: Shalat -->
+                    <label class="amal-item" for="amal-shalat">
                         <input type="checkbox" id="amal-shalat" class="amal-checkbox">
-                        <span class="custom-checkbox"></span>
+                        <div class="amal-checkbox-wrapper">
+                            <span class="custom-checkbox"></span>
+                        </div>
+                        <div class="amal-icon-box shalat-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 21h18M12 2v7M12 9a4 4 0 0 0-4 4v8h8v-8a4 4 0 0 0-4-4z"/>
+                            </svg>
+                        </div>
                         <div class="amal-text">
                             <h4>Shalat Tepat Waktu</h4>
                             <p>Menjaga shalat fardhu di awal waktu</p>
                         </div>
                     </label>
 
-                    <label class="amal-item">
+                    <!-- Item 2: Tilawah -->
+                    <label class="amal-item" for="amal-tilawah">
                         <input type="checkbox" id="amal-tilawah" class="amal-checkbox">
-                        <span class="custom-checkbox"></span>
+                        <div class="amal-checkbox-wrapper">
+                            <span class="custom-checkbox"></span>
+                        </div>
+                        <div class="amal-icon-box tilawah-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M6.5 2v20M20 2v20"/>
+                            </svg>
+                        </div>
                         <div class="amal-text">
                             <h4>Tilawah Al-Qur'an</h4>
                             <p>Membaca minimal 1 lembar hari ini</p>
                         </div>
                     </label>
 
-                    <label class="amal-item">
-                        <input type="checkbox" id="amal-sedekah" class="amal-checkbox" style="border:none;">
-                        <span class="custom-checkbox"></span>
+                    <!-- Item 3: Sedekah -->
+                    <label class="amal-item" for="amal-sedekah">
+                        <input type="checkbox" id="amal-sedekah" class="amal-checkbox">
+                        <div class="amal-checkbox-wrapper">
+                            <span class="custom-checkbox"></span>
+                        </div>
+                        <div class="amal-icon-box sedekah-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                            </svg>
+                        </div>
                         <div class="amal-text">
-                            <h4>Sedekah Subuh</h4>
-                            <p>Berbagi kebaikan di waktu fajar</p>
+                            <h4>Sedekah Harian</h4>
+                            <p>Berbagi kebaikan dengan bersedekah</p>
                         </div>
                     </label>
+
                 </div>
             </div>
 
