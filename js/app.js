@@ -65,14 +65,19 @@ document.addEventListener("DOMContentLoaded", function () {
     // Pasang status awal & event listener
     checkboxes.forEach(function (checkbox) {
         const savedStatus = localStorage.getItem(checkbox.id);
+        const parentItem = checkbox.closest(".amal-item");
+        
         if (savedStatus === "true") { 
             checkbox.checked = true; 
+            if (parentItem) parentItem.classList.add("checked");
         } else {
             checkbox.checked = false;
+            if (parentItem) parentItem.classList.remove("checked");
         }
 
         checkbox.addEventListener("change", function () {
             localStorage.setItem(checkbox.id, checkbox.checked);
+            if (parentItem) parentItem.classList.toggle("checked", checkbox.checked);
             updateAmalProgress();
         });
     });

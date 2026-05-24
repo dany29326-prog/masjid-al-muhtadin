@@ -479,7 +479,7 @@ body {
     background: #f7faf8;
     border-color: rgba(4, 57, 39, 0.1);
 }
-.amal-item:has(.amal-checkbox:checked) {
+.amal-item.checked {
     background: #f0f7f3;
     border-color: rgba(4, 57, 39, 0.08);
 }
@@ -544,9 +544,9 @@ body {
 .tilawah-icon { background: rgba(212, 175, 55, 0.1); color: #b8943a; }
 .sedekah-icon { background: rgba(229, 62, 62, 0.08); color: #e53e3e; }
 
-.amal-item:has(.amal-checkbox:checked) .shalat-icon { background: #043927; color: white; }
-.amal-item:has(.amal-checkbox:checked) .tilawah-icon { background: #b8943a; color: white; }
-.amal-item:has(.amal-checkbox:checked) .sedekah-icon { background: #e53e3e; color: white; }
+.amal-item.checked .shalat-icon { background: #043927; color: white; }
+.amal-item.checked .tilawah-icon { background: #b8943a; color: white; }
+.amal-item.checked .sedekah-icon { background: #e53e3e; color: white; }
 .amal-icon-box svg { width: 18px; height: 18px; }
 
 .amal-text { flex: 1; }
