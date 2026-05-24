@@ -459,7 +459,7 @@ body {
 /* =========================================
    4. LAYAR 3: TARGET AMAL & FOOTER
    ========================================= */
-.screen-3 { padding: 40px 20px 130px 20px; justify-content: space-between; }
+.screen-3 { padding: 40px 20px 130px 20px; justify-content: space-between; isolation: isolate; }
 
 .target-amal-card { background-color: transparent; border-radius: 0; padding: 0; box-shadow: none; }
 .amal-item {
@@ -467,8 +467,6 @@ body {
     align-items: center;
     padding: 12px 16px;
     cursor: pointer;
-    position: relative;
-    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 14px;
     margin-bottom: 10px;
     border: 1px solid #edf2f7;
@@ -497,7 +495,6 @@ body {
     background-color: #ffffff;
     border: 2px solid #cbd5e0;
     border-radius: 6px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .amal-item:hover .custom-checkbox {
     border-color: #043927;
@@ -505,12 +502,6 @@ body {
 .amal-item.checked .custom-checkbox {
     background-color: #043927;
     border-color: #043927;
-    animation: checkPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-@keyframes checkPop {
-    0% { transform: scale(0.8); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
 }
 .custom-checkbox::after {
     content: "";
@@ -538,7 +529,6 @@ body {
     align-items: center;
     margin-right: 14px;
     flex-shrink: 0;
-    transition: all 0.25s ease;
 }
 .shalat-icon { background: rgba(4, 57, 39, 0.08); color: #043927; }
 .tilawah-icon { background: rgba(212, 175, 55, 0.1); color: #b8943a; }
@@ -550,8 +540,8 @@ body {
 .amal-icon-box svg { width: 18px; height: 18px; }
 
 .amal-text { flex: 1; }
-.amal-text h4 { color: #0c1a30; font-size: 0.9rem; font-weight: 700; margin: 0 0 2px 0; transition: color 0.2s ease; }
-.amal-text p { color: #718096; font-size: 0.72rem; font-weight: 500; margin: 0; transition: color 0.2s ease; }
+.amal-text h4 { color: #0c1a30; font-size: 0.9rem; font-weight: 700; margin: 0 0 2px 0; }
+.amal-text p { color: #718096; font-size: 0.72rem; font-weight: 500; margin: 0; }
 .amal-item.checked .amal-text h4 { color: #a0aec0; text-decoration: line-through; }
 .amal-item.checked .amal-text p { color: #cbd5e0; }
 
@@ -688,7 +678,10 @@ body {
     background: linear-gradient(90deg, #043927 0%, #065a3e 100%);
     border-radius: 4px;
     width: 0%;
-    transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.amal-progress-fill.complete {
+    background: linear-gradient(90deg, #d4af37 0%, #b8943a 100%);
 }
 
 /* =========================================

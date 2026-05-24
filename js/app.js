@@ -37,27 +37,22 @@ document.addEventListener("DOMContentLoaded", function () {
         
         const progressBadge = document.getElementById("amalProgressBadge");
         const progressFill = document.getElementById("amalProgressFill");
+        const progressContainer = document.querySelector(".amal-progress-container");
 
         if (progressBadge) {
             if (percentage === 100) {
-                progressBadge.innerHTML = "Masya Allah! 🌟";
-                progressBadge.style.color = "#b8943a";
-                progressBadge.style.fontWeight = "700";
+                progressBadge.textContent = "Masya Allah! 🌟";
             } else {
                 progressBadge.textContent = `${checkedCount}/${total} Selesai`;
-                progressBadge.style.color = "#b8943a";
-                progressBadge.style.fontWeight = "700";
             }
         }
         
         if (progressFill) {
-            progressFill.style.width = `${percentage}%`;
+            progressFill.style.width = percentage + "%";
             if (percentage === 100) {
-                progressFill.style.background = "linear-gradient(90deg, #d4af37 0%, #b8943a 100%)";
-                progressFill.style.boxShadow = "0 0 10px rgba(212, 175, 55, 0.6)";
+                progressFill.classList.add("complete");
             } else {
-                progressFill.style.background = "linear-gradient(90deg, #043927 0%, #065a3e 100%)";
-                progressFill.style.boxShadow = "none";
+                progressFill.classList.remove("complete");
             }
         }
     }
